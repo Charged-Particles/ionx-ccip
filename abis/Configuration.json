@@ -1,0 +1,663 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "BridgeAddressIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "PoolAddressIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "TokenAddressIsZero",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "sourceToken",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "DestinationTokenRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "sourceToken",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract IERC20",
+        "name": "destinationToken",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "DestinationTokenSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "extraArgs",
+        "type": "bytes"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ExtraArgsSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferStarted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "chainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "RemoteBridgeRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "chainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "remoteBridge",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "RemoteBridgeSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "TokenPoolRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IPool",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "TokenPoolSet",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "acceptOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "sourceChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "getConfigIn",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "senderBridge",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IPool",
+            "name": "pool",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct IConfiguration.ConfigIn",
+        "name": "config",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "getConfigOut",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "receiverBridge",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "destinationToken",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IPool",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "extraArgs",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct IConfiguration.ConfigOut",
+        "name": "config",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "sourceToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "getDestinationToken",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "destinationToken",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "getExtraArgs",
+    "outputs": [
+      {
+        "internalType": "bytes",
+        "name": "extraArgs",
+        "type": "bytes"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "chainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "getRemoteBridge",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "remoteBridge",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "getTokenPool",
+    "outputs": [
+      {
+        "internalType": "contract IPool",
+        "name": "pool",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "chainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "isBridgeAvailableOnChain",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "available",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "isTokenAvailableOnDestination",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "available",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "isTokenPoolAvailable",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "available",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pendingOwner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "sourceToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "removeDestinationToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "chainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "removeRemoteBridge",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "removeTokenPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "sourceToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "destinationToken",
+        "type": "address"
+      }
+    ],
+    "name": "setDestinationToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "bytes",
+        "name": "extraArgs",
+        "type": "bytes"
+      }
+    ],
+    "name": "setExtraArgs",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "gasLimit",
+        "type": "uint256"
+      }
+    ],
+    "name": "setExtraArgsGasLimit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "chainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "address",
+        "name": "remoteBridge",
+        "type": "address"
+      }
+    ],
+    "name": "setRemoteBridge",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IPool",
+        "name": "pool",
+        "type": "address"
+      }
+    ],
+    "name": "setTokenPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

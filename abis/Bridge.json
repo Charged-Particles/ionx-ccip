@@ -1,0 +1,1011 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "router",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IConfiguration",
+        "name": "configuration",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "AddressInsufficientBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "nativeGas",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "feeToken",
+        "type": "address"
+      }
+    ],
+    "name": "CannotSetFeeTokenIfNativeGasNotZero",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "configuration",
+        "type": "address"
+      }
+    ],
+    "name": "ConfigurationAlreadySet",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ConfigurationIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ConfigurationNotSet",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "DestinationChainSelectorIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "key",
+        "type": "bytes32"
+      }
+    ],
+    "name": "EnumerableMapNonexistentKey",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedInnerCall",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "changeAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "FailedToSendChange",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FeeTokenAddressIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "feeToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fees",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "allowance",
+        "type": "uint256"
+      }
+    ],
+    "name": "InsufficientFeeAllowance",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "nativeGas",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fees",
+        "type": "uint256"
+      }
+    ],
+    "name": "InsufficientFees",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "router",
+        "type": "address"
+      }
+    ],
+    "name": "InvalidRouter",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "sourceChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "address",
+        "name": "configuredSenderBridge",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "senderBridge",
+        "type": "address"
+      }
+    ],
+    "name": "InvalidSenderBridge",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MessageNotFailed",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "NoBridgeOnDestination",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "NoExtraArgs",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
+    "name": "OnlySelf",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReceivedAmountIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReceiverAddressIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "TokenAddressIsZero",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      }
+    ],
+    "name": "TokenNotSupported",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "TokenPoolNotSet",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IConfiguration",
+        "name": "oldConfiguration",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IConfiguration",
+        "name": "newConfiguration",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ConfigurationSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "CrossChainMessageReceived",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "CrossChainMessageSent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IBridge.TokenAmount",
+        "name": "tokenAmount",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "reason",
+        "type": "bytes"
+      }
+    ],
+    "name": "MessageFailed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "recoverer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IBridge.TokenAmount",
+        "name": "tokenAmount",
+        "type": "tuple"
+      }
+    ],
+    "name": "MessageRecovered",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferStarted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "oldRouter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newRouter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "RouterSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "tokenDestination",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IPool",
+        "name": "tokenDestinationPool",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "sourceChainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "TokensReceived",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract IERC20",
+        "name": "tokenSource",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IPool",
+        "name": "tokenSourcePool",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract IERC20",
+        "name": "tokenDestination",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fees",
+        "type": "uint256"
+      }
+    ],
+    "name": "TokensTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "acceptOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "messageId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "sourceChainSelector",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bytes",
+            "name": "sender",
+            "type": "bytes"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct Client.EVMTokenAmount[]",
+            "name": "destTokenAmounts",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct Client.Any2EVMMessage",
+        "name": "message",
+        "type": "tuple"
+      }
+    ],
+    "name": "ccipReceive",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getConfiguration",
+    "outputs": [
+      {
+        "internalType": "contract IConfiguration",
+        "name": "configuration",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getFailedMessageContent",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          },
+          {
+            "components": [
+              {
+                "internalType": "contract IERC20",
+                "name": "token",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct IBridge.TokenAmount",
+            "name": "tokenAmount",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct IBridge.FailedMessageContent",
+        "name": "content",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "offset",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      }
+    ],
+    "name": "getFailedMessages",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "messageId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "enum IBridge.ErrorCode",
+            "name": "errorCode",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct IBridge.FailedMessage[]",
+        "name": "failedMessages",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "feeToken",
+        "type": "address"
+      }
+    ],
+    "name": "getFee",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "fees",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getRouter",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "router",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pendingOwner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "senderBridge",
+        "type": "address"
+      },
+      {
+        "internalType": "uint64",
+        "name": "sourceChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IBridge.TokenAmount",
+        "name": "tokenAmount",
+        "type": "tuple"
+      }
+    ],
+    "name": "processMessage",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "tokenReceiver",
+        "type": "address"
+      }
+    ],
+    "name": "retryFailedMessage",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IConfiguration",
+        "name": "configuration",
+        "type": "address"
+      }
+    ],
+    "name": "setConfiguration",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "router",
+        "type": "address"
+      }
+    ],
+    "name": "setRouter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "destinationChainSelector",
+        "type": "uint64"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "feeToken",
+        "type": "address"
+      }
+    ],
+    "name": "transferTokensToDestinationChain",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fees",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

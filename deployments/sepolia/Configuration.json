@@ -1,0 +1,855 @@
+{
+  "address": "0x6BC333b2F420438144F40391b122Ab44989b49cF",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "BridgeAddressIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "PoolAddressIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TokenAddressIsZero",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "sourceToken",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "DestinationTokenRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "sourceToken",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IERC20",
+          "name": "destinationToken",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "DestinationTokenSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "extraArgs",
+          "type": "bytes"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "ExtraArgsSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "chainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "RemoteBridgeRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "chainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "remoteBridge",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "RemoteBridgeSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "TokenPoolRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IPool",
+          "name": "pool",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "TokenPoolSet",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "sourceChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "getConfigIn",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "senderBridge",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IPool",
+              "name": "pool",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct IConfiguration.ConfigIn",
+          "name": "config",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "getConfigOut",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "receiverBridge",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "destinationToken",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IPool",
+              "name": "pool",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "extraArgs",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct IConfiguration.ConfigOut",
+          "name": "config",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "sourceToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "getDestinationToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "destinationToken",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "getExtraArgs",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "extraArgs",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "chainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "getRemoteBridge",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "remoteBridge",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getTokenPool",
+      "outputs": [
+        {
+          "internalType": "contract IPool",
+          "name": "pool",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "chainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "isBridgeAvailableOnChain",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "available",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "isTokenAvailableOnDestination",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "available",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "isTokenPoolAvailable",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "available",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pendingOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "sourceToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "removeDestinationToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "chainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "removeRemoteBridge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "removeTokenPool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "sourceToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "destinationToken",
+          "type": "address"
+        }
+      ],
+      "name": "setDestinationToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bytes",
+          "name": "extraArgs",
+          "type": "bytes"
+        }
+      ],
+      "name": "setExtraArgs",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint256",
+          "name": "gasLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setExtraArgsGasLimit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "chainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "address",
+          "name": "remoteBridge",
+          "type": "address"
+        }
+      ],
+      "name": "setRemoteBridge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IPool",
+          "name": "pool",
+          "type": "address"
+        }
+      ],
+      "name": "setTokenPool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x9a08fc6c116a4ae4699f43c3287239e2c71a4dd451912bdc0450bcfb6fd684a6",
+  "receipt": {
+    "to": null,
+    "from": "0x2BB8CBAd36D52708a43DE36a9Aa2782fFa0470F1",
+    "contractAddress": "0x6BC333b2F420438144F40391b122Ab44989b49cF",
+    "transactionIndex": 36,
+    "gasUsed": "1011524",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000020000000000000000020000000000000001000800000000000000000000000400000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000020000000000000000001000000000000000000000000",
+    "blockHash": "0xae333532a5472fdf553c45259338f450d3f92f786abe5d1f222584f92e095b0c",
+    "transactionHash": "0x9a08fc6c116a4ae4699f43c3287239e2c71a4dd451912bdc0450bcfb6fd684a6",
+    "logs": [
+      {
+        "transactionIndex": 36,
+        "blockNumber": 6370132,
+        "transactionHash": "0x9a08fc6c116a4ae4699f43c3287239e2c71a4dd451912bdc0450bcfb6fd684a6",
+        "address": "0x6BC333b2F420438144F40391b122Ab44989b49cF",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000002bb8cbad36d52708a43de36a9aa2782ffa0470f1"
+        ],
+        "data": "0x",
+        "logIndex": 56,
+        "blockHash": "0xae333532a5472fdf553c45259338f450d3f92f786abe5d1f222584f92e095b0c"
+      }
+    ],
+    "blockNumber": 6370132,
+    "cumulativeGasUsed": "5299992",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "fae637a45deca0005045ca74bdbaa66c",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.24+commit.e11b9ed9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"BridgeAddressIsZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PoolAddressIsZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TokenAddressIsZero\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"sourceToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"DestinationTokenRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"sourceToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"contract IERC20\",\"name\":\"destinationToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"DestinationTokenSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"extraArgs\",\"type\":\"bytes\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"ExtraArgsSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferStarted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"chainSelector\",\"type\":\"uint64\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"RemoteBridgeRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"chainSelector\",\"type\":\"uint64\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"remoteBridge\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"RemoteBridgeSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"TokenPoolRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contract IPool\",\"name\":\"pool\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"TokenPoolSet\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"acceptOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"sourceChainSelector\",\"type\":\"uint64\"}],\"name\":\"getConfigIn\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"senderBridge\",\"type\":\"address\"},{\"internalType\":\"contract IPool\",\"name\":\"pool\",\"type\":\"address\"}],\"internalType\":\"struct IConfiguration.ConfigIn\",\"name\":\"config\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"getConfigOut\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"receiverBridge\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"destinationToken\",\"type\":\"address\"},{\"internalType\":\"contract IPool\",\"name\":\"pool\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"extraArgs\",\"type\":\"bytes\"}],\"internalType\":\"struct IConfiguration.ConfigOut\",\"name\":\"config\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"sourceToken\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"getDestinationToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"destinationToken\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"getExtraArgs\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"extraArgs\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainSelector\",\"type\":\"uint64\"}],\"name\":\"getRemoteBridge\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"remoteBridge\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getTokenPool\",\"outputs\":[{\"internalType\":\"contract IPool\",\"name\":\"pool\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainSelector\",\"type\":\"uint64\"}],\"name\":\"isBridgeAvailableOnChain\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"isTokenAvailableOnDestination\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"isTokenPoolAvailable\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"sourceToken\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"removeDestinationToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainSelector\",\"type\":\"uint64\"}],\"name\":\"removeRemoteBridge\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"removeTokenPool\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"sourceToken\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"contract IERC20\",\"name\":\"destinationToken\",\"type\":\"address\"}],\"name\":\"setDestinationToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"extraArgs\",\"type\":\"bytes\"}],\"name\":\"setExtraArgs\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"}],\"name\":\"setExtraArgsGasLimit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"chainSelector\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"remoteBridge\",\"type\":\"address\"}],\"name\":\"setRemoteBridge\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IPool\",\"name\":\"pool\",\"type\":\"address\"}],\"name\":\"setTokenPool\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}]},\"kind\":\"dev\",\"methods\":{\"acceptOwnership()\":{\"details\":\"The new owner accepts the ownership transfer.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"pendingOwner()\":{\"details\":\"Returns the address of the pending owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one. Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/bridge/Configuration.sol\":\"Configuration\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\n// End consumer library.\\nlibrary Client {\\n  /// @dev RMN depends on this struct, if changing, please notify the RMN maintainers.\\n  struct EVMTokenAmount {\\n    address token; // token address on the local chain.\\n    uint256 amount; // Amount of tokens.\\n  }\\n\\n  struct Any2EVMMessage {\\n    bytes32 messageId; // MessageId corresponding to ccipSend on source.\\n    uint64 sourceChainSelector; // Source chain selector.\\n    bytes sender; // abi.decode(sender) if coming from an EVM chain.\\n    bytes data; // payload sent in original message.\\n    EVMTokenAmount[] destTokenAmounts; // Tokens and their amounts in their destination chain representation.\\n  }\\n\\n  // If extraArgs is empty bytes, the default is 200k gas limit.\\n  struct EVM2AnyMessage {\\n    bytes receiver; // abi.encode(receiver address) for dest EVM chains\\n    bytes data; // Data payload\\n    EVMTokenAmount[] tokenAmounts; // Token transfers\\n    address feeToken; // Address of feeToken. address(0) means you will send msg.value.\\n    bytes extraArgs; // Populate this with _argsToBytes(EVMExtraArgsV1)\\n  }\\n\\n  // bytes4(keccak256(\\\"CCIP EVMExtraArgsV1\\\"));\\n  bytes4 public constant EVM_EXTRA_ARGS_V1_TAG = 0x97a657c9;\\n  struct EVMExtraArgsV1 {\\n    uint256 gasLimit;\\n  }\\n\\n  function _argsToBytes(EVMExtraArgsV1 memory extraArgs) internal pure returns (bytes memory bts) {\\n    return abi.encodeWithSelector(EVM_EXTRA_ARGS_V1_TAG, extraArgs);\\n  }\\n}\\n\",\"keccak256\":\"0x8af3ac1085c87342373772fb1a0107c7b90258e6bfed318ab2a601a14477e679\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable2Step.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable2Step.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Ownable} from \\\"./Ownable.sol\\\";\\n\\n/**\\n * @dev Contract module which provides access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is specified at deployment time in the constructor for `Ownable`. This\\n * can later be changed with {transferOwnership} and {acceptOwnership}.\\n *\\n * This module is used through inheritance. It will make available all functions\\n * from parent (Ownable).\\n */\\nabstract contract Ownable2Step is Ownable {\\n    address private _pendingOwner;\\n\\n    event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Returns the address of the pending owner.\\n     */\\n    function pendingOwner() public view virtual returns (address) {\\n        return _pendingOwner;\\n    }\\n\\n    /**\\n     * @dev Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one.\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual override onlyOwner {\\n        _pendingOwner = newOwner;\\n        emit OwnershipTransferStarted(owner(), newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`) and deletes any pending owner.\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual override {\\n        delete _pendingOwner;\\n        super._transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev The new owner accepts the ownership transfer.\\n     */\\n    function acceptOwnership() public virtual {\\n        address sender = _msgSender();\\n        if (pendingOwner() != sender) {\\n            revert OwnableUnauthorizedAccount(sender);\\n        }\\n        _transferOwnership(sender);\\n    }\\n}\\n\",\"keccak256\":\"0x5d3e5de9eadfa1f8a892eb2e95bbebd3e4b8c8ada5b76f104d383fea518fa688\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the value of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the value of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the\\n     * allowance mechanism. `value` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\\n}\\n\",\"keccak256\":\"0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"contracts/bridge/Configuration.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.8.24;\\n\\nimport {IConfiguration} from \\\"../interfaces/IConfiguration.sol\\\";\\nimport {IPool} from \\\"../interfaces/IPool.sol\\\";\\nimport {IERC20} from \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\nimport {Ownable2Step, Ownable} from \\\"@openzeppelin/contracts/access/Ownable2Step.sol\\\";\\nimport {Client} from \\\"@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol\\\";\\n\\ncontract Configuration is IConfiguration, Ownable2Step {\\n    mapping(uint64 => address) private s_bridges;\\n    mapping(uint64 => bytes) private s_extraArgs;\\n    mapping(IERC20 => IPool) private s_tokenPools;\\n    mapping(IERC20 => mapping(uint64 => IERC20)) private s_destinationTokens;\\n\\n    modifier validateBridgeAddress(address bridge) {\\n        if (bridge == address(0)) {\\n            revert BridgeAddressIsZero();\\n        }\\n        _;\\n    }\\n\\n    modifier validateToken(IERC20 token) {\\n        if (address(token) == address(0)) {\\n            revert TokenAddressIsZero();\\n        }\\n        _;\\n    }\\n\\n    modifier validateTokenPool(IPool pool) {\\n        if (address(pool) == address(0)) {\\n            revert PoolAddressIsZero();\\n        }\\n        _;\\n    }\\n\\n    constructor() Ownable(msg.sender) {}\\n\\n    function setRemoteBridge(\\n        uint64 chainSelector,\\n        address remoteBridge\\n    ) external onlyOwner validateBridgeAddress(remoteBridge) {\\n        s_bridges[chainSelector] = remoteBridge;\\n        emit RemoteBridgeSet(chainSelector, remoteBridge, msg.sender);\\n    }\\n\\n    function removeRemoteBridge(uint64 chainSelector) external onlyOwner {\\n        delete s_bridges[chainSelector];\\n        emit RemoteBridgeRemoved(chainSelector, msg.sender);\\n    }\\n\\n    function setExtraArgsGasLimit(\\n      uint64 destinationChainSelector,\\n      uint256 gasLimit\\n    ) external onlyOwner {\\n        bytes memory extraArgs = Client._argsToBytes(Client.EVMExtraArgsV1({gasLimit: gasLimit}));\\n        s_extraArgs[destinationChainSelector] = extraArgs;\\n        emit ExtraArgsSet(destinationChainSelector, extraArgs, msg.sender);\\n    }\\n\\n    function setExtraArgs(\\n        uint64 destinationChainSelector,\\n        bytes memory extraArgs\\n    ) external onlyOwner {\\n        s_extraArgs[destinationChainSelector] = extraArgs;\\n        emit ExtraArgsSet(destinationChainSelector, extraArgs, msg.sender);\\n    }\\n\\n    function setTokenPool(\\n        IPool pool\\n    )\\n        external\\n        onlyOwner\\n        validateTokenPool(pool)\\n        validateToken(pool.getToken())\\n    {\\n        IERC20 token = pool.getToken();\\n        s_tokenPools[token] = pool;\\n        emit TokenPoolSet(token, pool, msg.sender);\\n    }\\n\\n    function removeTokenPool(IERC20 token) external onlyOwner {\\n        delete s_tokenPools[token];\\n        emit TokenPoolRemoved(token, msg.sender);\\n    }\\n\\n    function setDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector,\\n        IERC20 destinationToken\\n    )\\n        external\\n        onlyOwner\\n        validateToken(sourceToken)\\n        validateToken(destinationToken)\\n    {\\n        s_destinationTokens[sourceToken][\\n            destinationChainSelector\\n        ] = destinationToken;\\n        emit DestinationTokenSet(\\n            sourceToken,\\n            destinationChainSelector,\\n            destinationToken,\\n            msg.sender\\n        );\\n    }\\n\\n    function removeDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector\\n    ) external onlyOwner {\\n        delete s_destinationTokens[sourceToken][destinationChainSelector];\\n        emit DestinationTokenRemoved(\\n            sourceToken,\\n            destinationChainSelector,\\n            msg.sender\\n        );\\n    }\\n\\n    function isTokenAvailableOnDestination(\\n        IERC20 token,\\n        uint64 destinationChainSelector\\n    ) external view returns (bool available) {\\n        return\\n            address(getDestinationToken(token, destinationChainSelector)) !=\\n            address(0);\\n    }\\n\\n    function getExtraArgs(\\n        uint64 destinationChainSelector\\n    ) public view returns (bytes memory extraArgs) {\\n        return s_extraArgs[destinationChainSelector];\\n    }\\n\\n    function getTokenPool(IERC20 token) public view returns (IPool pool) {\\n        return s_tokenPools[token];\\n    }\\n\\n    function getDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector\\n    ) public view returns (IERC20 destinationToken) {\\n        return s_destinationTokens[sourceToken][destinationChainSelector];\\n    }\\n\\n    function isBridgeAvailableOnChain(\\n        uint64 chainSelector\\n    ) public view returns (bool available) {\\n        return getRemoteBridge(chainSelector) != address(0);\\n    }\\n\\n    function getRemoteBridge(\\n        uint64 chainSelector\\n    ) public view returns (address remoteBridge) {\\n        return s_bridges[chainSelector];\\n    }\\n\\n    function isTokenPoolAvailable(\\n        IERC20 token\\n    ) public view returns (bool available) {\\n        return address(getTokenPool(token)) != address(0);\\n    }\\n\\n    function getConfigOut(\\n        IERC20 token,\\n        uint64 destinationChainSelector\\n    ) external view returns (ConfigOut memory config) {\\n        config = ConfigOut({\\n            receiverBridge: getRemoteBridge(destinationChainSelector),\\n            destinationToken: getDestinationToken(\\n                token,\\n                destinationChainSelector\\n            ),\\n            extraArgs: getExtraArgs(destinationChainSelector),\\n            pool: getTokenPool(token)\\n        });\\n    }\\n\\n    function getConfigIn(\\n        IERC20 token,\\n        uint64 sourceChainSelector\\n    ) external view returns (ConfigIn memory config) {\\n        config = ConfigIn({\\n            senderBridge: getRemoteBridge(sourceChainSelector),\\n            pool: getTokenPool(token)\\n        });\\n    }\\n}\\n\",\"keccak256\":\"0xd4083400c5d53dd901ef5419ff74ebf48921112a2f4d8ae4b1aed70f1085f09d\",\"license\":\"MIT\"},\"contracts/interfaces/IConfiguration.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {IPool} from \\\"../interfaces/IPool.sol\\\";\\nimport {IERC20} from \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ninterface IConfiguration {\\n    struct ConfigOut {\\n        address receiverBridge;\\n        IERC20 destinationToken;\\n        IPool pool;\\n        bytes extraArgs;\\n    }\\n\\n    struct ConfigIn {\\n        address senderBridge;\\n        IPool pool;\\n    }\\n\\n    event RemoteBridgeSet(\\n        uint64 indexed chainSelector,\\n        address indexed remoteBridge,\\n        address indexed owner\\n    );\\n\\n    event RemoteBridgeRemoved(\\n        uint64 indexed chainSelector,\\n        address indexed owner\\n    );\\n\\n    event ExtraArgsSet(\\n        uint64 indexed destinationChainSelector,\\n        bytes extraArgs,\\n        address indexed owner\\n    );\\n\\n    event DestinationTokenSet(\\n        IERC20 indexed sourceToken,\\n        uint64 indexed destinationChainSelector,\\n        IERC20 destinationToken,\\n        address indexed owner\\n    );\\n\\n    event DestinationTokenRemoved(\\n        IERC20 indexed sourceToken,\\n        uint64 indexed destinationChainSelector,\\n        address indexed owner\\n    );\\n\\n    event TokenPoolSet(\\n        IERC20 indexed token,\\n        IPool indexed pool,\\n        address indexed owner\\n    );\\n    event TokenPoolRemoved(IERC20 indexed token, address indexed owner);\\n\\n    error PoolAddressIsZero();\\n    error TokenAddressIsZero();\\n    error BridgeAddressIsZero();\\n\\n    function setRemoteBridge(\\n        uint64 chainSelector,\\n        address remoteBridge\\n    ) external;\\n\\n    function removeRemoteBridge(uint64 chainSelector) external;\\n\\n    function setExtraArgs(\\n        uint64 destinationChainSelector,\\n        bytes memory extraArgs\\n    ) external;\\n\\n    function setTokenPool(IPool pool) external;\\n\\n    function removeTokenPool(IERC20 token) external;\\n\\n    function setDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector,\\n        IERC20 destinationToken\\n    ) external;\\n\\n    function removeDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector\\n    ) external;\\n\\n    function isTokenAvailableOnDestination(\\n        IERC20 token,\\n        uint64 destinationChainSelector\\n    ) external view returns (bool available);\\n\\n    function isBridgeAvailableOnChain(\\n        uint64 chainSelector\\n    ) external view returns (bool available);\\n\\n    function getRemoteBridge(\\n        uint64 chainSelector\\n    ) external view returns (address remoteBridge);\\n\\n    function getExtraArgs(\\n        uint64 destinationChainSelector\\n    ) external view returns (bytes memory extraArgs);\\n\\n    function getTokenPool(IERC20 token) external view returns (IPool pool);\\n\\n    function getDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector\\n    ) external view returns (IERC20 destinationToken);\\n\\n    function isTokenPoolAvailable(\\n        IERC20 token\\n    ) external view returns (bool available);\\n\\n    function getConfigOut(\\n        IERC20 token,\\n        uint64 destinationChainSelector\\n    ) external view returns (ConfigOut memory config);\\n\\n    function getConfigIn(\\n        IERC20 token,\\n        uint64 sourceChainSelector\\n    ) external view returns (ConfigIn memory config);\\n}\\n\",\"keccak256\":\"0x51b114cfb6cafccd12884fa30ba77a99dd8c89175ee4cb6247a89274efcc9cd4\",\"license\":\"MIT\"},\"contracts/interfaces/IPool.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {IERC20} from \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ninterface IPool {\\n    event BridgeSet(\\n        address indexed oldBridge,\\n        address indexed newBridge,\\n        address indexed owner\\n    );\\n    event Locked(address indexed sender, uint256 amount);\\n    event Burned(address indexed sender, uint256 amount);\\n    event Released(\\n        address indexed sender,\\n        address indexed receiver,\\n        uint256 amount\\n    );\\n    event Minted(\\n        address indexed sender,\\n        address indexed receiver,\\n        uint256 amount\\n    );\\n\\n    error NoMoreLiquidity(uint256 amountoRelease, uint256 liquidity);\\n\\n    error IsNotBridge(address caller, address bridge);\\n\\n    error BridgeAddressZero();\\n\\n    enum TokenPoolType {\\n        LockRelease,\\n        BurnMint\\n    }\\n\\n    /**\\n     * @notice Locks or burns the amount of tokens.\\n     * @notice The caller must have the role of locker for LockRelease token pool or burner for BurnMint token pool.\\n     * @param amount The amount of tokens to lock or burn\\n     */\\n    function lockOrBurn(uint256 amount) external;\\n\\n    /**\\n     * @notice Releases or mints the amount of tokens.\\n     * @notice The caller must have the role of unlocker for LockRelease token pool or minter for BurnMint token pool.\\n     * @dev For LockRelease token pool, if the pool is out of liquidity, it reverts.\\n     * @param amount The amount of tokens to release or mint\\n     * @param receiver The address to receive the released or minted tokens\\n     */\\n    function releaseOrMint(uint256 amount, address receiver) external;\\n\\n    /**\\n     * @notice Returns the token of the pool.\\n     * @return token The token of the pool\\n     */\\n    function getToken() external view returns (IERC20 token);\\n\\n    /**\\n     * @notice Returns the type of the token pool.\\n     * @return tokenPoolType The type of the token pool\\n     */\\n    function getTokenPoolType()\\n        external\\n        view\\n        returns (TokenPoolType tokenPoolType);\\n\\n    /**\\n     * @notice Sets `account` as the bridge. Only callable by the owner.\\n     * @dev Emits the `BridgeSet` event upon success.\\n     * @param account The account to set as the bridge.\\n     */\\n    function setBridge(address account) external;\\n\\n    /**\\n     * @notice Removes the bridge. Only callable by the owner.\\n     * @dev Emits the `BridgeSet` event with bridge as 0 address upon success.\\n     */\\n    function removeBridge() external;\\n\\n    /**\\n     * @notice Returns the bridge address.\\n     * @return bridge The bridge address\\n     */\\n    function getBridge() external view returns (address bridge);\\n}\\n\",\"keccak256\":\"0xdc2effe1d1869835cd8368e4185d20d83701f9daa60dab02bb42f6ea0a7d7ad4\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50338061003757604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b61004081610046565b506100b2565b600180546001600160a01b031916905561005f81610062565b50565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6110cf806100c16000396000f3fe608060405234801561001057600080fd5b50600436106101415760003560e01c8063715018a6116100b85780638da5cb5b1161007c5780638da5cb5b146102ed578063d253ab56146102fe578063e30c397814610311578063f2fde38b14610322578063f4070dc214610335578063ffa739df1461034857600080fd5b8063715018a61461027d5780637764b4d21461028557806379ba5097146102985780637d5ecb85146102a05780637e2ecccb146102da57600080fd5b80634ae0ac871161010a5780634ae0ac87146101ee578063525599be14610211578063545ee8e2146102315780635d8949f0146102445780636a4327a8146102575780636fd5c5781461026a57600080fd5b8062faa2051461014657806304c2a34a1461016f5780630fa9cb56146101b357806332831a73146101c857806348cc24a8146101db575b600080fd5b610159610154366004610c80565b61035b565b6040516101669190610ce8565b60405180910390f35b61019b61017d366004610d10565b6001600160a01b039081166000908152600460205260409020541690565b6040516001600160a01b039091168152602001610166565b6101c66101c1366004610d43565b610407565b005b6101c66101d6366004610e04565b610481565b6101c66101e9366004610e2e565b61053e565b6102016101fc366004610c80565b6105ad565b6040519015158152602001610166565b61022461021f366004610e2e565b6105ca565b6040516101669190610e63565b61020161023f366004610d10565b610669565b6101c6610252366004610c80565b61068e565b610201610265366004610e2e565b6106e7565b61019b610278366004610e2e565b610706565b6101c6610739565b6101c6610293366004610d10565b61074d565b6101c66108c8565b6102b36102ae366004610e2e565b610911565b6040805182516001600160a01b039081168252602093840151169281019290925201610166565b6101c66102e8366004610d10565b61097b565b6000546001600160a01b031661019b565b61019b61030c366004610c80565b6109d4565b6001546001600160a01b031661019b565b6101c6610330366004610d10565b6109f8565b6101c6610343366004610eb2565b610a69565b6101c6610356366004610efb565b610b40565b6001600160401b038116600090815260036020526040902080546060919061038290610f32565b80601f01602080910402602001604051908101604052809291908181526020018280546103ae90610f32565b80156103fb5780601f106103d0576101008083540402835291602001916103fb565b820191906000526020600020905b8154815290600101906020018083116103de57829003601f168201915b50505050509050919050565b61040f610bd3565b6001600160401b03821660009081526003602052604090206104318282610fbd565b50336001600160a01b0316826001600160401b03167fbefc741031593c17380eca192b57cfbf1d6a3fa4fe714e562318ff54616bacc4836040516104759190610ce8565b60405180910390a35050565b610489610bd3565b60408051602080820183529083905281516024808201859052835180830390910181526044909101835280820180516001600160e01b03166397a657c960e01b1790526001600160401b038516600090815260039092529190206104ed8282610fbd565b50336001600160a01b0316836001600160401b03167fbefc741031593c17380eca192b57cfbf1d6a3fa4fe714e562318ff54616bacc4836040516105319190610ce8565b60405180910390a3505050565b610546610bd3565b6001600160a01b03821660008181526005602090815260408083206001600160401b038616808552925280832080546001600160a01b031916905551339391927f95590502f1b0a9204744222a9e1d71218b6f9c8c97520b37648c30f4613b6f0d91a45050565b6000806105b9836109d4565b6001600160a01b0316141592915050565b60408051608081018252600080825260208201819052918101919091526060808201526040518060800160405280610601846109d4565b6001600160a01b031681526020016106198585610706565b6001600160a01b03168152602001610649856001600160a01b039081166000908152600460205260409020541690565b6001600160a01b031681526020016106608461035b565b90529392505050565b6000806105b9836001600160a01b039081166000908152600460205260409020541690565b610696610bd3565b6001600160401b03811660008181526002602052604080822080546001600160a01b0319169055513392917f32558413d694795f9c5f56b3efb18491999fa215c3a01a7a1d70b148e6e3611f91a350565b6000806106f48484610706565b6001600160a01b031614159392505050565b6001600160a01b0391821660009081526005602090815260408083206001600160401b0394909416835292905220541690565b610741610bd3565b61074b6000610c00565b565b610755610bd3565b806001600160a01b03811661077d5760405163afac17d360e01b815260040160405180910390fd5b816001600160a01b03166321df0da76040518163ffffffff1660e01b8152600401602060405180830381865afa1580156107bb573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107df919061107c565b6001600160a01b0381166108065760405163dc2e5e8d60e01b815260040160405180910390fd5b6000836001600160a01b03166321df0da76040518163ffffffff1660e01b8152600401602060405180830381865afa158015610846573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061086a919061107c565b6001600160a01b0381811660008181526004602052604080822080546001600160a01b031916948a1694851790555193945033937fcd8fa19f8dfe4e7ec057625b8a48fb3950cf9c3a3c84764cc69fc5db238ff6e79190a450505050565b60015433906001600160a01b031681146109055760405163118cdaa760e01b81526001600160a01b03821660048201526024015b60405180910390fd5b61090e81610c00565b50565b60408051808201909152600080825260208201526040518060400160405280610939846109d4565b6001600160a01b03168152602001610969856001600160a01b039081166000908152600460205260409020541690565b6001600160a01b031690529392505050565b610983610bd3565b6001600160a01b03811660008181526004602052604080822080546001600160a01b0319169055513392917f162579434be2aad7dff7a6e91fd02c0d1a4ce8bafd861497d82de518d48d582d91a350565b6001600160401b03166000908152600260205260409020546001600160a01b031690565b610a00610bd3565b600180546001600160a01b0383166001600160a01b03199091168117909155610a316000546001600160a01b031690565b6001600160a01b03167f38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e2270060405160405180910390a350565b610a71610bd3565b826001600160a01b038116610a995760405163dc2e5e8d60e01b815260040160405180910390fd5b816001600160a01b038116610ac15760405163dc2e5e8d60e01b815260040160405180910390fd5b6001600160a01b0385811660008181526005602090815260408083206001600160401b038a168085529083529281902080546001600160a01b03191695891695861790555193845233939192917f82d68422584feefb92956ca45634c4987a8128ee73db4c75b96c3ab6218f25af910160405180910390a45050505050565b610b48610bd3565b806001600160a01b038116610b70576040516332b215d160e01b815260040160405180910390fd5b6001600160401b03831660008181526002602052604080822080546001600160a01b0319166001600160a01b0387169081179091559051339391927ffd082254b67a5ad677ea313acf41ac7479114bbf6ad2b3b039bfe4fa8fa6821891a4505050565b6000546001600160a01b0316331461074b5760405163118cdaa760e01b81523360048201526024016108fc565b600180546001600160a01b031916905561090e81600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b80356001600160401b0381168114610c7b57600080fd5b919050565b600060208284031215610c9257600080fd5b610c9b82610c64565b9392505050565b6000815180845260005b81811015610cc857602081850181015186830182015201610cac565b506000602082860101526020601f19601f83011685010191505092915050565b602081526000610c9b6020830184610ca2565b6001600160a01b038116811461090e57600080fd5b600060208284031215610d2257600080fd5b8135610c9b81610cfb565b634e487b7160e01b600052604160045260246000fd5b60008060408385031215610d5657600080fd5b610d5f83610c64565b915060208301356001600160401b0380821115610d7b57600080fd5b818501915085601f830112610d8f57600080fd5b813581811115610da157610da1610d2d565b604051601f8201601f19908116603f01168101908382118183101715610dc957610dc9610d2d565b81604052828152886020848701011115610de257600080fd5b8260208601602083013760006020848301015280955050505050509250929050565b60008060408385031215610e1757600080fd5b610e2083610c64565b946020939093013593505050565b60008060408385031215610e4157600080fd5b8235610e4c81610cfb565b9150610e5a60208401610c64565b90509250929050565b60208152600060018060a01b03808451166020840152806020850151166040840152806040850151166060840152506060830151608080840152610eaa60a0840182610ca2565b949350505050565b600080600060608486031215610ec757600080fd5b8335610ed281610cfb565b9250610ee060208501610c64565b91506040840135610ef081610cfb565b809150509250925092565b60008060408385031215610f0e57600080fd5b610f1783610c64565b91506020830135610f2781610cfb565b809150509250929050565b600181811c90821680610f4657607f821691505b602082108103610f6657634e487b7160e01b600052602260045260246000fd5b50919050565b601f821115610fb8576000816000526020600020601f850160051c81016020861015610f955750805b601f850160051c820191505b81811015610fb457828155600101610fa1565b5050505b505050565b81516001600160401b03811115610fd657610fd6610d2d565b610fea81610fe48454610f32565b84610f6c565b602080601f83116001811461101f57600084156110075750858301515b600019600386901b1c1916600185901b178555610fb4565b600085815260208120601f198616915b8281101561104e5788860151825594840194600190910190840161102f565b508582101561106c5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b60006020828403121561108e57600080fd5b8151610c9b81610cfb56fea2646970667358221220a3d51d1d6b6701cc8f874781595fd95abcfa79a4e334e88a180ef9cc5c8a7f7364736f6c63430008180033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101415760003560e01c8063715018a6116100b85780638da5cb5b1161007c5780638da5cb5b146102ed578063d253ab56146102fe578063e30c397814610311578063f2fde38b14610322578063f4070dc214610335578063ffa739df1461034857600080fd5b8063715018a61461027d5780637764b4d21461028557806379ba5097146102985780637d5ecb85146102a05780637e2ecccb146102da57600080fd5b80634ae0ac871161010a5780634ae0ac87146101ee578063525599be14610211578063545ee8e2146102315780635d8949f0146102445780636a4327a8146102575780636fd5c5781461026a57600080fd5b8062faa2051461014657806304c2a34a1461016f5780630fa9cb56146101b357806332831a73146101c857806348cc24a8146101db575b600080fd5b610159610154366004610c80565b61035b565b6040516101669190610ce8565b60405180910390f35b61019b61017d366004610d10565b6001600160a01b039081166000908152600460205260409020541690565b6040516001600160a01b039091168152602001610166565b6101c66101c1366004610d43565b610407565b005b6101c66101d6366004610e04565b610481565b6101c66101e9366004610e2e565b61053e565b6102016101fc366004610c80565b6105ad565b6040519015158152602001610166565b61022461021f366004610e2e565b6105ca565b6040516101669190610e63565b61020161023f366004610d10565b610669565b6101c6610252366004610c80565b61068e565b610201610265366004610e2e565b6106e7565b61019b610278366004610e2e565b610706565b6101c6610739565b6101c6610293366004610d10565b61074d565b6101c66108c8565b6102b36102ae366004610e2e565b610911565b6040805182516001600160a01b039081168252602093840151169281019290925201610166565b6101c66102e8366004610d10565b61097b565b6000546001600160a01b031661019b565b61019b61030c366004610c80565b6109d4565b6001546001600160a01b031661019b565b6101c6610330366004610d10565b6109f8565b6101c6610343366004610eb2565b610a69565b6101c6610356366004610efb565b610b40565b6001600160401b038116600090815260036020526040902080546060919061038290610f32565b80601f01602080910402602001604051908101604052809291908181526020018280546103ae90610f32565b80156103fb5780601f106103d0576101008083540402835291602001916103fb565b820191906000526020600020905b8154815290600101906020018083116103de57829003601f168201915b50505050509050919050565b61040f610bd3565b6001600160401b03821660009081526003602052604090206104318282610fbd565b50336001600160a01b0316826001600160401b03167fbefc741031593c17380eca192b57cfbf1d6a3fa4fe714e562318ff54616bacc4836040516104759190610ce8565b60405180910390a35050565b610489610bd3565b60408051602080820183529083905281516024808201859052835180830390910181526044909101835280820180516001600160e01b03166397a657c960e01b1790526001600160401b038516600090815260039092529190206104ed8282610fbd565b50336001600160a01b0316836001600160401b03167fbefc741031593c17380eca192b57cfbf1d6a3fa4fe714e562318ff54616bacc4836040516105319190610ce8565b60405180910390a3505050565b610546610bd3565b6001600160a01b03821660008181526005602090815260408083206001600160401b038616808552925280832080546001600160a01b031916905551339391927f95590502f1b0a9204744222a9e1d71218b6f9c8c97520b37648c30f4613b6f0d91a45050565b6000806105b9836109d4565b6001600160a01b0316141592915050565b60408051608081018252600080825260208201819052918101919091526060808201526040518060800160405280610601846109d4565b6001600160a01b031681526020016106198585610706565b6001600160a01b03168152602001610649856001600160a01b039081166000908152600460205260409020541690565b6001600160a01b031681526020016106608461035b565b90529392505050565b6000806105b9836001600160a01b039081166000908152600460205260409020541690565b610696610bd3565b6001600160401b03811660008181526002602052604080822080546001600160a01b0319169055513392917f32558413d694795f9c5f56b3efb18491999fa215c3a01a7a1d70b148e6e3611f91a350565b6000806106f48484610706565b6001600160a01b031614159392505050565b6001600160a01b0391821660009081526005602090815260408083206001600160401b0394909416835292905220541690565b610741610bd3565b61074b6000610c00565b565b610755610bd3565b806001600160a01b03811661077d5760405163afac17d360e01b815260040160405180910390fd5b816001600160a01b03166321df0da76040518163ffffffff1660e01b8152600401602060405180830381865afa1580156107bb573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107df919061107c565b6001600160a01b0381166108065760405163dc2e5e8d60e01b815260040160405180910390fd5b6000836001600160a01b03166321df0da76040518163ffffffff1660e01b8152600401602060405180830381865afa158015610846573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061086a919061107c565b6001600160a01b0381811660008181526004602052604080822080546001600160a01b031916948a1694851790555193945033937fcd8fa19f8dfe4e7ec057625b8a48fb3950cf9c3a3c84764cc69fc5db238ff6e79190a450505050565b60015433906001600160a01b031681146109055760405163118cdaa760e01b81526001600160a01b03821660048201526024015b60405180910390fd5b61090e81610c00565b50565b60408051808201909152600080825260208201526040518060400160405280610939846109d4565b6001600160a01b03168152602001610969856001600160a01b039081166000908152600460205260409020541690565b6001600160a01b031690529392505050565b610983610bd3565b6001600160a01b03811660008181526004602052604080822080546001600160a01b0319169055513392917f162579434be2aad7dff7a6e91fd02c0d1a4ce8bafd861497d82de518d48d582d91a350565b6001600160401b03166000908152600260205260409020546001600160a01b031690565b610a00610bd3565b600180546001600160a01b0383166001600160a01b03199091168117909155610a316000546001600160a01b031690565b6001600160a01b03167f38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e2270060405160405180910390a350565b610a71610bd3565b826001600160a01b038116610a995760405163dc2e5e8d60e01b815260040160405180910390fd5b816001600160a01b038116610ac15760405163dc2e5e8d60e01b815260040160405180910390fd5b6001600160a01b0385811660008181526005602090815260408083206001600160401b038a168085529083529281902080546001600160a01b03191695891695861790555193845233939192917f82d68422584feefb92956ca45634c4987a8128ee73db4c75b96c3ab6218f25af910160405180910390a45050505050565b610b48610bd3565b806001600160a01b038116610b70576040516332b215d160e01b815260040160405180910390fd5b6001600160401b03831660008181526002602052604080822080546001600160a01b0319166001600160a01b0387169081179091559051339391927ffd082254b67a5ad677ea313acf41ac7479114bbf6ad2b3b039bfe4fa8fa6821891a4505050565b6000546001600160a01b0316331461074b5760405163118cdaa760e01b81523360048201526024016108fc565b600180546001600160a01b031916905561090e81600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b80356001600160401b0381168114610c7b57600080fd5b919050565b600060208284031215610c9257600080fd5b610c9b82610c64565b9392505050565b6000815180845260005b81811015610cc857602081850181015186830182015201610cac565b506000602082860101526020601f19601f83011685010191505092915050565b602081526000610c9b6020830184610ca2565b6001600160a01b038116811461090e57600080fd5b600060208284031215610d2257600080fd5b8135610c9b81610cfb565b634e487b7160e01b600052604160045260246000fd5b60008060408385031215610d5657600080fd5b610d5f83610c64565b915060208301356001600160401b0380821115610d7b57600080fd5b818501915085601f830112610d8f57600080fd5b813581811115610da157610da1610d2d565b604051601f8201601f19908116603f01168101908382118183101715610dc957610dc9610d2d565b81604052828152886020848701011115610de257600080fd5b8260208601602083013760006020848301015280955050505050509250929050565b60008060408385031215610e1757600080fd5b610e2083610c64565b946020939093013593505050565b60008060408385031215610e4157600080fd5b8235610e4c81610cfb565b9150610e5a60208401610c64565b90509250929050565b60208152600060018060a01b03808451166020840152806020850151166040840152806040850151166060840152506060830151608080840152610eaa60a0840182610ca2565b949350505050565b600080600060608486031215610ec757600080fd5b8335610ed281610cfb565b9250610ee060208501610c64565b91506040840135610ef081610cfb565b809150509250925092565b60008060408385031215610f0e57600080fd5b610f1783610c64565b91506020830135610f2781610cfb565b809150509250929050565b600181811c90821680610f4657607f821691505b602082108103610f6657634e487b7160e01b600052602260045260246000fd5b50919050565b601f821115610fb8576000816000526020600020601f850160051c81016020861015610f955750805b601f850160051c820191505b81811015610fb457828155600101610fa1565b5050505b505050565b81516001600160401b03811115610fd657610fd6610d2d565b610fea81610fe48454610f32565b84610f6c565b602080601f83116001811461101f57600084156110075750858301515b600019600386901b1c1916600185901b178555610fb4565b600085815260208120601f198616915b8281101561104e5788860151825594840194600190910190840161102f565b508582101561106c5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b60006020828403121561108e57600080fd5b8151610c9b81610cfb56fea2646970667358221220a3d51d1d6b6701cc8f874781595fd95abcfa79a4e334e88a180ef9cc5c8a7f7364736f6c63430008180033",
+  "devdoc": {
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "acceptOwnership()": {
+        "details": "The new owner accepts the ownership transfer."
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "pendingOwner()": {
+        "details": "Returns the address of the pending owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one. Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 129,
+        "contract": "contracts/bridge/Configuration.sol:Configuration",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 277,
+        "contract": "contracts/bridge/Configuration.sol:Configuration",
+        "label": "_pendingOwner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 6809,
+        "contract": "contracts/bridge/Configuration.sol:Configuration",
+        "label": "s_bridges",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_uint64,t_address)"
+      },
+      {
+        "astId": 6813,
+        "contract": "contracts/bridge/Configuration.sol:Configuration",
+        "label": "s_extraArgs",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_uint64,t_bytes_storage)"
+      },
+      {
+        "astId": 6819,
+        "contract": "contracts/bridge/Configuration.sol:Configuration",
+        "label": "s_tokenPools",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_contract(IERC20)1207,t_contract(IPool)7983)"
+      },
+      {
+        "astId": 6827,
+        "contract": "contracts/bridge/Configuration.sol:Configuration",
+        "label": "s_destinationTokens",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_contract(IERC20)1207,t_mapping(t_uint64,t_contract(IERC20)1207))"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes_storage": {
+        "encoding": "bytes",
+        "label": "bytes",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IERC20)1207": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IPool)7983": {
+        "encoding": "inplace",
+        "label": "contract IPool",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_contract(IERC20)1207,t_contract(IPool)7983)": {
+        "encoding": "mapping",
+        "key": "t_contract(IERC20)1207",
+        "label": "mapping(contract IERC20 => contract IPool)",
+        "numberOfBytes": "32",
+        "value": "t_contract(IPool)7983"
+      },
+      "t_mapping(t_contract(IERC20)1207,t_mapping(t_uint64,t_contract(IERC20)1207))": {
+        "encoding": "mapping",
+        "key": "t_contract(IERC20)1207",
+        "label": "mapping(contract IERC20 => mapping(uint64 => contract IERC20))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_uint64,t_contract(IERC20)1207)"
+      },
+      "t_mapping(t_uint64,t_address)": {
+        "encoding": "mapping",
+        "key": "t_uint64",
+        "label": "mapping(uint64 => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_mapping(t_uint64,t_bytes_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint64",
+        "label": "mapping(uint64 => bytes)",
+        "numberOfBytes": "32",
+        "value": "t_bytes_storage"
+      },
+      "t_mapping(t_uint64,t_contract(IERC20)1207)": {
+        "encoding": "mapping",
+        "key": "t_uint64",
+        "label": "mapping(uint64 => contract IERC20)",
+        "numberOfBytes": "32",
+        "value": "t_contract(IERC20)1207"
+      },
+      "t_uint64": {
+        "encoding": "inplace",
+        "label": "uint64",
+        "numberOfBytes": "8"
+      }
+    }
+  }
+}
