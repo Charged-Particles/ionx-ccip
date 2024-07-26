@@ -7,13 +7,13 @@ import { isSourceChain } from '../utils/isSourceChain';
 import { log } from '../utils/log';
 import _ from 'lodash';
 
-import { address as sourceBridgeAddress } from '../deployments/sepolia/Bridge.json';
-import { address as sourceTokenAddress } from '../deployments/sepolia/Ionx.json';
-import { address as destBridgeAddress } from '../deployments/modeSepolia/Bridge.json';
-import { address as destTokenAddress } from '../deployments/modeSepolia/IonxCCIP.json';
-
 const Setup_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
 	const { ethers } = hre;
+
+  const { address: sourceBridgeAddress } = require('../deployments/sepolia/Bridge.json');
+  const { address: sourceTokenAddress } = require('../deployments/sepolia/Ionx.json');
+  const { address: destBridgeAddress } = require('../deployments/modeSepolia/Bridge.json');
+  const { address: destTokenAddress } = require('../deployments/modeSepolia/IonxCCIP.json');
 
   if (_.isEmpty(sourceBridgeAddress) || _.isEmpty(sourceTokenAddress) || _.isEmpty(destBridgeAddress) || _.isEmpty(destTokenAddress)) {
     log('Source & Destination Contract Addresses are Empty!  Exiting..');

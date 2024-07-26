@@ -15,6 +15,8 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
   const signer1 = await ethers.getSigner(user1);
 
   log(`--- Testing Bridge from ${isSourceChain() ? 'Source' : 'Destination'} Chain ---`);
+  log(` -- Deployer Address: ${deployer}`);
+  log(` -- User1 Address: ${user1}`);
 
   const deployConfigOpp = getDeployConfig({ oppositeChain: true });
 
@@ -33,21 +35,24 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
   const bridgeAddress = await bridge.getAddress();
   log(` -- Bridge Address: ${bridgeAddress}`);
 
-
   // Mint to Deployer Account
-  let deployerBalance = await ionx.balanceOf(deployer);
-  if (deployerBalance === 0n) {
-    await performTx(await ionx.mint(deployer, parseEther('1000000')), ` -- Tokens Minted to Deployer!`);
-    deployerBalance = await ionx.balanceOf(deployer);
+  if (isSourceChain()) {
+    let deployerBalance = await ionx.balanceOf(deployer);
+    if (deployerBalance === 0n) {
+      await performTx(await ionx.mint(deployer, parseEther('1000000')), ` -- Tokens Minted to Deployer!`);
+      deployerBalance = await ionx.balanceOf(deployer);
+    }
+    log(` -- Deployer Balance: ${formatEther(deployerBalance)} IONX`);
   }
-  log(` -- Deployer Balance: ${formatEther(deployerBalance)} IONX`);
 
-
-  // Prefund the Sender Account
+  // Prefund the Sender Account on Source Chain only
+  //  (when Sending back, user1 should have IONX already, but may need ETH for gas fees)
   let balanceBefore = await ionx.balanceOf(user1);
-  if (balanceBefore < parseEther('1')) {
-    await performTx(await ionx.transfer(user1, parseEther('1000')), ` -- Tokens Sent to User1!`);
-    balanceBefore = await ionx.balanceOf(user1);
+  if (isSourceChain()) {
+    if (balanceBefore < parseEther('1')) {
+      await performTx(await ionx.transfer(user1, parseEther('1000')), ` -- Tokens Sent to User1!`);
+      balanceBefore = await ionx.balanceOf(user1);
+    }
   }
   log(` -- User1 Balance Before: ${formatEther(balanceBefore)} IONX`);
 
@@ -57,7 +62,7 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
     ionxAddress,
     parseEther('100'),
     user1,
-    ethers.ZeroAddress
+    ethers.ZeroAddress // Fee Token (Native)
   );
   log(` -- Bridge Fees: ${formatEther(bridgeFees)} ETH`);
 
@@ -66,17 +71,25 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
   log(` -- Approval Fees: ${formatEther(approvalFees)} ETH`);
 
   //  Pre-fund User1
-  const extraFees = (((bridgeFees + approvalFees) * 100n) / 20n) / 100n;
+  const extraFees = (((bridgeFees + approvalFees) * 100n) / 10n) / 100n;  //  (Fees * 1.1%) to cover any fee-discrepencies
   const totalFees = (bridgeFees + approvalFees + extraFees);
   log(` -- Total Fees: ${formatEther(totalFees)} ETH`);
 
-  const tx = await deployerS.sendTransaction({ to: user1, value: totalFees })
-  await tx.wait();
-  log(` -- Pre-funded User1 with Gas Fees`);
-
+  const user1Balance = await ethers.provider.getBalance(user1);
+  log(` -- User1 Balance: ${formatEther(user1Balance)} ETH`);
+  if (user1Balance < totalFees) {
+    const tx = await deployerS.sendTransaction({ to: user1, value: totalFees })
+    await tx.wait();
+    log(` -- Pre-funded User1 with Gas Fees`);
+  }
 
   // Approve Bridge Transfer
-  await performTx(await ionx.connect(signer1).approve(bridgeAddress, parseEther('100')), ` -- Tokens Approved for Bridge!`);
+  const allowance = await ionx.allowance(user1, bridgeAddress);
+  if (allowance < parseEther('100')) {
+    await performTx(await ionx.connect(signer1).approve(bridgeAddress, parseEther('100')), ` -- Tokens Approved for Bridge!`);
+  } else {
+    log(` -- Tokens Pre-Approved for Bridge!`);
+  }
 
   // Test Bridging!
   const txHash = await performTx(
@@ -97,9 +110,14 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
 
   log(`--- ${isSourceChain() ? 'Source' : 'Destination'} Chain Bridge Testing Complete! ---`);
 
-  log(`View TX on Source Chain: https://sepolia.etherscan.io/tx/${txHash}`);
-  log(`View User on Source Chain: https://sepolia.etherscan.io/address/${user1}`);
-  log(`View User on Destination Chain: https://sepolia.explorer.mode.network/address/${user1}`);
+  log(`View TX on CCIP Explorer: https://ccip.chain.link/msg/${txHash}`);
+  if (isSourceChain()) {
+    log(`View TX on Eth-Sepolia: https://sepolia.etherscan.io/tx/${txHash}`);
+  } else {
+    log(`View TX on Mode-Sepolia: https://sepolia.explorer.mode.network/tx/${txHash}`);
+  }
+  log(`View User on Eth-Sepolia: https://sepolia.etherscan.io/address/${user1}`);
+  log(`View User on Mode-Sepolia Chain: https://sepolia.explorer.mode.network/address/${user1}`);
 };
 export default Test_Connection;
 
