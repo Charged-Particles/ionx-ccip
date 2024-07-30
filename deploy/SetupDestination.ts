@@ -1,6 +1,6 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
-import { Configuration, BurnMintTokenPool } from '../typechain-types';
+import { IonxCCIP, Configuration, BurnMintTokenPool } from '../typechain-types';
 import { performTx } from '../utils/performTx';
 import { log } from '../utils/log';
 
@@ -26,11 +26,23 @@ const Setup_Destination: DeployFunction = async (hre: HardhatRuntimeEnvironment)
   const tokenPoolAddress = await tokenPool.getAddress();
   log(` -- BurnMintTokenPool Address: ${tokenPoolAddress}`);
 
+  // Load Ionx Contract
+  const ionx: IonxCCIP = await ethers.getContract('IonxCCIP');
+  const ionxAddress = await ionx.getAddress();
+  log(` -- IONX Address: ${ionxAddress}`);
+
   // Set Token Pool for Configuration Contract
   await performTx(
     await config.setTokenPool(tokenPoolAddress),
     ' -- Token Pool Set for Configuration Contract!'
   );
+
+  // Set Token Pool as Controller for IonxCCIP
+  await performTx(
+    await ionx.setController(tokenPoolAddress),
+    ' -- Token Pool Set as Controller for IonxCCIP!'
+  );
+
   log(`--- Destination-Chain Setup Complete! ---`);
 };
 export default Setup_Destination;
