@@ -2,7 +2,7 @@ import { ContractTransactionReceipt, ContractTransactionResponse, EventLog, Log 
 import { log } from './log';
 
 export const performTx = async (tx: ContractTransactionResponse, msg: string):Promise<string> => {
-  const rc: ContractTransactionReceipt | null = await tx.wait();
+  const rc: ContractTransactionReceipt | null = await tx.wait(3);
   if (rc !== null) {
 
     if (rc?.logs?.length > 0 && msg.includes('{id}')) {

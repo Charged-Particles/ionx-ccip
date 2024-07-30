@@ -66,22 +66,14 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
   );
   log(` -- Bridge Fees: ${formatEther(bridgeFees)} ETH`);
 
-  // Get Gas Fees for Approve
-  const approvalFees = await ionx.approve.estimateGas(bridgeAddress, parseEther('100'));
-  log(` -- Approval Fees: ${formatEther(approvalFees)} ETH`);
-
-  //  Pre-fund User1
-  const extraFees = (((bridgeFees + approvalFees) * 100n) / 10n) / 100n;  //  (Fees * 1.1%) to cover any fee-discrepencies
-  const totalFees = (bridgeFees + approvalFees + extraFees);
-  log(` -- Total Fees: ${formatEther(totalFees)} ETH`);
-
-  const user1Balance = await ethers.provider.getBalance(user1);
-  log(` -- User1 Balance: ${formatEther(user1Balance)} ETH`);
-  if (user1Balance < totalFees) {
-    const tx = await deployerS.sendTransaction({ to: user1, value: totalFees })
-    await tx.wait();
-    log(` -- Pre-funded User1 with Gas Fees`);
+  let user1Balance = await ethers.provider.getBalance(user1);
+  if (user1Balance < parseEther('0.2')) {
+    const tx = await deployerS.sendTransaction({ to: user1, value: parseEther('0.2') })
+    await tx.wait(3);
+    user1Balance = await ethers.provider.getBalance(user1);
+    log(` -- Pre-funding User1 with Gas Fees`);
   }
+  log(` -- User1 Balance: ${formatEther(user1Balance)} ETH`);
 
   // Approve Bridge Transfer
   const allowance = await ionx.allowance(user1, bridgeAddress);
@@ -110,7 +102,7 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
 
   log(`--- ${isSourceChain() ? 'Source' : 'Destination'} Chain Bridge Testing Complete! ---`);
 
-  log(`View TX on CCIP Explorer: https://ccip.chain.link/msg/${txHash}`);
+  log(`View TX on CCIP Explorer: https://ccip.chain.link/tx/${txHash}`);
   if (isSourceChain()) {
     log(`View TX on Eth-Sepolia: https://sepolia.etherscan.io/tx/${txHash}`);
   } else {
