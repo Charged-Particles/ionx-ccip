@@ -4,16 +4,18 @@ import { Configuration } from '../typechain-types';
 import { performTx } from '../utils/performTx';
 import { getDeployConfig } from '../utils/config';
 import { isSourceChain } from '../utils/isSourceChain';
+import { isTestnet } from '../utils/isTestnet';
 import { log } from '../utils/log';
 import _ from 'lodash';
 
 const Setup_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
 	const { ethers } = hre;
 
-  const { address: sourceBridgeAddress } = require('../deployments/sepolia/Bridge.json');
-  const { address: sourceTokenAddress } = require('../deployments/sepolia/Ionx.json');
-  const { address: destBridgeAddress } = require('../deployments/modeSepolia/Bridge.json');
-  const { address: destTokenAddress } = require('../deployments/modeSepolia/IonxCCIP.json');
+  const path = isTestnet() ? ['sepolia', 'modeSepolia'] : ['mainnet', 'mode'];
+  const { address: sourceBridgeAddress } = require(`../deployments/${path[0]}/Bridge.json`);
+  const { address: sourceTokenAddress } = require(`../deployments/${path[0]}/Ionx.json`);
+  const { address: destBridgeAddress } = require(`../deployments/${path[1]}/Bridge.json`);
+  const { address: destTokenAddress } = require(`../deployments/${path[1]}/IonxCCIP.json`);
 
   if (_.isEmpty(sourceBridgeAddress) || _.isEmpty(sourceTokenAddress) || _.isEmpty(destBridgeAddress) || _.isEmpty(destTokenAddress)) {
     log('Source & Destination Contract Addresses are Empty!  Exiting..');

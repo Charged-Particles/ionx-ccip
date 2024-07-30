@@ -1,0 +1,1410 @@
+{
+  "address": "0xCB367047f6860566a10ab778A02fA48eeCD1f22e",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "router",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IConfiguration",
+          "name": "configuration",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "target",
+          "type": "address"
+        }
+      ],
+      "name": "AddressEmptyCode",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "AddressInsufficientBalance",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "nativeGas",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "feeToken",
+          "type": "address"
+        }
+      ],
+      "name": "CannotSetFeeTokenIfNativeGasNotZero",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "configuration",
+          "type": "address"
+        }
+      ],
+      "name": "ConfigurationAlreadySet",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ConfigurationIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ConfigurationNotSet",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DestinationChainSelectorIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "key",
+          "type": "bytes32"
+        }
+      ],
+      "name": "EnumerableMapNonexistentKey",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "FailedInnerCall",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "changeAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FailedToSendChange",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "FeeTokenAddressIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "feeToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fees",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "allowance",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsufficientFeeAllowance",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "nativeGas",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fees",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsufficientFees",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "router",
+          "type": "address"
+        }
+      ],
+      "name": "InvalidRouter",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "sourceChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "address",
+          "name": "configuredSenderBridge",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "senderBridge",
+          "type": "address"
+        }
+      ],
+      "name": "InvalidSenderBridge",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "MessageNotFailed",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "NoBridgeOnDestination",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "NoExtraArgs",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "OnlySelf",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReceivedAmountIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReceiverAddressIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "SafeERC20FailedOperation",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TokenAddressIsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        }
+      ],
+      "name": "TokenNotSupported",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "TokenPoolNotSet",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IConfiguration",
+          "name": "oldConfiguration",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IConfiguration",
+          "name": "newConfiguration",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "ConfigurationSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "CrossChainMessageReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "CrossChainMessageSent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "contract IERC20",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IBridge.TokenAmount",
+          "name": "tokenAmount",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "MessageFailed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recoverer",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "contract IERC20",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IBridge.TokenAmount",
+          "name": "tokenAmount",
+          "type": "tuple"
+        }
+      ],
+      "name": "MessageRecovered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "oldRouter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newRouter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "RouterSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "tokenDestination",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IPool",
+          "name": "tokenDestinationPool",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "sourceChainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokensReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "tokenSource",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IPool",
+          "name": "tokenSourcePool",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IERC20",
+          "name": "tokenDestination",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fees",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokensTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "messageId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint64",
+              "name": "sourceChainSelector",
+              "type": "uint64"
+            },
+            {
+              "internalType": "bytes",
+              "name": "sender",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Client.EVMTokenAmount[]",
+              "name": "destTokenAmounts",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Client.Any2EVMMessage",
+          "name": "message",
+          "type": "tuple"
+        }
+      ],
+      "name": "ccipReceive",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getConfiguration",
+      "outputs": [
+        {
+          "internalType": "contract IConfiguration",
+          "name": "configuration",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getFailedMessageContent",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "receiver",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "contract IERC20",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct IBridge.TokenAmount",
+              "name": "tokenAmount",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IBridge.FailedMessageContent",
+          "name": "content",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offset",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "getFailedMessages",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "messageId",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "enum IBridge.ErrorCode",
+              "name": "errorCode",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct IBridge.FailedMessage[]",
+          "name": "failedMessages",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "feeToken",
+          "type": "address"
+        }
+      ],
+      "name": "getFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "fees",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getRouter",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "router",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pendingOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "senderBridge",
+          "type": "address"
+        },
+        {
+          "internalType": "uint64",
+          "name": "sourceChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "contract IERC20",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IBridge.TokenAmount",
+          "name": "tokenAmount",
+          "type": "tuple"
+        }
+      ],
+      "name": "processMessage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenReceiver",
+          "type": "address"
+        }
+      ],
+      "name": "retryFailedMessage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IConfiguration",
+          "name": "configuration",
+          "type": "address"
+        }
+      ],
+      "name": "setConfiguration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "router",
+          "type": "address"
+        }
+      ],
+      "name": "setRouter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint64",
+          "name": "destinationChainSelector",
+          "type": "uint64"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "feeToken",
+          "type": "address"
+        }
+      ],
+      "name": "transferTokensToDestinationChain",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fees",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x503d6a305a851d757efbef3c58dd33194574c892691e84e87c5b0c432b9d652b",
+  "receipt": {
+    "to": null,
+    "from": "0xb8D175F16742395F530e0b3bC1d30BD06B78CdA9",
+    "contractAddress": "0xCB367047f6860566a10ab778A02fA48eeCD1f22e",
+    "transactionIndex": 4,
+    "gasUsed": "2300929",
+    "logsBloom": "0x00000000000000000000000000010000000000000000000000800000000000000000001000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000001200000000000000000000000000000000000020000000000010000000800000000000000000000000000000000400000200000000000000020020100000000000000000010200000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000010000000020000000000000000000000000002000000000010000000000000000000082000000",
+    "blockHash": "0xc136f3ec6f7a6fb99cc84892c02d89510774680ac9c94aa6dc5694c2188c3ad8",
+    "transactionHash": "0x503d6a305a851d757efbef3c58dd33194574c892691e84e87c5b0c432b9d652b",
+    "logs": [
+      {
+        "transactionIndex": 4,
+        "blockNumber": 11106133,
+        "transactionHash": "0x503d6a305a851d757efbef3c58dd33194574c892691e84e87c5b0c432b9d652b",
+        "address": "0xCB367047f6860566a10ab778A02fA48eeCD1f22e",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000b8d175f16742395f530e0b3bc1d30bd06b78cda9"
+        ],
+        "data": "0x",
+        "logIndex": 11,
+        "blockHash": "0xc136f3ec6f7a6fb99cc84892c02d89510774680ac9c94aa6dc5694c2188c3ad8"
+      },
+      {
+        "transactionIndex": 4,
+        "blockNumber": 11106133,
+        "transactionHash": "0x503d6a305a851d757efbef3c58dd33194574c892691e84e87c5b0c432b9d652b",
+        "address": "0xCB367047f6860566a10ab778A02fA48eeCD1f22e",
+        "topics": [
+          "0x13b847e4d386296a3ab56e943fb29c3b96a19c71dda0f5fb1f165cba81ae0179",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000024c40f13e77de2aff37c280ba06c333531589bf1",
+          "0x000000000000000000000000b8d175f16742395f530e0b3bc1d30bd06b78cda9"
+        ],
+        "data": "0x",
+        "logIndex": 12,
+        "blockHash": "0xc136f3ec6f7a6fb99cc84892c02d89510774680ac9c94aa6dc5694c2188c3ad8"
+      },
+      {
+        "transactionIndex": 4,
+        "blockNumber": 11106133,
+        "transactionHash": "0x503d6a305a851d757efbef3c58dd33194574c892691e84e87c5b0c432b9d652b",
+        "address": "0xCB367047f6860566a10ab778A02fA48eeCD1f22e",
+        "topics": [
+          "0xa515a29cadc57c3f950e8c6526027a06266b9295aabafc452c7875f66f4c476c",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000fef17855bbd1b29cee5d829d184b8c33e3e64d61",
+          "0x000000000000000000000000b8d175f16742395f530e0b3bc1d30bd06b78cda9"
+        ],
+        "data": "0x",
+        "logIndex": 13,
+        "blockHash": "0xc136f3ec6f7a6fb99cc84892c02d89510774680ac9c94aa6dc5694c2188c3ad8"
+      }
+    ],
+    "blockNumber": 11106133,
+    "cumulativeGasUsed": "13999798",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x24C40f13E77De2aFf37c280BA06c333531589bf1",
+    "0xFef17855bBD1B29CEe5d829D184B8C33e3E64d61"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "d857480a90d34cfbf00dcc818a263389",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.24+commit.e11b9ed9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"router\",\"type\":\"address\"},{\"internalType\":\"contract IConfiguration\",\"name\":\"configuration\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"}],\"name\":\"AddressEmptyCode\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"AddressInsufficientBalance\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"nativeGas\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"feeToken\",\"type\":\"address\"}],\"name\":\"CannotSetFeeTokenIfNativeGasNotZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"configuration\",\"type\":\"address\"}],\"name\":\"ConfigurationAlreadySet\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ConfigurationIsZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ConfigurationNotSet\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"DestinationChainSelectorIsZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"key\",\"type\":\"bytes32\"}],\"name\":\"EnumerableMapNonexistentKey\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FailedInnerCall\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"changeAmount\",\"type\":\"uint256\"}],\"name\":\"FailedToSendChange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FeeTokenAddressIsZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"feeToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"fees\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"allowance\",\"type\":\"uint256\"}],\"name\":\"InsufficientFeeAllowance\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"nativeGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fees\",\"type\":\"uint256\"}],\"name\":\"InsufficientFees\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"router\",\"type\":\"address\"}],\"name\":\"InvalidRouter\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"sourceChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"configuredSenderBridge\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"senderBridge\",\"type\":\"address\"}],\"name\":\"InvalidSenderBridge\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"}],\"name\":\"MessageNotFailed\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"NoBridgeOnDestination\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"NoExtraArgs\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"}],\"name\":\"OnlySelf\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReceivedAmountIsZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReceiverAddressIsZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"SafeERC20FailedOperation\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TokenAddressIsZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"}],\"name\":\"TokenNotSupported\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"TokenPoolNotSet\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IConfiguration\",\"name\":\"oldConfiguration\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contract IConfiguration\",\"name\":\"newConfiguration\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"ConfigurationSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"}],\"name\":\"CrossChainMessageReceived\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"}],\"name\":\"CrossChainMessageSent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct IBridge.TokenAmount\",\"name\":\"tokenAmount\",\"type\":\"tuple\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"}],\"name\":\"MessageFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recoverer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct IBridge.TokenAmount\",\"name\":\"tokenAmount\",\"type\":\"tuple\"}],\"name\":\"MessageRecovered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferStarted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oldRouter\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newRouter\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"RouterSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"tokenDestination\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contract IPool\",\"name\":\"tokenDestinationPool\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"sourceChainSelector\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokensReceived\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"tokenSource\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contract IPool\",\"name\":\"tokenSourcePool\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"contract IERC20\",\"name\":\"tokenDestination\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fees\",\"type\":\"uint256\"}],\"name\":\"TokensTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"acceptOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"sourceChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"sender\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct Client.EVMTokenAmount[]\",\"name\":\"destTokenAmounts\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Client.Any2EVMMessage\",\"name\":\"message\",\"type\":\"tuple\"}],\"name\":\"ccipReceive\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getConfiguration\",\"outputs\":[{\"internalType\":\"contract IConfiguration\",\"name\":\"configuration\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"}],\"name\":\"getFailedMessageContent\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct IBridge.TokenAmount\",\"name\":\"tokenAmount\",\"type\":\"tuple\"}],\"internalType\":\"struct IBridge.FailedMessageContent\",\"name\":\"content\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"offset\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"limit\",\"type\":\"uint256\"}],\"name\":\"getFailedMessages\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"internalType\":\"enum IBridge.ErrorCode\",\"name\":\"errorCode\",\"type\":\"uint8\"}],\"internalType\":\"struct IBridge.FailedMessage[]\",\"name\":\"failedMessages\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"feeToken\",\"type\":\"address\"}],\"name\":\"getFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"fees\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRouter\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"router\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"senderBridge\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"sourceChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct IBridge.TokenAmount\",\"name\":\"tokenAmount\",\"type\":\"tuple\"}],\"name\":\"processMessage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"tokenReceiver\",\"type\":\"address\"}],\"name\":\"retryFailedMessage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IConfiguration\",\"name\":\"configuration\",\"type\":\"address\"}],\"name\":\"setConfiguration\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"router\",\"type\":\"address\"}],\"name\":\"setRouter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"destinationChainSelector\",\"type\":\"uint64\"},{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"feeToken\",\"type\":\"address\"}],\"name\":\"transferTokensToDestinationChain\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"messageId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"fees\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"AddressEmptyCode(address)\":[{\"details\":\"There's no code at `target` (it is not a contract).\"}],\"AddressInsufficientBalance(address)\":[{\"details\":\"The ETH balance of the account is not enough to perform the operation.\"}],\"EnumerableMapNonexistentKey(bytes32)\":[{\"details\":\"Query for a nonexistent map key.\"}],\"FailedInnerCall()\":[{\"details\":\"A call to an address target failed. The target may have reverted.\"}],\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}],\"SafeERC20FailedOperation(address)\":[{\"details\":\"An operation with an ERC20 token failed.\"}]},\"kind\":\"dev\",\"methods\":{\"acceptOwnership()\":{\"details\":\"The new owner accepts the ownership transfer.\"},\"ccipReceive((bytes32,uint64,bytes,bytes,(address,uint256)[]))\":{\"details\":\"Note ensure you check the msg.sender is the OffRampRouter\",\"params\":{\"message\":\"CCIP Message\"}},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"pendingOwner()\":{\"details\":\"Returns the address of the pending owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"supportsInterface(bytes4)\":{\"details\":\"Should indicate whether the contract implements IAny2EVMMessageReceiver e.g. return interfaceId == type(IAny2EVMMessageReceiver).interfaceId || interfaceId == type(IERC165).interfaceId This allows CCIP to check if ccipReceive is available before calling it. If this returns false or reverts, only tokens are transferred to the receiver. If this returns true, tokens are transferred and ccipReceive is called atomically. Additionally, if the receiver address does not have code associated with it at the time of execution (EXTCODESIZE returns 0), only tokens will be transferred.\",\"params\":{\"interfaceId\":\"The interfaceId to check\"},\"returns\":{\"_0\":\"true if the interfaceId is supported\"}},\"transferOwnership(address)\":{\"details\":\"Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one. Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"ccipReceive((bytes32,uint64,bytes,bytes,(address,uint256)[]))\":{\"notice\":\"Called by the Router to deliver a message. If this reverts, any token transfers also revert. The message will move to a FAILED state and become available for manual execution.\"},\"supportsInterface(bytes4)\":{\"notice\":\"IERC165 supports an interfaceId\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/bridge/Bridge.sol\":\"Bridge\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IAny2EVMMessageReceiver.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {Client} from \\\"../libraries/Client.sol\\\";\\n\\n/// @notice Application contracts that intend to receive messages from\\n/// the router should implement this interface.\\ninterface IAny2EVMMessageReceiver {\\n  /// @notice Called by the Router to deliver a message.\\n  /// If this reverts, any token transfers also revert. The message\\n  /// will move to a FAILED state and become available for manual execution.\\n  /// @param message CCIP Message\\n  /// @dev Note ensure you check the msg.sender is the OffRampRouter\\n  function ccipReceive(Client.Any2EVMMessage calldata message) external;\\n}\\n\",\"keccak256\":\"0xd2a05a4f58a453cbf8cfa6aa78f58cb8e42091b3a025f711a0aa51f584e16b48\",\"license\":\"MIT\"},\"@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IRouterClient.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {Client} from \\\"../libraries/Client.sol\\\";\\n\\ninterface IRouterClient {\\n  error UnsupportedDestinationChain(uint64 destChainSelector);\\n  error InsufficientFeeTokenAmount();\\n  error InvalidMsgValue();\\n\\n  /// @notice Checks if the given chain ID is supported for sending/receiving.\\n  /// @param chainSelector The chain to check.\\n  /// @return supported is true if it is supported, false if not.\\n  function isChainSupported(uint64 chainSelector) external view returns (bool supported);\\n\\n  /// @notice Gets a list of all supported tokens which can be sent or received\\n  /// to/from a given chain id.\\n  /// @param chainSelector The chainSelector.\\n  /// @return tokens The addresses of all tokens that are supported.\\n  function getSupportedTokens(uint64 chainSelector) external view returns (address[] memory tokens);\\n\\n  /// @param destinationChainSelector The destination chainSelector\\n  /// @param message The cross-chain CCIP message including data and/or tokens\\n  /// @return fee returns execution fee for the message\\n  /// delivery to destination chain, denominated in the feeToken specified in the message.\\n  /// @dev Reverts with appropriate reason upon invalid message.\\n  function getFee(\\n    uint64 destinationChainSelector,\\n    Client.EVM2AnyMessage memory message\\n  ) external view returns (uint256 fee);\\n\\n  /// @notice Request a message to be sent to the destination chain\\n  /// @param destinationChainSelector The destination chain ID\\n  /// @param message The cross-chain CCIP message including data and/or tokens\\n  /// @return messageId The message ID\\n  /// @dev Note if msg.value is larger than the required fee (from getFee) we accept\\n  /// the overpayment with no refund.\\n  /// @dev Reverts with appropriate reason upon invalid message.\\n  function ccipSend(\\n    uint64 destinationChainSelector,\\n    Client.EVM2AnyMessage calldata message\\n  ) external payable returns (bytes32);\\n}\\n\",\"keccak256\":\"0x7f2fdd93e516b7476c6fab099f6806adf5ceaf399b0cc415f6b9ede890f2379b\",\"license\":\"MIT\"},\"@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\n// End consumer library.\\nlibrary Client {\\n  /// @dev RMN depends on this struct, if changing, please notify the RMN maintainers.\\n  struct EVMTokenAmount {\\n    address token; // token address on the local chain.\\n    uint256 amount; // Amount of tokens.\\n  }\\n\\n  struct Any2EVMMessage {\\n    bytes32 messageId; // MessageId corresponding to ccipSend on source.\\n    uint64 sourceChainSelector; // Source chain selector.\\n    bytes sender; // abi.decode(sender) if coming from an EVM chain.\\n    bytes data; // payload sent in original message.\\n    EVMTokenAmount[] destTokenAmounts; // Tokens and their amounts in their destination chain representation.\\n  }\\n\\n  // If extraArgs is empty bytes, the default is 200k gas limit.\\n  struct EVM2AnyMessage {\\n    bytes receiver; // abi.encode(receiver address) for dest EVM chains\\n    bytes data; // Data payload\\n    EVMTokenAmount[] tokenAmounts; // Token transfers\\n    address feeToken; // Address of feeToken. address(0) means you will send msg.value.\\n    bytes extraArgs; // Populate this with _argsToBytes(EVMExtraArgsV1)\\n  }\\n\\n  // bytes4(keccak256(\\\"CCIP EVMExtraArgsV1\\\"));\\n  bytes4 public constant EVM_EXTRA_ARGS_V1_TAG = 0x97a657c9;\\n  struct EVMExtraArgsV1 {\\n    uint256 gasLimit;\\n  }\\n\\n  function _argsToBytes(EVMExtraArgsV1 memory extraArgs) internal pure returns (bytes memory bts) {\\n    return abi.encodeWithSelector(EVM_EXTRA_ARGS_V1_TAG, extraArgs);\\n  }\\n}\\n\",\"keccak256\":\"0x8af3ac1085c87342373772fb1a0107c7b90258e6bfed318ab2a601a14477e679\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable2Step.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable2Step.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Ownable} from \\\"./Ownable.sol\\\";\\n\\n/**\\n * @dev Contract module which provides access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is specified at deployment time in the constructor for `Ownable`. This\\n * can later be changed with {transferOwnership} and {acceptOwnership}.\\n *\\n * This module is used through inheritance. It will make available all functions\\n * from parent (Ownable).\\n */\\nabstract contract Ownable2Step is Ownable {\\n    address private _pendingOwner;\\n\\n    event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Returns the address of the pending owner.\\n     */\\n    function pendingOwner() public view virtual returns (address) {\\n        return _pendingOwner;\\n    }\\n\\n    /**\\n     * @dev Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one.\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual override onlyOwner {\\n        _pendingOwner = newOwner;\\n        emit OwnershipTransferStarted(owner(), newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`) and deletes any pending owner.\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual override {\\n        delete _pendingOwner;\\n        super._transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev The new owner accepts the ownership transfer.\\n     */\\n    function acceptOwnership() public virtual {\\n        address sender = _msgSender();\\n        if (pendingOwner() != sender) {\\n            revert OwnableUnauthorizedAccount(sender);\\n        }\\n        _transferOwnership(sender);\\n    }\\n}\\n\",\"keccak256\":\"0x5d3e5de9eadfa1f8a892eb2e95bbebd3e4b8c8ada5b76f104d383fea518fa688\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the value of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the value of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the\\n     * allowance mechanism. `value` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\\n}\\n\",\"keccak256\":\"0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (token/ERC20/extensions/IERC20Permit.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC20 Permit extension allowing approvals to be made via signatures, as defined in\\n * https://eips.ethereum.org/EIPS/eip-2612[EIP-2612].\\n *\\n * Adds the {permit} method, which can be used to change an account's ERC20 allowance (see {IERC20-allowance}) by\\n * presenting a message signed by the account. By not relying on {IERC20-approve}, the token holder account doesn't\\n * need to send a transaction, and thus is not required to hold Ether at all.\\n *\\n * ==== Security Considerations\\n *\\n * There are two important considerations concerning the use of `permit`. The first is that a valid permit signature\\n * expresses an allowance, and it should not be assumed to convey additional meaning. In particular, it should not be\\n * considered as an intention to spend the allowance in any specific way. The second is that because permits have\\n * built-in replay protection and can be submitted by anyone, they can be frontrun. A protocol that uses permits should\\n * take this into consideration and allow a `permit` call to fail. Combining these two aspects, a pattern that may be\\n * generally recommended is:\\n *\\n * ```solidity\\n * function doThingWithPermit(..., uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) public {\\n *     try token.permit(msg.sender, address(this), value, deadline, v, r, s) {} catch {}\\n *     doThing(..., value);\\n * }\\n *\\n * function doThing(..., uint256 value) public {\\n *     token.safeTransferFrom(msg.sender, address(this), value);\\n *     ...\\n * }\\n * ```\\n *\\n * Observe that: 1) `msg.sender` is used as the owner, leaving no ambiguity as to the signer intent, and 2) the use of\\n * `try/catch` allows the permit to fail and makes the code tolerant to frontrunning. (See also\\n * {SafeERC20-safeTransferFrom}).\\n *\\n * Additionally, note that smart contract wallets (such as Argent or Safe) are not able to produce permit signatures, so\\n * contracts should have entry points that don't rely on permit.\\n */\\ninterface IERC20Permit {\\n    /**\\n     * @dev Sets `value` as the allowance of `spender` over ``owner``'s tokens,\\n     * given ``owner``'s signed approval.\\n     *\\n     * IMPORTANT: The same issues {IERC20-approve} has related to transaction\\n     * ordering also apply here.\\n     *\\n     * Emits an {Approval} event.\\n     *\\n     * Requirements:\\n     *\\n     * - `spender` cannot be the zero address.\\n     * - `deadline` must be a timestamp in the future.\\n     * - `v`, `r` and `s` must be a valid `secp256k1` signature from `owner`\\n     * over the EIP712-formatted function arguments.\\n     * - the signature must use ``owner``'s current nonce (see {nonces}).\\n     *\\n     * For more information on the signature format, see the\\n     * https://eips.ethereum.org/EIPS/eip-2612#specification[relevant EIP\\n     * section].\\n     *\\n     * CAUTION: See Security Considerations above.\\n     */\\n    function permit(\\n        address owner,\\n        address spender,\\n        uint256 value,\\n        uint256 deadline,\\n        uint8 v,\\n        bytes32 r,\\n        bytes32 s\\n    ) external;\\n\\n    /**\\n     * @dev Returns the current nonce for `owner`. This value must be\\n     * included whenever a signature is generated for {permit}.\\n     *\\n     * Every successful call to {permit} increases ``owner``'s nonce by one. This\\n     * prevents a signature from being used multiple times.\\n     */\\n    function nonces(address owner) external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the domain separator used in the encoding of the signature for {permit}, as defined by {EIP712}.\\n     */\\n    // solhint-disable-next-line func-name-mixedcase\\n    function DOMAIN_SEPARATOR() external view returns (bytes32);\\n}\\n\",\"keccak256\":\"0x6008dabfe393240d73d7dd7688033f72740d570aa422254d29a7dce8568f3aff\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (token/ERC20/utils/SafeERC20.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {IERC20} from \\\"../IERC20.sol\\\";\\nimport {IERC20Permit} from \\\"../extensions/IERC20Permit.sol\\\";\\nimport {Address} from \\\"../../../utils/Address.sol\\\";\\n\\n/**\\n * @title SafeERC20\\n * @dev Wrappers around ERC20 operations that throw on failure (when the token\\n * contract returns false). Tokens that return no value (and instead revert or\\n * throw on failure) are also supported, non-reverting calls are assumed to be\\n * successful.\\n * To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract,\\n * which allows you to call the safe operations as `token.safeTransfer(...)`, etc.\\n */\\nlibrary SafeERC20 {\\n    using Address for address;\\n\\n    /**\\n     * @dev An operation with an ERC20 token failed.\\n     */\\n    error SafeERC20FailedOperation(address token);\\n\\n    /**\\n     * @dev Indicates a failed `decreaseAllowance` request.\\n     */\\n    error SafeERC20FailedDecreaseAllowance(address spender, uint256 currentAllowance, uint256 requestedDecrease);\\n\\n    /**\\n     * @dev Transfer `value` amount of `token` from the calling contract to `to`. If `token` returns no value,\\n     * non-reverting calls are assumed to be successful.\\n     */\\n    function safeTransfer(IERC20 token, address to, uint256 value) internal {\\n        _callOptionalReturn(token, abi.encodeCall(token.transfer, (to, value)));\\n    }\\n\\n    /**\\n     * @dev Transfer `value` amount of `token` from `from` to `to`, spending the approval given by `from` to the\\n     * calling contract. If `token` returns no value, non-reverting calls are assumed to be successful.\\n     */\\n    function safeTransferFrom(IERC20 token, address from, address to, uint256 value) internal {\\n        _callOptionalReturn(token, abi.encodeCall(token.transferFrom, (from, to, value)));\\n    }\\n\\n    /**\\n     * @dev Increase the calling contract's allowance toward `spender` by `value`. If `token` returns no value,\\n     * non-reverting calls are assumed to be successful.\\n     */\\n    function safeIncreaseAllowance(IERC20 token, address spender, uint256 value) internal {\\n        uint256 oldAllowance = token.allowance(address(this), spender);\\n        forceApprove(token, spender, oldAllowance + value);\\n    }\\n\\n    /**\\n     * @dev Decrease the calling contract's allowance toward `spender` by `requestedDecrease`. If `token` returns no\\n     * value, non-reverting calls are assumed to be successful.\\n     */\\n    function safeDecreaseAllowance(IERC20 token, address spender, uint256 requestedDecrease) internal {\\n        unchecked {\\n            uint256 currentAllowance = token.allowance(address(this), spender);\\n            if (currentAllowance < requestedDecrease) {\\n                revert SafeERC20FailedDecreaseAllowance(spender, currentAllowance, requestedDecrease);\\n            }\\n            forceApprove(token, spender, currentAllowance - requestedDecrease);\\n        }\\n    }\\n\\n    /**\\n     * @dev Set the calling contract's allowance toward `spender` to `value`. If `token` returns no value,\\n     * non-reverting calls are assumed to be successful. Meant to be used with tokens that require the approval\\n     * to be set to zero before setting it to a non-zero value, such as USDT.\\n     */\\n    function forceApprove(IERC20 token, address spender, uint256 value) internal {\\n        bytes memory approvalCall = abi.encodeCall(token.approve, (spender, value));\\n\\n        if (!_callOptionalReturnBool(token, approvalCall)) {\\n            _callOptionalReturn(token, abi.encodeCall(token.approve, (spender, 0)));\\n            _callOptionalReturn(token, approvalCall);\\n        }\\n    }\\n\\n    /**\\n     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement\\n     * on the return value: the return value is optional (but if data is returned, it must not be false).\\n     * @param token The token targeted by the call.\\n     * @param data The call data (encoded using abi.encode or one of its variants).\\n     */\\n    function _callOptionalReturn(IERC20 token, bytes memory data) private {\\n        // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since\\n        // we're implementing it ourselves. We use {Address-functionCall} to perform this call, which verifies that\\n        // the target address contains contract code and also asserts for success in the low-level call.\\n\\n        bytes memory returndata = address(token).functionCall(data);\\n        if (returndata.length != 0 && !abi.decode(returndata, (bool))) {\\n            revert SafeERC20FailedOperation(address(token));\\n        }\\n    }\\n\\n    /**\\n     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement\\n     * on the return value: the return value is optional (but if data is returned, it must not be false).\\n     * @param token The token targeted by the call.\\n     * @param data The call data (encoded using abi.encode or one of its variants).\\n     *\\n     * This is a variant of {_callOptionalReturn} that silents catches all reverts and returns a bool instead.\\n     */\\n    function _callOptionalReturnBool(IERC20 token, bytes memory data) private returns (bool) {\\n        // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since\\n        // we're implementing it ourselves. We cannot use {Address-functionCall} here since this should return false\\n        // and not revert is the subcall reverts.\\n\\n        (bool success, bytes memory returndata) = address(token).call(data);\\n        return success && (returndata.length == 0 || abi.decode(returndata, (bool))) && address(token).code.length > 0;\\n    }\\n}\\n\",\"keccak256\":\"0x37bb49513c49c87c4642a891b13b63571bc87013dde806617aa1efb54605f386\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Address.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/Address.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Collection of functions related to the address type\\n */\\nlibrary Address {\\n    /**\\n     * @dev The ETH balance of the account is not enough to perform the operation.\\n     */\\n    error AddressInsufficientBalance(address account);\\n\\n    /**\\n     * @dev There's no code at `target` (it is not a contract).\\n     */\\n    error AddressEmptyCode(address target);\\n\\n    /**\\n     * @dev A call to an address target failed. The target may have reverted.\\n     */\\n    error FailedInnerCall();\\n\\n    /**\\n     * @dev Replacement for Solidity's `transfer`: sends `amount` wei to\\n     * `recipient`, forwarding all available gas and reverting on errors.\\n     *\\n     * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost\\n     * of certain opcodes, possibly making contracts go over the 2300 gas limit\\n     * imposed by `transfer`, making them unable to receive funds via\\n     * `transfer`. {sendValue} removes this limitation.\\n     *\\n     * https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/[Learn more].\\n     *\\n     * IMPORTANT: because control is transferred to `recipient`, care must be\\n     * taken to not create reentrancy vulnerabilities. Consider using\\n     * {ReentrancyGuard} or the\\n     * https://solidity.readthedocs.io/en/v0.8.20/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].\\n     */\\n    function sendValue(address payable recipient, uint256 amount) internal {\\n        if (address(this).balance < amount) {\\n            revert AddressInsufficientBalance(address(this));\\n        }\\n\\n        (bool success, ) = recipient.call{value: amount}(\\\"\\\");\\n        if (!success) {\\n            revert FailedInnerCall();\\n        }\\n    }\\n\\n    /**\\n     * @dev Performs a Solidity function call using a low level `call`. A\\n     * plain `call` is an unsafe replacement for a function call: use this\\n     * function instead.\\n     *\\n     * If `target` reverts with a revert reason or custom error, it is bubbled\\n     * up by this function (like regular Solidity function calls). However, if\\n     * the call reverted with no returned reason, this function reverts with a\\n     * {FailedInnerCall} error.\\n     *\\n     * Returns the raw returned data. To convert to the expected return value,\\n     * use https://solidity.readthedocs.io/en/latest/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions[`abi.decode`].\\n     *\\n     * Requirements:\\n     *\\n     * - `target` must be a contract.\\n     * - calling `target` with `data` must not revert.\\n     */\\n    function functionCall(address target, bytes memory data) internal returns (bytes memory) {\\n        return functionCallWithValue(target, data, 0);\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],\\n     * but also transferring `value` wei to `target`.\\n     *\\n     * Requirements:\\n     *\\n     * - the calling contract must have an ETH balance of at least `value`.\\n     * - the called Solidity function must be `payable`.\\n     */\\n    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {\\n        if (address(this).balance < value) {\\n            revert AddressInsufficientBalance(address(this));\\n        }\\n        (bool success, bytes memory returndata) = target.call{value: value}(data);\\n        return verifyCallResultFromTarget(target, success, returndata);\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],\\n     * but performing a static call.\\n     */\\n    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {\\n        (bool success, bytes memory returndata) = target.staticcall(data);\\n        return verifyCallResultFromTarget(target, success, returndata);\\n    }\\n\\n    /**\\n     * @dev Same as {xref-Address-functionCall-address-bytes-}[`functionCall`],\\n     * but performing a delegate call.\\n     */\\n    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {\\n        (bool success, bytes memory returndata) = target.delegatecall(data);\\n        return verifyCallResultFromTarget(target, success, returndata);\\n    }\\n\\n    /**\\n     * @dev Tool to verify that a low level call to smart-contract was successful, and reverts if the target\\n     * was not a contract or bubbling up the revert reason (falling back to {FailedInnerCall}) in case of an\\n     * unsuccessful call.\\n     */\\n    function verifyCallResultFromTarget(\\n        address target,\\n        bool success,\\n        bytes memory returndata\\n    ) internal view returns (bytes memory) {\\n        if (!success) {\\n            _revert(returndata);\\n        } else {\\n            // only check if target is a contract if the call was successful and the return data is empty\\n            // otherwise we already know that it was a contract\\n            if (returndata.length == 0 && target.code.length == 0) {\\n                revert AddressEmptyCode(target);\\n            }\\n            return returndata;\\n        }\\n    }\\n\\n    /**\\n     * @dev Tool to verify that a low level call was successful, and reverts if it wasn't, either by bubbling the\\n     * revert reason or with a default {FailedInnerCall} error.\\n     */\\n    function verifyCallResult(bool success, bytes memory returndata) internal pure returns (bytes memory) {\\n        if (!success) {\\n            _revert(returndata);\\n        } else {\\n            return returndata;\\n        }\\n    }\\n\\n    /**\\n     * @dev Reverts with returndata if present. Otherwise reverts with {FailedInnerCall}.\\n     */\\n    function _revert(bytes memory returndata) private pure {\\n        // Look for revert reason and bubble it up if present\\n        if (returndata.length > 0) {\\n            // The easiest way to bubble the revert reason is using memory via assembly\\n            /// @solidity memory-safe-assembly\\n            assembly {\\n                let returndata_size := mload(returndata)\\n                revert(add(32, returndata), returndata_size)\\n            }\\n        } else {\\n            revert FailedInnerCall();\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0xaf28a975a78550e45f65e559a3ad6a5ad43b9b8a37366999abd1b7084eb70721\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/IERC165.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC165 standard, as defined in the\\n * https://eips.ethereum.org/EIPS/eip-165[EIP].\\n *\\n * Implementers can declare support of contract interfaces, which can then be\\n * queried by others ({ERC165Checker}).\\n *\\n * For an implementation, see {ERC165}.\\n */\\ninterface IERC165 {\\n    /**\\n     * @dev Returns true if this contract implements the interface defined by\\n     * `interfaceId`. See the corresponding\\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\\n     * to learn more about how these ids are created.\\n     *\\n     * This function call must use less than 30 000 gas.\\n     */\\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/structs/EnumerableMap.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/structs/EnumerableMap.sol)\\n// This file was procedurally generated from scripts/generate/templates/EnumerableMap.js.\\n\\npragma solidity ^0.8.20;\\n\\nimport {EnumerableSet} from \\\"./EnumerableSet.sol\\\";\\n\\n/**\\n * @dev Library for managing an enumerable variant of Solidity's\\n * https://solidity.readthedocs.io/en/latest/types.html#mapping-types[`mapping`]\\n * type.\\n *\\n * Maps have the following properties:\\n *\\n * - Entries are added, removed, and checked for existence in constant time\\n * (O(1)).\\n * - Entries are enumerated in O(n). No guarantees are made on the ordering.\\n *\\n * ```solidity\\n * contract Example {\\n *     // Add the library methods\\n *     using EnumerableMap for EnumerableMap.UintToAddressMap;\\n *\\n *     // Declare a set state variable\\n *     EnumerableMap.UintToAddressMap private myMap;\\n * }\\n * ```\\n *\\n * The following map types are supported:\\n *\\n * - `uint256 -> address` (`UintToAddressMap`) since v3.0.0\\n * - `address -> uint256` (`AddressToUintMap`) since v4.6.0\\n * - `bytes32 -> bytes32` (`Bytes32ToBytes32Map`) since v4.6.0\\n * - `uint256 -> uint256` (`UintToUintMap`) since v4.7.0\\n * - `bytes32 -> uint256` (`Bytes32ToUintMap`) since v4.7.0\\n *\\n * [WARNING]\\n * ====\\n * Trying to delete such a structure from storage will likely result in data corruption, rendering the structure\\n * unusable.\\n * See https://github.com/ethereum/solidity/pull/11843[ethereum/solidity#11843] for more info.\\n *\\n * In order to clean an EnumerableMap, you can either remove all elements one by one or create a fresh instance using an\\n * array of EnumerableMap.\\n * ====\\n */\\nlibrary EnumerableMap {\\n    using EnumerableSet for EnumerableSet.Bytes32Set;\\n\\n    // To implement this library for multiple types with as little code repetition as possible, we write it in\\n    // terms of a generic Map type with bytes32 keys and values. The Map implementation uses private functions,\\n    // and user-facing implementations such as `UintToAddressMap` are just wrappers around the underlying Map.\\n    // This means that we can only create new EnumerableMaps for types that fit in bytes32.\\n\\n    /**\\n     * @dev Query for a nonexistent map key.\\n     */\\n    error EnumerableMapNonexistentKey(bytes32 key);\\n\\n    struct Bytes32ToBytes32Map {\\n        // Storage of keys\\n        EnumerableSet.Bytes32Set _keys;\\n        mapping(bytes32 key => bytes32) _values;\\n    }\\n\\n    /**\\n     * @dev Adds a key-value pair to a map, or updates the value for an existing\\n     * key. O(1).\\n     *\\n     * Returns true if the key was added to the map, that is if it was not\\n     * already present.\\n     */\\n    function set(Bytes32ToBytes32Map storage map, bytes32 key, bytes32 value) internal returns (bool) {\\n        map._values[key] = value;\\n        return map._keys.add(key);\\n    }\\n\\n    /**\\n     * @dev Removes a key-value pair from a map. O(1).\\n     *\\n     * Returns true if the key was removed from the map, that is if it was present.\\n     */\\n    function remove(Bytes32ToBytes32Map storage map, bytes32 key) internal returns (bool) {\\n        delete map._values[key];\\n        return map._keys.remove(key);\\n    }\\n\\n    /**\\n     * @dev Returns true if the key is in the map. O(1).\\n     */\\n    function contains(Bytes32ToBytes32Map storage map, bytes32 key) internal view returns (bool) {\\n        return map._keys.contains(key);\\n    }\\n\\n    /**\\n     * @dev Returns the number of key-value pairs in the map. O(1).\\n     */\\n    function length(Bytes32ToBytes32Map storage map) internal view returns (uint256) {\\n        return map._keys.length();\\n    }\\n\\n    /**\\n     * @dev Returns the key-value pair stored at position `index` in the map. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of entries inside the\\n     * array, and it may change when more entries are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(Bytes32ToBytes32Map storage map, uint256 index) internal view returns (bytes32, bytes32) {\\n        bytes32 key = map._keys.at(index);\\n        return (key, map._values[key]);\\n    }\\n\\n    /**\\n     * @dev Tries to returns the value associated with `key`. O(1).\\n     * Does not revert if `key` is not in the map.\\n     */\\n    function tryGet(Bytes32ToBytes32Map storage map, bytes32 key) internal view returns (bool, bytes32) {\\n        bytes32 value = map._values[key];\\n        if (value == bytes32(0)) {\\n            return (contains(map, key), bytes32(0));\\n        } else {\\n            return (true, value);\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns the value associated with `key`. O(1).\\n     *\\n     * Requirements:\\n     *\\n     * - `key` must be in the map.\\n     */\\n    function get(Bytes32ToBytes32Map storage map, bytes32 key) internal view returns (bytes32) {\\n        bytes32 value = map._values[key];\\n        if (value == 0 && !contains(map, key)) {\\n            revert EnumerableMapNonexistentKey(key);\\n        }\\n        return value;\\n    }\\n\\n    /**\\n     * @dev Return the an array containing all the keys\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function keys(Bytes32ToBytes32Map storage map) internal view returns (bytes32[] memory) {\\n        return map._keys.values();\\n    }\\n\\n    // UintToUintMap\\n\\n    struct UintToUintMap {\\n        Bytes32ToBytes32Map _inner;\\n    }\\n\\n    /**\\n     * @dev Adds a key-value pair to a map, or updates the value for an existing\\n     * key. O(1).\\n     *\\n     * Returns true if the key was added to the map, that is if it was not\\n     * already present.\\n     */\\n    function set(UintToUintMap storage map, uint256 key, uint256 value) internal returns (bool) {\\n        return set(map._inner, bytes32(key), bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a map. O(1).\\n     *\\n     * Returns true if the key was removed from the map, that is if it was present.\\n     */\\n    function remove(UintToUintMap storage map, uint256 key) internal returns (bool) {\\n        return remove(map._inner, bytes32(key));\\n    }\\n\\n    /**\\n     * @dev Returns true if the key is in the map. O(1).\\n     */\\n    function contains(UintToUintMap storage map, uint256 key) internal view returns (bool) {\\n        return contains(map._inner, bytes32(key));\\n    }\\n\\n    /**\\n     * @dev Returns the number of elements in the map. O(1).\\n     */\\n    function length(UintToUintMap storage map) internal view returns (uint256) {\\n        return length(map._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the element stored at position `index` in the map. O(1).\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(UintToUintMap storage map, uint256 index) internal view returns (uint256, uint256) {\\n        (bytes32 key, bytes32 value) = at(map._inner, index);\\n        return (uint256(key), uint256(value));\\n    }\\n\\n    /**\\n     * @dev Tries to returns the value associated with `key`. O(1).\\n     * Does not revert if `key` is not in the map.\\n     */\\n    function tryGet(UintToUintMap storage map, uint256 key) internal view returns (bool, uint256) {\\n        (bool success, bytes32 value) = tryGet(map._inner, bytes32(key));\\n        return (success, uint256(value));\\n    }\\n\\n    /**\\n     * @dev Returns the value associated with `key`. O(1).\\n     *\\n     * Requirements:\\n     *\\n     * - `key` must be in the map.\\n     */\\n    function get(UintToUintMap storage map, uint256 key) internal view returns (uint256) {\\n        return uint256(get(map._inner, bytes32(key)));\\n    }\\n\\n    /**\\n     * @dev Return the an array containing all the keys\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function keys(UintToUintMap storage map) internal view returns (uint256[] memory) {\\n        bytes32[] memory store = keys(map._inner);\\n        uint256[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // UintToAddressMap\\n\\n    struct UintToAddressMap {\\n        Bytes32ToBytes32Map _inner;\\n    }\\n\\n    /**\\n     * @dev Adds a key-value pair to a map, or updates the value for an existing\\n     * key. O(1).\\n     *\\n     * Returns true if the key was added to the map, that is if it was not\\n     * already present.\\n     */\\n    function set(UintToAddressMap storage map, uint256 key, address value) internal returns (bool) {\\n        return set(map._inner, bytes32(key), bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a map. O(1).\\n     *\\n     * Returns true if the key was removed from the map, that is if it was present.\\n     */\\n    function remove(UintToAddressMap storage map, uint256 key) internal returns (bool) {\\n        return remove(map._inner, bytes32(key));\\n    }\\n\\n    /**\\n     * @dev Returns true if the key is in the map. O(1).\\n     */\\n    function contains(UintToAddressMap storage map, uint256 key) internal view returns (bool) {\\n        return contains(map._inner, bytes32(key));\\n    }\\n\\n    /**\\n     * @dev Returns the number of elements in the map. O(1).\\n     */\\n    function length(UintToAddressMap storage map) internal view returns (uint256) {\\n        return length(map._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the element stored at position `index` in the map. O(1).\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(UintToAddressMap storage map, uint256 index) internal view returns (uint256, address) {\\n        (bytes32 key, bytes32 value) = at(map._inner, index);\\n        return (uint256(key), address(uint160(uint256(value))));\\n    }\\n\\n    /**\\n     * @dev Tries to returns the value associated with `key`. O(1).\\n     * Does not revert if `key` is not in the map.\\n     */\\n    function tryGet(UintToAddressMap storage map, uint256 key) internal view returns (bool, address) {\\n        (bool success, bytes32 value) = tryGet(map._inner, bytes32(key));\\n        return (success, address(uint160(uint256(value))));\\n    }\\n\\n    /**\\n     * @dev Returns the value associated with `key`. O(1).\\n     *\\n     * Requirements:\\n     *\\n     * - `key` must be in the map.\\n     */\\n    function get(UintToAddressMap storage map, uint256 key) internal view returns (address) {\\n        return address(uint160(uint256(get(map._inner, bytes32(key)))));\\n    }\\n\\n    /**\\n     * @dev Return the an array containing all the keys\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function keys(UintToAddressMap storage map) internal view returns (uint256[] memory) {\\n        bytes32[] memory store = keys(map._inner);\\n        uint256[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // AddressToUintMap\\n\\n    struct AddressToUintMap {\\n        Bytes32ToBytes32Map _inner;\\n    }\\n\\n    /**\\n     * @dev Adds a key-value pair to a map, or updates the value for an existing\\n     * key. O(1).\\n     *\\n     * Returns true if the key was added to the map, that is if it was not\\n     * already present.\\n     */\\n    function set(AddressToUintMap storage map, address key, uint256 value) internal returns (bool) {\\n        return set(map._inner, bytes32(uint256(uint160(key))), bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a map. O(1).\\n     *\\n     * Returns true if the key was removed from the map, that is if it was present.\\n     */\\n    function remove(AddressToUintMap storage map, address key) internal returns (bool) {\\n        return remove(map._inner, bytes32(uint256(uint160(key))));\\n    }\\n\\n    /**\\n     * @dev Returns true if the key is in the map. O(1).\\n     */\\n    function contains(AddressToUintMap storage map, address key) internal view returns (bool) {\\n        return contains(map._inner, bytes32(uint256(uint160(key))));\\n    }\\n\\n    /**\\n     * @dev Returns the number of elements in the map. O(1).\\n     */\\n    function length(AddressToUintMap storage map) internal view returns (uint256) {\\n        return length(map._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the element stored at position `index` in the map. O(1).\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(AddressToUintMap storage map, uint256 index) internal view returns (address, uint256) {\\n        (bytes32 key, bytes32 value) = at(map._inner, index);\\n        return (address(uint160(uint256(key))), uint256(value));\\n    }\\n\\n    /**\\n     * @dev Tries to returns the value associated with `key`. O(1).\\n     * Does not revert if `key` is not in the map.\\n     */\\n    function tryGet(AddressToUintMap storage map, address key) internal view returns (bool, uint256) {\\n        (bool success, bytes32 value) = tryGet(map._inner, bytes32(uint256(uint160(key))));\\n        return (success, uint256(value));\\n    }\\n\\n    /**\\n     * @dev Returns the value associated with `key`. O(1).\\n     *\\n     * Requirements:\\n     *\\n     * - `key` must be in the map.\\n     */\\n    function get(AddressToUintMap storage map, address key) internal view returns (uint256) {\\n        return uint256(get(map._inner, bytes32(uint256(uint160(key)))));\\n    }\\n\\n    /**\\n     * @dev Return the an array containing all the keys\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function keys(AddressToUintMap storage map) internal view returns (address[] memory) {\\n        bytes32[] memory store = keys(map._inner);\\n        address[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // Bytes32ToUintMap\\n\\n    struct Bytes32ToUintMap {\\n        Bytes32ToBytes32Map _inner;\\n    }\\n\\n    /**\\n     * @dev Adds a key-value pair to a map, or updates the value for an existing\\n     * key. O(1).\\n     *\\n     * Returns true if the key was added to the map, that is if it was not\\n     * already present.\\n     */\\n    function set(Bytes32ToUintMap storage map, bytes32 key, uint256 value) internal returns (bool) {\\n        return set(map._inner, key, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a map. O(1).\\n     *\\n     * Returns true if the key was removed from the map, that is if it was present.\\n     */\\n    function remove(Bytes32ToUintMap storage map, bytes32 key) internal returns (bool) {\\n        return remove(map._inner, key);\\n    }\\n\\n    /**\\n     * @dev Returns true if the key is in the map. O(1).\\n     */\\n    function contains(Bytes32ToUintMap storage map, bytes32 key) internal view returns (bool) {\\n        return contains(map._inner, key);\\n    }\\n\\n    /**\\n     * @dev Returns the number of elements in the map. O(1).\\n     */\\n    function length(Bytes32ToUintMap storage map) internal view returns (uint256) {\\n        return length(map._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the element stored at position `index` in the map. O(1).\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(Bytes32ToUintMap storage map, uint256 index) internal view returns (bytes32, uint256) {\\n        (bytes32 key, bytes32 value) = at(map._inner, index);\\n        return (key, uint256(value));\\n    }\\n\\n    /**\\n     * @dev Tries to returns the value associated with `key`. O(1).\\n     * Does not revert if `key` is not in the map.\\n     */\\n    function tryGet(Bytes32ToUintMap storage map, bytes32 key) internal view returns (bool, uint256) {\\n        (bool success, bytes32 value) = tryGet(map._inner, key);\\n        return (success, uint256(value));\\n    }\\n\\n    /**\\n     * @dev Returns the value associated with `key`. O(1).\\n     *\\n     * Requirements:\\n     *\\n     * - `key` must be in the map.\\n     */\\n    function get(Bytes32ToUintMap storage map, bytes32 key) internal view returns (uint256) {\\n        return uint256(get(map._inner, key));\\n    }\\n\\n    /**\\n     * @dev Return the an array containing all the keys\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the map grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function keys(Bytes32ToUintMap storage map) internal view returns (bytes32[] memory) {\\n        bytes32[] memory store = keys(map._inner);\\n        bytes32[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n}\\n\",\"keccak256\":\"0xa3edd94148e931d8a37353624ea57afa1c679b6fe06b7059ccdc8da78a90c123\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/structs/EnumerableSet.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/structs/EnumerableSet.sol)\\n// This file was procedurally generated from scripts/generate/templates/EnumerableSet.js.\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Library for managing\\n * https://en.wikipedia.org/wiki/Set_(abstract_data_type)[sets] of primitive\\n * types.\\n *\\n * Sets have the following properties:\\n *\\n * - Elements are added, removed, and checked for existence in constant time\\n * (O(1)).\\n * - Elements are enumerated in O(n). No guarantees are made on the ordering.\\n *\\n * ```solidity\\n * contract Example {\\n *     // Add the library methods\\n *     using EnumerableSet for EnumerableSet.AddressSet;\\n *\\n *     // Declare a set state variable\\n *     EnumerableSet.AddressSet private mySet;\\n * }\\n * ```\\n *\\n * As of v3.3.0, sets of type `bytes32` (`Bytes32Set`), `address` (`AddressSet`)\\n * and `uint256` (`UintSet`) are supported.\\n *\\n * [WARNING]\\n * ====\\n * Trying to delete such a structure from storage will likely result in data corruption, rendering the structure\\n * unusable.\\n * See https://github.com/ethereum/solidity/pull/11843[ethereum/solidity#11843] for more info.\\n *\\n * In order to clean an EnumerableSet, you can either remove all elements one by one or create a fresh instance using an\\n * array of EnumerableSet.\\n * ====\\n */\\nlibrary EnumerableSet {\\n    // To implement this library for multiple types with as little code\\n    // repetition as possible, we write it in terms of a generic Set type with\\n    // bytes32 values.\\n    // The Set implementation uses private functions, and user-facing\\n    // implementations (such as AddressSet) are just wrappers around the\\n    // underlying Set.\\n    // This means that we can only create new EnumerableSets for types that fit\\n    // in bytes32.\\n\\n    struct Set {\\n        // Storage of set values\\n        bytes32[] _values;\\n        // Position is the index of the value in the `values` array plus 1.\\n        // Position 0 is used to mean a value is not in the set.\\n        mapping(bytes32 value => uint256) _positions;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function _add(Set storage set, bytes32 value) private returns (bool) {\\n        if (!_contains(set, value)) {\\n            set._values.push(value);\\n            // The value is stored at length-1, but we add 1 to all indexes\\n            // and use 0 as a sentinel value\\n            set._positions[value] = set._values.length;\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function _remove(Set storage set, bytes32 value) private returns (bool) {\\n        // We cache the value's position to prevent multiple reads from the same storage slot\\n        uint256 position = set._positions[value];\\n\\n        if (position != 0) {\\n            // Equivalent to contains(set, value)\\n            // To delete an element from the _values array in O(1), we swap the element to delete with the last one in\\n            // the array, and then remove the last element (sometimes called as 'swap and pop').\\n            // This modifies the order of the array, as noted in {at}.\\n\\n            uint256 valueIndex = position - 1;\\n            uint256 lastIndex = set._values.length - 1;\\n\\n            if (valueIndex != lastIndex) {\\n                bytes32 lastValue = set._values[lastIndex];\\n\\n                // Move the lastValue to the index where the value to delete is\\n                set._values[valueIndex] = lastValue;\\n                // Update the tracked position of the lastValue (that was just moved)\\n                set._positions[lastValue] = position;\\n            }\\n\\n            // Delete the slot where the moved value was stored\\n            set._values.pop();\\n\\n            // Delete the tracked position for the deleted slot\\n            delete set._positions[value];\\n\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function _contains(Set storage set, bytes32 value) private view returns (bool) {\\n        return set._positions[value] != 0;\\n    }\\n\\n    /**\\n     * @dev Returns the number of values on the set. O(1).\\n     */\\n    function _length(Set storage set) private view returns (uint256) {\\n        return set._values.length;\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function _at(Set storage set, uint256 index) private view returns (bytes32) {\\n        return set._values[index];\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function _values(Set storage set) private view returns (bytes32[] memory) {\\n        return set._values;\\n    }\\n\\n    // Bytes32Set\\n\\n    struct Bytes32Set {\\n        Set _inner;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function add(Bytes32Set storage set, bytes32 value) internal returns (bool) {\\n        return _add(set._inner, value);\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function remove(Bytes32Set storage set, bytes32 value) internal returns (bool) {\\n        return _remove(set._inner, value);\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function contains(Bytes32Set storage set, bytes32 value) internal view returns (bool) {\\n        return _contains(set._inner, value);\\n    }\\n\\n    /**\\n     * @dev Returns the number of values in the set. O(1).\\n     */\\n    function length(Bytes32Set storage set) internal view returns (uint256) {\\n        return _length(set._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(Bytes32Set storage set, uint256 index) internal view returns (bytes32) {\\n        return _at(set._inner, index);\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function values(Bytes32Set storage set) internal view returns (bytes32[] memory) {\\n        bytes32[] memory store = _values(set._inner);\\n        bytes32[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // AddressSet\\n\\n    struct AddressSet {\\n        Set _inner;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function add(AddressSet storage set, address value) internal returns (bool) {\\n        return _add(set._inner, bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function remove(AddressSet storage set, address value) internal returns (bool) {\\n        return _remove(set._inner, bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function contains(AddressSet storage set, address value) internal view returns (bool) {\\n        return _contains(set._inner, bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Returns the number of values in the set. O(1).\\n     */\\n    function length(AddressSet storage set) internal view returns (uint256) {\\n        return _length(set._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(AddressSet storage set, uint256 index) internal view returns (address) {\\n        return address(uint160(uint256(_at(set._inner, index))));\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function values(AddressSet storage set) internal view returns (address[] memory) {\\n        bytes32[] memory store = _values(set._inner);\\n        address[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // UintSet\\n\\n    struct UintSet {\\n        Set _inner;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function add(UintSet storage set, uint256 value) internal returns (bool) {\\n        return _add(set._inner, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function remove(UintSet storage set, uint256 value) internal returns (bool) {\\n        return _remove(set._inner, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function contains(UintSet storage set, uint256 value) internal view returns (bool) {\\n        return _contains(set._inner, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Returns the number of values in the set. O(1).\\n     */\\n    function length(UintSet storage set) internal view returns (uint256) {\\n        return _length(set._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(UintSet storage set, uint256 index) internal view returns (uint256) {\\n        return uint256(_at(set._inner, index));\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function values(UintSet storage set) internal view returns (uint256[] memory) {\\n        bytes32[] memory store = _values(set._inner);\\n        uint256[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n}\\n\",\"keccak256\":\"0x86c1470cbfd878491e5de030072b647352d36bd27122cffb928970b1945282aa\",\"license\":\"MIT\"},\"contracts/bridge/Bridge.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.8.24;\\n\\nimport {IBridge} from \\\"../interfaces/IBridge.sol\\\";\\nimport {IPool} from \\\"../interfaces/IPool.sol\\\";\\nimport {IConfiguration} from \\\"../interfaces/IConfiguration.sol\\\";\\nimport {IAny2EVMMessageReceiver} from \\\"@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IAny2EVMMessageReceiver.sol\\\";\\nimport {Client} from \\\"@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol\\\";\\nimport {Ownable2Step, Ownable} from \\\"@openzeppelin/contracts/access/Ownable2Step.sol\\\";\\nimport {IRouterClient} from \\\"@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IRouterClient.sol\\\";\\nimport {IERC20} from \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\nimport {SafeERC20} from \\\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\\\";\\nimport {ReentrancyGuard} from \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\nimport {IERC165} from \\\"@openzeppelin/contracts/utils/introspection/IERC165.sol\\\";\\nimport {EnumerableMap} from \\\"@openzeppelin/contracts/utils/structs/EnumerableMap.sol\\\";\\n\\ncontract Bridge is\\n    IBridge,\\n    Ownable2Step,\\n    ReentrancyGuard,\\n    IAny2EVMMessageReceiver,\\n    IERC165\\n{\\n    using EnumerableMap for EnumerableMap.Bytes32ToUintMap;\\n    using SafeERC20 for IERC20;\\n\\n    IConfiguration private s_configuration;\\n    address private s_ccipRouter;\\n\\n    EnumerableMap.Bytes32ToUintMap private s_failedMessages;\\n    mapping(bytes32 messageId => FailedMessageContent contents)\\n        private s_messageContents;\\n\\n    modifier validateToken(IERC20 token) {\\n        if (address(token) == address(0)) {\\n            revert TokenAddressIsZero();\\n        }\\n        _;\\n    }\\n\\n    modifier onlyRouter() {\\n        if (msg.sender != address(s_ccipRouter))\\n            revert InvalidRouter(msg.sender);\\n        _;\\n    }\\n\\n    modifier validateConfiguration() {\\n        if (address(s_configuration) == address(0)) {\\n            revert ConfigurationNotSet();\\n        }\\n        _;\\n    }\\n\\n    modifier onlySelf() {\\n        if (msg.sender != address(this)) revert OnlySelf(msg.sender);\\n        _;\\n    }\\n\\n    constructor(\\n        address router,\\n        IConfiguration configuration\\n    ) Ownable(msg.sender) {\\n        if (router == address(0)) revert InvalidRouter(address(0));\\n        if (address(configuration) == address(0)) revert ConfigurationIsZero();\\n        s_ccipRouter = router;\\n        s_configuration = configuration;\\n        emit RouterSet(address(0), router, msg.sender);\\n        emit ConfigurationSet(\\n            IConfiguration(address(0)),\\n            configuration,\\n            msg.sender\\n        );\\n    }\\n\\n    function setConfiguration(IConfiguration configuration) external onlyOwner {\\n        if (address(configuration) == address(0)) {\\n            revert ConfigurationIsZero();\\n        }\\n        if (address(configuration) == address(s_configuration))\\n            revert ConfigurationAlreadySet(address(configuration));\\n        emit ConfigurationSet(s_configuration, configuration, msg.sender);\\n        s_configuration = configuration;\\n    }\\n\\n    function getConfiguration()\\n        public\\n        view\\n        returns (IConfiguration configuration)\\n    {\\n        configuration = s_configuration;\\n    }\\n\\n    function setRouter(address router) external onlyOwner {\\n        if (router == address(0)) revert InvalidRouter(address(0));\\n        emit RouterSet(s_ccipRouter, router, msg.sender);\\n        s_ccipRouter = router;\\n    }\\n\\n    function getRouter() public view returns (address router) {\\n        router = s_ccipRouter;\\n    }\\n\\n    function getFailedMessages(\\n        uint256 offset,\\n        uint256 limit\\n    ) external view returns (FailedMessage[] memory failedMessages) {\\n        uint256 length = s_failedMessages.length();\\n        uint256 returnLength = (offset + limit > length)\\n            ? length - offset\\n            : limit;\\n        failedMessages = new FailedMessage[](returnLength);\\n        for (uint256 i = 0; i < returnLength; ++i) {\\n            (bytes32 messageId, uint256 errorCode) = s_failedMessages.at(\\n                offset + i\\n            );\\n            failedMessages[i] = FailedMessage(messageId, ErrorCode(errorCode));\\n        }\\n    }\\n\\n    function getFailedMessageContent(\\n        bytes32 messageId\\n    ) external view returns (FailedMessageContent memory content) {\\n        content = s_messageContents[messageId];\\n    }\\n\\n    function getFee(\\n        uint64 destinationChainSelector,\\n        IERC20 token,\\n        uint256 amount,\\n        address receiver,\\n        IERC20 feeToken\\n    )\\n        external\\n        view\\n        validateConfiguration\\n        validateToken(token)\\n        returns (uint256 fees)\\n    {\\n        IConfiguration.ConfigOut memory configuration = s_configuration\\n            .getConfigOut(token, destinationChainSelector);\\n\\n        if (address(configuration.destinationToken) == address(0)) {\\n            revert TokenNotSupported(token, destinationChainSelector);\\n        }\\n        if (address(configuration.pool) == address(0)) {\\n            revert TokenPoolNotSet(token);\\n        }\\n\\n        if (address(configuration.receiverBridge) == address(0)) {\\n            revert NoBridgeOnDestination(destinationChainSelector);\\n        }\\n\\n        if (configuration.extraArgs.length == 0) {\\n            revert NoExtraArgs(destinationChainSelector);\\n        }\\n\\n        Client.EVM2AnyMessage memory message = _buildCCIPMessage(\\n            configuration.receiverBridge,\\n            receiver,\\n            configuration.destinationToken,\\n            amount,\\n            feeToken,\\n            configuration.extraArgs\\n        );\\n\\n        IRouterClient router = IRouterClient(getRouter());\\n        fees = router.getFee(destinationChainSelector, message);\\n    }\\n\\n    function transferTokensToDestinationChain(\\n        uint64 destinationChainSelector,\\n        IERC20 token,\\n        uint256 amount,\\n        address receiver,\\n        IERC20 feeToken\\n    )\\n        external\\n        payable\\n        validateConfiguration\\n        validateToken(token)\\n        nonReentrant\\n        returns (bytes32 messageId, uint256 fees)\\n    {\\n        if (receiver == address(0)) {\\n            revert ReceiverAddressIsZero();\\n        }\\n\\n        if (destinationChainSelector == 0) {\\n            revert DestinationChainSelectorIsZero();\\n        }\\n\\n        IConfiguration.ConfigOut memory configuration = s_configuration\\n            .getConfigOut(token, destinationChainSelector);\\n\\n        if (address(configuration.destinationToken) == address(0)) {\\n            revert TokenNotSupported(token, destinationChainSelector);\\n        }\\n        if (address(configuration.pool) == address(0)) {\\n            revert TokenPoolNotSet(token);\\n        }\\n\\n        if (address(configuration.receiverBridge) == address(0)) {\\n            revert NoBridgeOnDestination(destinationChainSelector);\\n        }\\n\\n        if (configuration.extraArgs.length == 0) {\\n            revert NoExtraArgs(destinationChainSelector);\\n        }\\n\\n        Client.EVM2AnyMessage memory message = _buildCCIPMessage(\\n            configuration.receiverBridge,\\n            receiver,\\n            configuration.destinationToken,\\n            amount,\\n            feeToken,\\n            configuration.extraArgs\\n        );\\n\\n        IRouterClient router = IRouterClient(getRouter());\\n        fees = router.getFee(destinationChainSelector, message);\\n\\n        token.safeTransferFrom(msg.sender, address(configuration.pool), amount);\\n        configuration.pool.lockOrBurn(amount);\\n\\n        if (msg.value > 0) {\\n            if (address(feeToken) != address(0)) {\\n                revert CannotSetFeeTokenIfNativeGasNotZero(\\n                    msg.value,\\n                    address(feeToken)\\n                );\\n            }\\n            uint256 change;\\n            if (fees > msg.value) {\\n                revert InsufficientFees(msg.value, fees);\\n            } else if (msg.value > fees) {\\n                change = msg.value - fees;\\n            }\\n            messageId = router.ccipSend{value: fees}(\\n                destinationChainSelector,\\n                message\\n            );\\n            if (change > 0) {\\n                (bool sent, ) = msg.sender.call{value: change}(\\\"\\\");\\n                if (!sent) revert FailedToSendChange(msg.sender, change);\\n            }\\n        } else {\\n            if (address(feeToken) == address(0)) {\\n                revert FeeTokenAddressIsZero();\\n            }\\n            if (fees > IERC20(feeToken).balanceOf(msg.sender)) {\\n                revert InsufficientFees(\\n                    IERC20(feeToken).balanceOf(msg.sender),\\n                    fees\\n                );\\n            }\\n            if (fees > IERC20(feeToken).allowance(msg.sender, address(this))) {\\n                revert InsufficientFeeAllowance(\\n                    feeToken,\\n                    fees,\\n                    IERC20(feeToken).allowance(msg.sender, address(this))\\n                );\\n            }\\n\\n            feeToken.safeTransferFrom(msg.sender, address(this), fees);\\n            feeToken.approve(getRouter(), fees);\\n            messageId = router.ccipSend(destinationChainSelector, message);\\n        }\\n\\n        emit CrossChainMessageSent(messageId, msg.sender, receiver);\\n        emit TokensTransferred(\\n            token,\\n            configuration.pool,\\n            destinationChainSelector,\\n            configuration.destinationToken,\\n            amount,\\n            fees\\n        );\\n    }\\n\\n    function processMessage(\\n        bytes32 messageId,\\n        address senderBridge,\\n        uint64 sourceChainSelector,\\n        address receiver,\\n        TokenAmount memory tokenAmount\\n    ) external onlySelf {\\n        if (receiver == address(0)) {\\n            revert ReceiverAddressIsZero();\\n        }\\n\\n        IConfiguration.ConfigIn memory configuration = s_configuration\\n            .getConfigIn(tokenAmount.token, sourceChainSelector);\\n\\n        if (senderBridge != configuration.senderBridge) {\\n            revert InvalidSenderBridge(\\n                sourceChainSelector,\\n                configuration.senderBridge,\\n                senderBridge\\n            );\\n        }\\n\\n        if (address(configuration.pool) == address(0)) {\\n            revert TokenPoolNotSet(tokenAmount.token);\\n        }\\n\\n        configuration.pool.releaseOrMint(tokenAmount.amount, receiver);\\n        emit CrossChainMessageReceived(messageId, senderBridge, receiver);\\n        emit TokensReceived(\\n            tokenAmount.token,\\n            configuration.pool,\\n            sourceChainSelector,\\n            tokenAmount.amount\\n        );\\n    }\\n\\n    /// @inheritdoc IAny2EVMMessageReceiver\\n    function ccipReceive(\\n        Client.Any2EVMMessage calldata message\\n    ) external override onlyRouter {\\n        address senderBridge = abi.decode(message.sender, (address));\\n        (address receiver, TokenAmount memory tokenAmount) = abi.decode(\\n            message.data,\\n            (address, TokenAmount)\\n        );\\n        if (address(tokenAmount.token) == address(0)) {\\n            revert TokenAddressIsZero();\\n        }\\n\\n        if (tokenAmount.amount == 0) {\\n            revert ReceivedAmountIsZero();\\n        }\\n        /* solhint-disable no-empty-blocks */\\n        try\\n            this.processMessage(\\n                message.messageId,\\n                senderBridge,\\n                message.sourceChainSelector,\\n                receiver,\\n                tokenAmount\\n            )\\n        {\\n            // Intentionally empty in this example; no action needed if processMessage succeeds\\n        } catch (bytes memory err) {\\n            s_failedMessages.set(message.messageId, uint256(ErrorCode.FAILED));\\n            s_messageContents[message.messageId] = FailedMessageContent({\\n                receiver: receiver,\\n                tokenAmount: tokenAmount\\n            });\\n\\n            emit MessageFailed(message.messageId, receiver, tokenAmount, err);\\n\\n            return;\\n        }\\n    }\\n\\n    function retryFailedMessage(\\n        bytes32 messageId,\\n        address tokenReceiver\\n    ) external onlyOwner {\\n        if (s_failedMessages.get(messageId) != uint256(ErrorCode.FAILED))\\n            revert MessageNotFailed(messageId);\\n\\n        s_failedMessages.set(messageId, uint256(ErrorCode.RESOLVED));\\n\\n        FailedMessageContent memory messageContent = s_messageContents[\\n            messageId\\n        ];\\n\\n        IPool pool = s_configuration.getTokenPool(\\n            messageContent.tokenAmount.token\\n        );\\n\\n        if (address(pool) == address(0)) {\\n            revert TokenPoolNotSet(messageContent.tokenAmount.token);\\n        }\\n\\n        delete s_messageContents[messageId];\\n\\n        pool.releaseOrMint(messageContent.tokenAmount.amount, tokenReceiver);\\n        emit MessageRecovered(\\n            messageId,\\n            msg.sender,\\n            tokenReceiver,\\n            messageContent.tokenAmount\\n        );\\n    }\\n\\n    function _buildCCIPMessage(\\n        address receiverBridge,\\n        address receiver,\\n        IERC20 destinationToken,\\n        uint256 amount,\\n        IERC20 feeToken,\\n        bytes memory extraArgs\\n    ) private pure returns (Client.EVM2AnyMessage memory message) {\\n        TokenAmount memory tokenAmount = TokenAmount({\\n            token: destinationToken,\\n            amount: amount\\n        });\\n        message = Client.EVM2AnyMessage({\\n            receiver: abi.encode(receiverBridge),\\n            data: abi.encode(receiver, tokenAmount),\\n            tokenAmounts: new Client.EVMTokenAmount[](0),\\n            extraArgs: extraArgs,\\n            feeToken: address(feeToken)\\n        });\\n    }\\n\\n    /// @notice IERC165 supports an interfaceId\\n    /// @param interfaceId The interfaceId to check\\n    /// @return true if the interfaceId is supported\\n    /// @dev Should indicate whether the contract implements IAny2EVMMessageReceiver\\n    /// e.g. return interfaceId == type(IAny2EVMMessageReceiver).interfaceId || interfaceId == type(IERC165).interfaceId\\n    /// This allows CCIP to check if ccipReceive is available before calling it.\\n    /// If this returns false or reverts, only tokens are transferred to the receiver.\\n    /// If this returns true, tokens are transferred and ccipReceive is called atomically.\\n    /// Additionally, if the receiver address does not have code associated with\\n    /// it at the time of execution (EXTCODESIZE returns 0), only tokens will be transferred.\\n    function supportsInterface(\\n        bytes4 interfaceId\\n    ) public pure virtual override returns (bool) {\\n        return\\n            interfaceId == type(IAny2EVMMessageReceiver).interfaceId ||\\n            interfaceId == type(IERC165).interfaceId;\\n    }\\n}\\n\",\"keccak256\":\"0x93aa3e9f2aee34e04a2d5e667c9be035df0836c6dfcc93c5d7a8437d1d3a5ec7\",\"license\":\"MIT\"},\"contracts/interfaces/IBridge.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {IPool, IERC20} from \\\"../interfaces/IPool.sol\\\";\\nimport {IConfiguration} from \\\"../interfaces/IConfiguration.sol\\\";\\n\\ninterface IBridge {\\n    enum ErrorCode {\\n        RESOLVED,\\n        FAILED\\n    }\\n\\n    struct TokenAmount {\\n        IERC20 token;\\n        uint256 amount;\\n    }\\n\\n    struct FailedMessageContent {\\n        address receiver;\\n        TokenAmount tokenAmount;\\n    }\\n\\n    struct FailedMessage {\\n        bytes32 messageId;\\n        ErrorCode errorCode;\\n    }\\n\\n    event CrossChainMessageSent(\\n        bytes32 indexed messageId,\\n        address indexed sender,\\n        address indexed receiver\\n    );\\n    event TokensTransferred(\\n        IERC20 indexed tokenSource,\\n        IPool indexed tokenSourcePool,\\n        uint64 indexed destinationChainSelector,\\n        IERC20 tokenDestination,\\n        uint256 amount,\\n        uint256 fees\\n    );\\n\\n    event CrossChainMessageReceived(\\n        bytes32 indexed messageId,\\n        address indexed sender,\\n        address indexed receiver\\n    );\\n\\n    event TokensReceived(\\n        IERC20 indexed tokenDestination,\\n        IPool indexed tokenDestinationPool,\\n        uint64 indexed sourceChainSelector,\\n        uint256 amount\\n    );\\n    event MessageFailed(\\n        bytes32 indexed messageId,\\n        address indexed receiver,\\n        TokenAmount tokenAmount,\\n        bytes reason\\n    );\\n    event MessageRecovered(\\n        bytes32 indexed messageId,\\n        address indexed recoverer,\\n        address indexed receiver,\\n        TokenAmount tokenAmount\\n    );\\n    event ConfigurationSet(\\n        IConfiguration indexed oldConfiguration,\\n        IConfiguration indexed newConfiguration,\\n        address indexed owner\\n    );\\n    event RouterSet(\\n        address indexed oldRouter,\\n        address indexed newRouter,\\n        address indexed owner\\n    );\\n\\n    error InvalidRouter(address router);\\n    error DestinationChainSelectorIsZero();\\n    error OnlySelf(address caller);\\n    error TokenNotSupported(IERC20 token, uint64 destinationChainSelector);\\n    error TokenPoolNotSet(IERC20 token);\\n    error NoBridgeOnDestination(uint64 destinationChainSelector);\\n    error InvalidSenderBridge(\\n        uint64 sourceChainSelector,\\n        address configuredSenderBridge,\\n        address senderBridge\\n    );\\n    error ReceiverAddressIsZero();\\n    error CannotSetFeeTokenIfNativeGasNotZero(\\n        uint256 nativeGas,\\n        address feeToken\\n    );\\n\\n    error ConfigurationNotSet();\\n    error ConfigurationIsZero();\\n    error TokenAddressIsZero();\\n    error FeeTokenAddressIsZero();\\n    error NoExtraArgs(uint64 destinationChainSelector);\\n    error InsufficientFees(uint256 nativeGas, uint256 fees);\\n    error InsufficientFeeAllowance(\\n        IERC20 feeToken,\\n        uint256 fees,\\n        uint256 allowance\\n    );\\n    error FailedToSendChange(address receiver, uint256 changeAmount);\\n    error ReceivedAmountIsZero();\\n    error MessageNotFailed(bytes32 messageId);\\n    error ConfigurationAlreadySet(address configuration);\\n\\n    function setConfiguration(IConfiguration configuration) external;\\n\\n    function getConfiguration()\\n        external\\n        view\\n        returns (IConfiguration configuration);\\n\\n    function setRouter(address router) external;\\n\\n    function getRouter() external view returns (address router);\\n\\n    function getFee(\\n        uint64 destinationChainSelector,\\n        IERC20 token,\\n        uint256 amount,\\n        address receiver,\\n        IERC20 feeToken\\n    ) external view returns (uint256 fees);\\n\\n    function transferTokensToDestinationChain(\\n        uint64 destinationChainSelector,\\n        IERC20 token,\\n        uint256 amount,\\n        address receiver,\\n        IERC20 feeToken\\n    ) external payable returns (bytes32 messageId, uint256 fees);\\n\\n    function retryFailedMessage(\\n        bytes32 messageId,\\n        address tokenReceiver\\n    ) external;\\n\\n    function getFailedMessages(\\n        uint256 offset,\\n        uint256 limit\\n    ) external view returns (FailedMessage[] memory failedMessages);\\n\\n    function getFailedMessageContent(\\n        bytes32 messageId\\n    ) external view returns (FailedMessageContent memory messageContent);\\n}\\n\",\"keccak256\":\"0xa65a81a28afa17208ebc3004cc19f6a9d2025cb6e994289d5b18305cd6a06a98\",\"license\":\"MIT\"},\"contracts/interfaces/IConfiguration.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {IPool} from \\\"../interfaces/IPool.sol\\\";\\nimport {IERC20} from \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ninterface IConfiguration {\\n    struct ConfigOut {\\n        address receiverBridge;\\n        IERC20 destinationToken;\\n        IPool pool;\\n        bytes extraArgs;\\n    }\\n\\n    struct ConfigIn {\\n        address senderBridge;\\n        IPool pool;\\n    }\\n\\n    event RemoteBridgeSet(\\n        uint64 indexed chainSelector,\\n        address indexed remoteBridge,\\n        address indexed owner\\n    );\\n\\n    event RemoteBridgeRemoved(\\n        uint64 indexed chainSelector,\\n        address indexed owner\\n    );\\n\\n    event ExtraArgsSet(\\n        uint64 indexed destinationChainSelector,\\n        bytes extraArgs,\\n        address indexed owner\\n    );\\n\\n    event DestinationTokenSet(\\n        IERC20 indexed sourceToken,\\n        uint64 indexed destinationChainSelector,\\n        IERC20 destinationToken,\\n        address indexed owner\\n    );\\n\\n    event DestinationTokenRemoved(\\n        IERC20 indexed sourceToken,\\n        uint64 indexed destinationChainSelector,\\n        address indexed owner\\n    );\\n\\n    event TokenPoolSet(\\n        IERC20 indexed token,\\n        IPool indexed pool,\\n        address indexed owner\\n    );\\n    event TokenPoolRemoved(IERC20 indexed token, address indexed owner);\\n\\n    error PoolAddressIsZero();\\n    error TokenAddressIsZero();\\n    error BridgeAddressIsZero();\\n\\n    function setRemoteBridge(\\n        uint64 chainSelector,\\n        address remoteBridge\\n    ) external;\\n\\n    function removeRemoteBridge(uint64 chainSelector) external;\\n\\n    function setExtraArgs(\\n        uint64 destinationChainSelector,\\n        bytes memory extraArgs\\n    ) external;\\n\\n    function setTokenPool(IPool pool) external;\\n\\n    function removeTokenPool(IERC20 token) external;\\n\\n    function setDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector,\\n        IERC20 destinationToken\\n    ) external;\\n\\n    function removeDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector\\n    ) external;\\n\\n    function isTokenAvailableOnDestination(\\n        IERC20 token,\\n        uint64 destinationChainSelector\\n    ) external view returns (bool available);\\n\\n    function isBridgeAvailableOnChain(\\n        uint64 chainSelector\\n    ) external view returns (bool available);\\n\\n    function getRemoteBridge(\\n        uint64 chainSelector\\n    ) external view returns (address remoteBridge);\\n\\n    function getExtraArgs(\\n        uint64 destinationChainSelector\\n    ) external view returns (bytes memory extraArgs);\\n\\n    function getTokenPool(IERC20 token) external view returns (IPool pool);\\n\\n    function getDestinationToken(\\n        IERC20 sourceToken,\\n        uint64 destinationChainSelector\\n    ) external view returns (IERC20 destinationToken);\\n\\n    function isTokenPoolAvailable(\\n        IERC20 token\\n    ) external view returns (bool available);\\n\\n    function getConfigOut(\\n        IERC20 token,\\n        uint64 destinationChainSelector\\n    ) external view returns (ConfigOut memory config);\\n\\n    function getConfigIn(\\n        IERC20 token,\\n        uint64 sourceChainSelector\\n    ) external view returns (ConfigIn memory config);\\n}\\n\",\"keccak256\":\"0x51b114cfb6cafccd12884fa30ba77a99dd8c89175ee4cb6247a89274efcc9cd4\",\"license\":\"MIT\"},\"contracts/interfaces/IPool.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport {IERC20} from \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ninterface IPool {\\n    event BridgeSet(\\n        address indexed oldBridge,\\n        address indexed newBridge,\\n        address indexed owner\\n    );\\n    event Locked(address indexed sender, uint256 amount);\\n    event Burned(address indexed sender, uint256 amount);\\n    event Released(\\n        address indexed sender,\\n        address indexed receiver,\\n        uint256 amount\\n    );\\n    event Minted(\\n        address indexed sender,\\n        address indexed receiver,\\n        uint256 amount\\n    );\\n\\n    error NoMoreLiquidity(uint256 amountoRelease, uint256 liquidity);\\n\\n    error IsNotBridge(address caller, address bridge);\\n\\n    error BridgeAddressZero();\\n\\n    enum TokenPoolType {\\n        LockRelease,\\n        BurnMint\\n    }\\n\\n    /**\\n     * @notice Locks or burns the amount of tokens.\\n     * @notice The caller must have the role of locker for LockRelease token pool or burner for BurnMint token pool.\\n     * @param amount The amount of tokens to lock or burn\\n     */\\n    function lockOrBurn(uint256 amount) external;\\n\\n    /**\\n     * @notice Releases or mints the amount of tokens.\\n     * @notice The caller must have the role of unlocker for LockRelease token pool or minter for BurnMint token pool.\\n     * @dev For LockRelease token pool, if the pool is out of liquidity, it reverts.\\n     * @param amount The amount of tokens to release or mint\\n     * @param receiver The address to receive the released or minted tokens\\n     */\\n    function releaseOrMint(uint256 amount, address receiver) external;\\n\\n    /**\\n     * @notice Returns the token of the pool.\\n     * @return token The token of the pool\\n     */\\n    function getToken() external view returns (IERC20 token);\\n\\n    /**\\n     * @notice Returns the type of the token pool.\\n     * @return tokenPoolType The type of the token pool\\n     */\\n    function getTokenPoolType()\\n        external\\n        view\\n        returns (TokenPoolType tokenPoolType);\\n\\n    /**\\n     * @notice Sets `account` as the bridge. Only callable by the owner.\\n     * @dev Emits the `BridgeSet` event upon success.\\n     * @param account The account to set as the bridge.\\n     */\\n    function setBridge(address account) external;\\n\\n    /**\\n     * @notice Removes the bridge. Only callable by the owner.\\n     * @dev Emits the `BridgeSet` event with bridge as 0 address upon success.\\n     */\\n    function removeBridge() external;\\n\\n    /**\\n     * @notice Returns the bridge address.\\n     * @return bridge The bridge address\\n     */\\n    function getBridge() external view returns (address bridge);\\n}\\n\",\"keccak256\":\"0xdc2effe1d1869835cd8368e4185d20d83701f9daa60dab02bb42f6ea0a7d7ad4\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b50604051620028ed380380620028ed8339810160408190526200003491620001e1565b33806200005c57604051631e4fbdf760e01b8152600060048201526024015b60405180910390fd5b62000067816200015d565b5060016002556001600160a01b03821662000099576040516335fdcccd60e21b81526000600482015260240162000053565b6001600160a01b038116620000c1576040516305db0ead60e31b815260040160405180910390fd5b600480546001600160a01b038085166001600160a01b0319928316811790935560038054918516919092161790556040513391906000907f13b847e4d386296a3ab56e943fb29c3b96a19c71dda0f5fb1f165cba81ae0179908290a460405133906001600160a01b038316906000907fa515a29cadc57c3f950e8c6526027a06266b9295aabafc452c7875f66f4c476c908290a4505062000220565b600180546001600160a01b031916905562000178816200017b565b50565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6001600160a01b03811681146200017857600080fd5b60008060408385031215620001f557600080fd5b82516200020281620001cb565b60208401519092506200021581620001cb565b809150509250929050565b6126bd80620002306000396000f3fe6080604052600436106100fe5760003560e01c806385572ffb11610095578063b0f479a111610064578063b0f479a1146102c4578063c0d78655146102e2578063e30c397814610302578063eb0f45fd14610320578063f2fde38b1461034057600080fd5b806385572ffb1461022b5780638d9d89fe1461024b5780638da5cb5b14610278578063a108c2521461029657600080fd5b8063627f09c3116100d1578063627f09c3146101af5780636bd50cef146101cf578063715018a61461020157806379ba50971461021657600080fd5b80630135f8371461010357806301ffc9a7146101305780631edd0ef614610160578063369f7f661461018d575b600080fd5b610116610111366004611ea5565b610360565b604080519283526020830191909152015b60405180910390f35b34801561013c57600080fd5b5061015061014b366004611f0b565b610c07565b6040519015158152602001610127565b34801561016c57600080fd5b5061018061017b366004611f35565b610c3e565b6040516101279190611f4e565b34801561019957600080fd5b506101ad6101a8366004611f8c565b610c93565b005b3480156101bb57600080fd5b506101ad6101ca366004611fbc565b610eb4565b3480156101db57600080fd5b506003546001600160a01b03165b6040516001600160a01b039091168152602001610127565b34801561020d57600080fd5b506101ad610f7c565b34801561022257600080fd5b506101ad610f90565b34801561023757600080fd5b506101ad610246366004611fd9565b610fd4565b34801561025757600080fd5b5061026b610266366004612013565b6111e3565b604051610127919061204b565b34801561028457600080fd5b506000546001600160a01b03166101e9565b3480156102a257600080fd5b506102b66102b1366004611ea5565b611305565b604051908152602001610127565b3480156102d057600080fd5b506004546001600160a01b03166101e9565b3480156102ee57600080fd5b506101ad6102fd366004611fbc565b61154f565b34801561030e57600080fd5b506001546001600160a01b03166101e9565b34801561032c57600080fd5b506101ad61033b366004612183565b6115e0565b34801561034c57600080fd5b506101ad61035b366004611fbc565b61184c565b60035460009081906001600160a01b031661038e5760405163502d4c1b60e01b815260040160405180910390fd5b856001600160a01b0381166103b65760405163dc2e5e8d60e01b815260040160405180910390fd5b6103be6118bd565b6001600160a01b0385166103e5576040516379bbce7960e11b815260040160405180910390fd5b876001600160401b031660000361040f5760405163def7b43160e01b815260040160405180910390fd5b60035460405163292accdf60e11b81526000916001600160a01b03169063525599be90610442908b908d906004016121e6565b600060405180830381865afa15801561045f573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f19168201604052610487919081019061222c565b60208101519091506001600160a01b03166104c2578789604051632f6ada5d60e01b81526004016104b99291906121e6565b60405180910390fd5b60408101516001600160a01b03166104f85760405163250332d560e11b81526001600160a01b03891660048201526024016104b9565b80516001600160a01b031661052b57604051636c76fe7360e11b81526001600160401b038a1660048201526024016104b9565b80606001515160000361055c57604051636cbd6d1360e11b81526001600160401b038a1660048201526024016104b9565b600061057882600001518884602001518b8a87606001516118e5565b9050600061058e6004546001600160a01b031690565b6040516320487ded60e01b81529091506001600160a01b038216906320487ded906105bf908e908690600401612351565b602060405180830381865afa1580156105dc573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610600919061241f565b604084015190955061061f906001600160a01b038c169033908c6119fc565b82604001516001600160a01b031663503c28588a6040518263ffffffff1660e01b815260040161065191815260200190565b600060405180830381600087803b15801561066b57600080fd5b505af115801561067f573d6000803e3d6000fd5b5050505060003411156107fa576001600160a01b038716156106c5576040516349df019b60e11b81523460048201526001600160a01b03881660248201526044016104b9565b6000348611156106f1576040516311e9ebaf60e31b8152346004820152602481018790526044016104b9565b8534111561070657610703863461244e565b90505b816001600160a01b03166396f4e9f9878e866040518463ffffffff1660e01b8152600401610735929190612351565b60206040518083038185885af1158015610753573d6000803e3d6000fd5b50505050506040513d601f19601f82011682018060405250810190610778919061241f565b965080156107f457604051600090339083908381818185875af1925050503d80600081146107c2576040519150601f19603f3d011682016040523d82523d6000602084013e6107c7565b606091505b50509050806107f257604051631e0b196160e21b8152336004820152602481018390526044016104b9565b505b50610b51565b6001600160a01b0387166108215760405163234801ab60e21b815260040160405180910390fd5b6040516370a0823160e01b81523360048201526001600160a01b038816906370a0823190602401602060405180830381865afa158015610865573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610889919061241f565b85111561091c576040516370a0823160e01b81523360048201526001600160a01b038816906370a0823190602401602060405180830381865afa1580156108d4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108f8919061241f565b6040516311e9ebaf60e31b81526004810191909152602481018690526044016104b9565b604051636eb1769f60e11b81523360048201523060248201526001600160a01b0388169063dd62ed3e90604401602060405180830381865afa158015610966573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061098a919061241f565b851115610a3557604051636eb1769f60e11b8152336004820152306024820152879086906001600160a01b0383169063dd62ed3e90604401602060405180830381865afa1580156109df573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610a03919061241f565b604051633880274360e01b81526001600160a01b039093166004840152602483019190915260448201526064016104b9565b610a4a6001600160a01b0388163330886119fc565b866001600160a01b031663095ea7b3610a6b6004546001600160a01b031690565b6040516001600160e01b031960e084901b1681526001600160a01b039091166004820152602481018890526044016020604051808303816000875af1158015610ab8573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610adc9190612461565b506040516396f4e9f960e01b81526001600160a01b038216906396f4e9f990610b0b908e908690600401612351565b6020604051808303816000875af1158015610b2a573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b4e919061241f565b95505b6040516001600160a01b03891690339088907fc5f5ab18d19b8e46112af8a6edac567a88c72e33ecb2f629d1c7b0a2996fce0590600090a460408084015160208086015183516001600160a01b0391821681529182018d90529281018890526001600160401b038e1692918216918d16907f825417000078bf0b1ecfe352a3cc7107c8e5c834554392c1d0e62a8d6aa7d19a9060600160405180910390a4505050610bfc6001600255565b509550959350505050565b60006001600160e01b031982166385572ffb60e01b1480610c3857506001600160e01b031982166301ffc9a760e01b145b92915050565b610c46611e2e565b506000908152600860209081526040918290208251808401845281546001600160a01b03908116825284518086019095526001830154168452600290910154838301529081019190915290565b610c9b611a56565b6001610ca8600584611a83565b14610cc9576040516305b73c1360e51b8152600481018390526024016104b9565b610cd98260005b60059190611a96565b5060008281526008602090815260408083208151808301835281546001600160a01b03908116825283518085018552600184015482168152600290930154838601529381018290526003549151925163026151a560e11b81529284166004840152939216906304c2a34a90602401602060405180830381865afa158015610d64573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610d889190612483565b90506001600160a01b038116610dc35760208201515160405163250332d560e11b81526001600160a01b0390911660048201526024016104b9565b600084815260086020908152604080832080546001600160a01b03199081168255600182018054909116905560020192909255838101510151905163355a6d5760e21b815260048101919091526001600160a01b03848116602483015282169063d569b55c90604401600060405180830381600087803b158015610e4657600080fd5b505af1158015610e5a573d6000803e3d6000fd5b50505050826001600160a01b0316336001600160a01b0316857fd79210425ea4e320884072fc8db859ef6d344c3f57b2b2ff189a8c9876bf2a4d8560200151604051610ea691906124a0565b60405180910390a450505050565b610ebc611a56565b6001600160a01b038116610ee3576040516305db0ead60e31b815260040160405180910390fd5b6003546001600160a01b0390811690821603610f1d5760405163f1e2c27160e01b81526001600160a01b03821660048201526024016104b9565b60035460405133916001600160a01b03848116929116907fa515a29cadc57c3f950e8c6526027a06266b9295aabafc452c7875f66f4c476c90600090a4600380546001600160a01b0319166001600160a01b0392909216919091179055565b610f84611a56565b610f8e6000611aab565b565b60015433906001600160a01b03168114610fc85760405163118cdaa760e01b81526001600160a01b03821660048201526024016104b9565b610fd181611aab565b50565b6004546001600160a01b03163314611001576040516335fdcccd60e21b81523360048201526024016104b9565b600061101060408301836124c0565b81019061101d9190611fbc565b905060008061102f60608501856124c0565b81019061103c9190612506565b805191935091506001600160a01b03166110695760405163dc2e5e8d60e01b815260040160405180910390fd5b806020015160000361108e57604051634aef918f60e11b815260040160405180910390fd5b3063eb0f45fd8535856110a76040890160208a0161253c565b86866040518663ffffffff1660e01b81526004016110c9959493929190612557565b600060405180830381600087803b1580156110e357600080fd5b505af19250505080156110f4575060015b6111dd573d808015611122576040519150601f19603f3d011682016040523d82523d6000602084013e611127565b606091505b5061113485356001610cd0565b506040805180820182526001600160a01b0380861680835260208084018781528a35600081815260088452879020955186549086166001600160a01b03199182161787559151805160018801805491909716931692909217909455015160029093019290925591519091907f7b6480fef33762cce2f9dae93d50894adf25b32440affbb13cf5dc636e2ec8cb906111ce90869086906125a4565b60405180910390a35050505050565b50505050565b606060006111f16005611ac4565b905060008161120085876125d1565b1161120b5783611215565b611215858361244e565b9050806001600160401b0381111561122f5761122f6120b8565b60405190808252806020026020018201604052801561127457816020015b604080518082019091526000808252602082015281526020019060019003908161124d5790505b50925060005b818110156112fc5760008061129a611292848a6125d1565b600590611acf565b9150915060405180604001604052808381526020018260018111156112c1576112c1612035565b60018111156112d2576112d2612035565b8152508684815181106112e7576112e76125e4565b6020908102919091010152505060010161127a565b50505092915050565b6003546000906001600160a01b03166113315760405163502d4c1b60e01b815260040160405180910390fd5b846001600160a01b0381166113595760405163dc2e5e8d60e01b815260040160405180910390fd5b60035460405163292accdf60e11b81526000916001600160a01b03169063525599be9061138c908a908c906004016121e6565b600060405180830381865afa1580156113a9573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526113d1919081019061222c565b60208101519091506001600160a01b0316611403578688604051632f6ada5d60e01b81526004016104b99291906121e6565b60408101516001600160a01b03166114395760405163250332d560e11b81526001600160a01b03881660048201526024016104b9565b80516001600160a01b031661146c57604051636c76fe7360e11b81526001600160401b03891660048201526024016104b9565b80606001515160000361149d57604051636cbd6d1360e11b81526001600160401b03891660048201526024016104b9565b60006114b982600001518784602001518a8987606001516118e5565b905060006114cf6004546001600160a01b031690565b6040516320487ded60e01b81529091506001600160a01b038216906320487ded90611500908d908690600401612351565b602060405180830381865afa15801561151d573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611541919061241f565b9a9950505050505050505050565b611557611a56565b6001600160a01b038116611581576040516335fdcccd60e21b8152600060048201526024016104b9565b60045460405133916001600160a01b03848116929116907f13b847e4d386296a3ab56e943fb29c3b96a19c71dda0f5fb1f165cba81ae017990600090a4600480546001600160a01b0319166001600160a01b0392909216919091179055565b3330146116015760405162a19dbf60e81b81523360048201526024016104b9565b6001600160a01b038216611628576040516379bbce7960e11b815260040160405180910390fd5b6003548151604051637d5ecb8560e01b81526000926001600160a01b031691637d5ecb859161165c919088906004016121e6565b6040805180830381865afa158015611678573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061169c91906125fa565b905080600001516001600160a01b0316856001600160a01b0316146116f957805160405163b5275e6960e01b81526001600160401b03861660048201526001600160a01b03918216602482015290861660448201526064016104b9565b60208101516001600160a01b031661173257815160405163250332d560e11b81526001600160a01b0390911660048201526024016104b9565b6020808201519083015160405163355a6d5760e21b815260048101919091526001600160a01b0385811660248301529091169063d569b55c90604401600060405180830381600087803b15801561178857600080fd5b505af115801561179c573d6000803e3d6000fd5b50505050826001600160a01b0316856001600160a01b0316877fd2337c2a824f101db33d285f3d8ff29c73ade16f6750d8e399d1089554a74d8e60405160405180910390a4836001600160401b031681602001516001600160a01b031683600001516001600160a01b03167f74fcc3aa2edea86d35be26db50497256d120b3efc96e00afa3097b856016eb2f856020015160405161183c91815260200190565b60405180910390a4505050505050565b611854611a56565b600180546001600160a01b0383166001600160a01b031990911681179091556118856000546001600160a01b031690565b6001600160a01b03167f38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e2270060405160405180910390a350565b60028054036118df57604051633ee5aeb560e01b815260040160405180910390fd5b60028055565b6119206040518060a0016040528060608152602001606081526020016060815260200160006001600160a01b03168152602001606081525090565b6040805180820182526001600160a01b03878116825260208201879052825160a08101909352891660c0830152908060e081016040516020818303038152906040528152602001888360405160200161197a92919061263b565b60408051601f19818403018152919052815260200160006040519080825280602002602001820160405280156119d657816020015b60408051808201909152600080825260208201528152602001906001900390816119af5790505b508152602001856001600160a01b03168152602001848152509150509695505050505050565b604080516001600160a01b0385811660248301528416604482015260648082018490528251808303909101815260849091019091526020810180516001600160e01b03166323b872dd60e01b1790526111dd908590611aed565b6000546001600160a01b03163314610f8e5760405163118cdaa760e01b81523360048201526024016104b9565b6000611a8f8383611b55565b9392505050565b6000611aa3848484611b9c565b949350505050565b600180546001600160a01b0319169055610fd181611bb9565b6000610c3882611c09565b6000808080611ade8686611c14565b909450925050505b9250929050565b6000611b026001600160a01b03841683611c3f565b90508051600014158015611b27575080806020019051810190611b259190612461565b155b15611b5057604051635274afe760e01b81526001600160a01b03841660048201526024016104b9565b505050565b600081815260028301602052604081205480158015611b7b5750611b798484611c4d565b155b15611a8f5760405163015ab34360e11b8152600481018490526024016104b9565b60008281526002840160205260408120829055611aa38484611c59565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6000610c3882611c65565b60008080611c228585611c6f565b600081815260029690960160205260409095205494959350505050565b6060611a8f83836000611c7b565b6000611a8f8383611d18565b6000611a8f8383611d30565b6000610c38825490565b6000611a8f8383611d7f565b606081471015611ca05760405163cd78605960e01b81523060048201526024016104b9565b600080856001600160a01b03168486604051611cbc919061266b565b60006040518083038185875af1925050503d8060008114611cf9576040519150601f19603f3d011682016040523d82523d6000602084013e611cfe565b606091505b5091509150611d0e868383611da9565b9695505050505050565b60008181526001830160205260408120541515611a8f565b6000818152600183016020526040812054611d7757508154600181810184556000848152602080822090930184905584548482528286019093526040902091909155610c38565b506000610c38565b6000826000018281548110611d9657611d966125e4565b9060005260206000200154905092915050565b606082611dbe57611db982611e05565b611a8f565b8151158015611dd557506001600160a01b0384163b155b15611dfe57604051639996b31560e01b81526001600160a01b03851660048201526024016104b9565b5080611a8f565b805115611e155780518082602001fd5b604051630a12f52160e11b815260040160405180910390fd5b604051806040016040528060006001600160a01b03168152602001611e6f604051806040016040528060006001600160a01b03168152602001600081525090565b905290565b80356001600160401b0381168114611e8b57600080fd5b919050565b6001600160a01b0381168114610fd157600080fd5b600080600080600060a08688031215611ebd57600080fd5b611ec686611e74565b94506020860135611ed681611e90565b9350604086013592506060860135611eed81611e90565b91506080860135611efd81611e90565b809150509295509295909350565b600060208284031215611f1d57600080fd5b81356001600160e01b031981168114611a8f57600080fd5b600060208284031215611f4757600080fd5b5035919050565b81516001600160a01b031681526020808301516060830191611f859084018280516001600160a01b03168252602090810151910152565b5092915050565b60008060408385031215611f9f57600080fd5b823591506020830135611fb181611e90565b809150509250929050565b600060208284031215611fce57600080fd5b8135611a8f81611e90565b600060208284031215611feb57600080fd5b81356001600160401b0381111561200157600080fd5b820160a08185031215611a8f57600080fd5b6000806040838503121561202657600080fd5b50508035926020909101359150565b634e487b7160e01b600052602160045260246000fd5b60208082528251828201819052600091906040908185019086840185805b838110156120aa578251805186528701516002811061209657634e487b7160e01b83526021600452602483fd5b858801529385019391860191600101612069565b509298975050505050505050565b634e487b7160e01b600052604160045260246000fd5b604080519081016001600160401b03811182821017156120f0576120f06120b8565b60405290565b604051608081016001600160401b03811182821017156120f0576120f06120b8565b604051601f8201601f191681016001600160401b0381118282101715612140576121406120b8565b604052919050565b60006040828403121561215a57600080fd5b6121626120ce565b9050813561216f81611e90565b808252506020820135602082015292915050565b600080600080600060c0868803121561219b57600080fd5b8535945060208601356121ad81611e90565b93506121bb60408701611e74565b925060608601356121cb81611e90565b91506121da8760808801612148565b90509295509295909350565b6001600160a01b039290921682526001600160401b0316602082015260400190565b60005b8381101561222357818101518382015260200161220b565b50506000910152565b6000602080838503121561223f57600080fd5b82516001600160401b038082111561225657600080fd5b908401906080828703121561226a57600080fd5b6122726120f6565b825161227d81611e90565b81528284015161228c81611e90565b81850152604083015161229e81611e90565b60408201526060830151828111156122b557600080fd5b80840193505086601f8401126122ca57600080fd5b8251828111156122dc576122dc6120b8565b6122ee601f8201601f19168601612118565b9250808352878582860101111561230457600080fd5b61231381868501878701612208565b50606081019190915295945050505050565b6000815180845261233d816020860160208601612208565b601f01601f19169290920160200192915050565b600060406001600160401b03851683526020604081850152845160a0604086015261237f60e0860182612325565b905081860151603f198087840301606088015261239c8383612325565b6040890151888203830160808a01528051808352908601945060009350908501905b808410156123f057845180516001600160a01b03168352860151868301529385019360019390930192908601906123be565b5060608901516001600160a01b031660a08901526080890151888203830160c08a015295506115418187612325565b60006020828403121561243157600080fd5b5051919050565b634e487b7160e01b600052601160045260246000fd5b81810381811115610c3857610c38612438565b60006020828403121561247357600080fd5b81518015158114611a8f57600080fd5b60006020828403121561249557600080fd5b8151611a8f81611e90565b81516001600160a01b031681526020808301519082015260408101610c38565b6000808335601e198436030181126124d757600080fd5b8301803591506001600160401b038211156124f157600080fd5b602001915036819003821315611ae657600080fd5b6000806060838503121561251957600080fd5b823561252481611e90565b91506125338460208501612148565b90509250929050565b60006020828403121561254e57600080fd5b611a8f82611e74565b8581526001600160a01b0385811660208301526001600160401b03851660408301528316606082015260c08101611d0e608083018480516001600160a01b03168252602090810151910152565b82516001600160a01b0316815260208084015190820152606060408201526000611aa36060830184612325565b80820180821115610c3857610c38612438565b634e487b7160e01b600052603260045260246000fd5b60006040828403121561260c57600080fd5b6126146120ce565b825161261f81611e90565b8152602083015161262f81611e90565b60208201529392505050565b6001600160a01b038316815260608101611a8f602083018480516001600160a01b03168252602090810151910152565b6000825161267d818460208701612208565b919091019291505056fea264697066735822122003443ede11580a39a8c5370c928a61495a3cae06124f91fcc5a72c34f6a45a7164736f6c63430008180033",
+  "deployedBytecode": "0x6080604052600436106100fe5760003560e01c806385572ffb11610095578063b0f479a111610064578063b0f479a1146102c4578063c0d78655146102e2578063e30c397814610302578063eb0f45fd14610320578063f2fde38b1461034057600080fd5b806385572ffb1461022b5780638d9d89fe1461024b5780638da5cb5b14610278578063a108c2521461029657600080fd5b8063627f09c3116100d1578063627f09c3146101af5780636bd50cef146101cf578063715018a61461020157806379ba50971461021657600080fd5b80630135f8371461010357806301ffc9a7146101305780631edd0ef614610160578063369f7f661461018d575b600080fd5b610116610111366004611ea5565b610360565b604080519283526020830191909152015b60405180910390f35b34801561013c57600080fd5b5061015061014b366004611f0b565b610c07565b6040519015158152602001610127565b34801561016c57600080fd5b5061018061017b366004611f35565b610c3e565b6040516101279190611f4e565b34801561019957600080fd5b506101ad6101a8366004611f8c565b610c93565b005b3480156101bb57600080fd5b506101ad6101ca366004611fbc565b610eb4565b3480156101db57600080fd5b506003546001600160a01b03165b6040516001600160a01b039091168152602001610127565b34801561020d57600080fd5b506101ad610f7c565b34801561022257600080fd5b506101ad610f90565b34801561023757600080fd5b506101ad610246366004611fd9565b610fd4565b34801561025757600080fd5b5061026b610266366004612013565b6111e3565b604051610127919061204b565b34801561028457600080fd5b506000546001600160a01b03166101e9565b3480156102a257600080fd5b506102b66102b1366004611ea5565b611305565b604051908152602001610127565b3480156102d057600080fd5b506004546001600160a01b03166101e9565b3480156102ee57600080fd5b506101ad6102fd366004611fbc565b61154f565b34801561030e57600080fd5b506001546001600160a01b03166101e9565b34801561032c57600080fd5b506101ad61033b366004612183565b6115e0565b34801561034c57600080fd5b506101ad61035b366004611fbc565b61184c565b60035460009081906001600160a01b031661038e5760405163502d4c1b60e01b815260040160405180910390fd5b856001600160a01b0381166103b65760405163dc2e5e8d60e01b815260040160405180910390fd5b6103be6118bd565b6001600160a01b0385166103e5576040516379bbce7960e11b815260040160405180910390fd5b876001600160401b031660000361040f5760405163def7b43160e01b815260040160405180910390fd5b60035460405163292accdf60e11b81526000916001600160a01b03169063525599be90610442908b908d906004016121e6565b600060405180830381865afa15801561045f573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f19168201604052610487919081019061222c565b60208101519091506001600160a01b03166104c2578789604051632f6ada5d60e01b81526004016104b99291906121e6565b60405180910390fd5b60408101516001600160a01b03166104f85760405163250332d560e11b81526001600160a01b03891660048201526024016104b9565b80516001600160a01b031661052b57604051636c76fe7360e11b81526001600160401b038a1660048201526024016104b9565b80606001515160000361055c57604051636cbd6d1360e11b81526001600160401b038a1660048201526024016104b9565b600061057882600001518884602001518b8a87606001516118e5565b9050600061058e6004546001600160a01b031690565b6040516320487ded60e01b81529091506001600160a01b038216906320487ded906105bf908e908690600401612351565b602060405180830381865afa1580156105dc573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610600919061241f565b604084015190955061061f906001600160a01b038c169033908c6119fc565b82604001516001600160a01b031663503c28588a6040518263ffffffff1660e01b815260040161065191815260200190565b600060405180830381600087803b15801561066b57600080fd5b505af115801561067f573d6000803e3d6000fd5b5050505060003411156107fa576001600160a01b038716156106c5576040516349df019b60e11b81523460048201526001600160a01b03881660248201526044016104b9565b6000348611156106f1576040516311e9ebaf60e31b8152346004820152602481018790526044016104b9565b8534111561070657610703863461244e565b90505b816001600160a01b03166396f4e9f9878e866040518463ffffffff1660e01b8152600401610735929190612351565b60206040518083038185885af1158015610753573d6000803e3d6000fd5b50505050506040513d601f19601f82011682018060405250810190610778919061241f565b965080156107f457604051600090339083908381818185875af1925050503d80600081146107c2576040519150601f19603f3d011682016040523d82523d6000602084013e6107c7565b606091505b50509050806107f257604051631e0b196160e21b8152336004820152602481018390526044016104b9565b505b50610b51565b6001600160a01b0387166108215760405163234801ab60e21b815260040160405180910390fd5b6040516370a0823160e01b81523360048201526001600160a01b038816906370a0823190602401602060405180830381865afa158015610865573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610889919061241f565b85111561091c576040516370a0823160e01b81523360048201526001600160a01b038816906370a0823190602401602060405180830381865afa1580156108d4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108f8919061241f565b6040516311e9ebaf60e31b81526004810191909152602481018690526044016104b9565b604051636eb1769f60e11b81523360048201523060248201526001600160a01b0388169063dd62ed3e90604401602060405180830381865afa158015610966573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061098a919061241f565b851115610a3557604051636eb1769f60e11b8152336004820152306024820152879086906001600160a01b0383169063dd62ed3e90604401602060405180830381865afa1580156109df573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610a03919061241f565b604051633880274360e01b81526001600160a01b039093166004840152602483019190915260448201526064016104b9565b610a4a6001600160a01b0388163330886119fc565b866001600160a01b031663095ea7b3610a6b6004546001600160a01b031690565b6040516001600160e01b031960e084901b1681526001600160a01b039091166004820152602481018890526044016020604051808303816000875af1158015610ab8573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610adc9190612461565b506040516396f4e9f960e01b81526001600160a01b038216906396f4e9f990610b0b908e908690600401612351565b6020604051808303816000875af1158015610b2a573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b4e919061241f565b95505b6040516001600160a01b03891690339088907fc5f5ab18d19b8e46112af8a6edac567a88c72e33ecb2f629d1c7b0a2996fce0590600090a460408084015160208086015183516001600160a01b0391821681529182018d90529281018890526001600160401b038e1692918216918d16907f825417000078bf0b1ecfe352a3cc7107c8e5c834554392c1d0e62a8d6aa7d19a9060600160405180910390a4505050610bfc6001600255565b509550959350505050565b60006001600160e01b031982166385572ffb60e01b1480610c3857506001600160e01b031982166301ffc9a760e01b145b92915050565b610c46611e2e565b506000908152600860209081526040918290208251808401845281546001600160a01b03908116825284518086019095526001830154168452600290910154838301529081019190915290565b610c9b611a56565b6001610ca8600584611a83565b14610cc9576040516305b73c1360e51b8152600481018390526024016104b9565b610cd98260005b60059190611a96565b5060008281526008602090815260408083208151808301835281546001600160a01b03908116825283518085018552600184015482168152600290930154838601529381018290526003549151925163026151a560e11b81529284166004840152939216906304c2a34a90602401602060405180830381865afa158015610d64573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610d889190612483565b90506001600160a01b038116610dc35760208201515160405163250332d560e11b81526001600160a01b0390911660048201526024016104b9565b600084815260086020908152604080832080546001600160a01b03199081168255600182018054909116905560020192909255838101510151905163355a6d5760e21b815260048101919091526001600160a01b03848116602483015282169063d569b55c90604401600060405180830381600087803b158015610e4657600080fd5b505af1158015610e5a573d6000803e3d6000fd5b50505050826001600160a01b0316336001600160a01b0316857fd79210425ea4e320884072fc8db859ef6d344c3f57b2b2ff189a8c9876bf2a4d8560200151604051610ea691906124a0565b60405180910390a450505050565b610ebc611a56565b6001600160a01b038116610ee3576040516305db0ead60e31b815260040160405180910390fd5b6003546001600160a01b0390811690821603610f1d5760405163f1e2c27160e01b81526001600160a01b03821660048201526024016104b9565b60035460405133916001600160a01b03848116929116907fa515a29cadc57c3f950e8c6526027a06266b9295aabafc452c7875f66f4c476c90600090a4600380546001600160a01b0319166001600160a01b0392909216919091179055565b610f84611a56565b610f8e6000611aab565b565b60015433906001600160a01b03168114610fc85760405163118cdaa760e01b81526001600160a01b03821660048201526024016104b9565b610fd181611aab565b50565b6004546001600160a01b03163314611001576040516335fdcccd60e21b81523360048201526024016104b9565b600061101060408301836124c0565b81019061101d9190611fbc565b905060008061102f60608501856124c0565b81019061103c9190612506565b805191935091506001600160a01b03166110695760405163dc2e5e8d60e01b815260040160405180910390fd5b806020015160000361108e57604051634aef918f60e11b815260040160405180910390fd5b3063eb0f45fd8535856110a76040890160208a0161253c565b86866040518663ffffffff1660e01b81526004016110c9959493929190612557565b600060405180830381600087803b1580156110e357600080fd5b505af19250505080156110f4575060015b6111dd573d808015611122576040519150601f19603f3d011682016040523d82523d6000602084013e611127565b606091505b5061113485356001610cd0565b506040805180820182526001600160a01b0380861680835260208084018781528a35600081815260088452879020955186549086166001600160a01b03199182161787559151805160018801805491909716931692909217909455015160029093019290925591519091907f7b6480fef33762cce2f9dae93d50894adf25b32440affbb13cf5dc636e2ec8cb906111ce90869086906125a4565b60405180910390a35050505050565b50505050565b606060006111f16005611ac4565b905060008161120085876125d1565b1161120b5783611215565b611215858361244e565b9050806001600160401b0381111561122f5761122f6120b8565b60405190808252806020026020018201604052801561127457816020015b604080518082019091526000808252602082015281526020019060019003908161124d5790505b50925060005b818110156112fc5760008061129a611292848a6125d1565b600590611acf565b9150915060405180604001604052808381526020018260018111156112c1576112c1612035565b60018111156112d2576112d2612035565b8152508684815181106112e7576112e76125e4565b6020908102919091010152505060010161127a565b50505092915050565b6003546000906001600160a01b03166113315760405163502d4c1b60e01b815260040160405180910390fd5b846001600160a01b0381166113595760405163dc2e5e8d60e01b815260040160405180910390fd5b60035460405163292accdf60e11b81526000916001600160a01b03169063525599be9061138c908a908c906004016121e6565b600060405180830381865afa1580156113a9573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526113d1919081019061222c565b60208101519091506001600160a01b0316611403578688604051632f6ada5d60e01b81526004016104b99291906121e6565b60408101516001600160a01b03166114395760405163250332d560e11b81526001600160a01b03881660048201526024016104b9565b80516001600160a01b031661146c57604051636c76fe7360e11b81526001600160401b03891660048201526024016104b9565b80606001515160000361149d57604051636cbd6d1360e11b81526001600160401b03891660048201526024016104b9565b60006114b982600001518784602001518a8987606001516118e5565b905060006114cf6004546001600160a01b031690565b6040516320487ded60e01b81529091506001600160a01b038216906320487ded90611500908d908690600401612351565b602060405180830381865afa15801561151d573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190611541919061241f565b9a9950505050505050505050565b611557611a56565b6001600160a01b038116611581576040516335fdcccd60e21b8152600060048201526024016104b9565b60045460405133916001600160a01b03848116929116907f13b847e4d386296a3ab56e943fb29c3b96a19c71dda0f5fb1f165cba81ae017990600090a4600480546001600160a01b0319166001600160a01b0392909216919091179055565b3330146116015760405162a19dbf60e81b81523360048201526024016104b9565b6001600160a01b038216611628576040516379bbce7960e11b815260040160405180910390fd5b6003548151604051637d5ecb8560e01b81526000926001600160a01b031691637d5ecb859161165c919088906004016121e6565b6040805180830381865afa158015611678573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061169c91906125fa565b905080600001516001600160a01b0316856001600160a01b0316146116f957805160405163b5275e6960e01b81526001600160401b03861660048201526001600160a01b03918216602482015290861660448201526064016104b9565b60208101516001600160a01b031661173257815160405163250332d560e11b81526001600160a01b0390911660048201526024016104b9565b6020808201519083015160405163355a6d5760e21b815260048101919091526001600160a01b0385811660248301529091169063d569b55c90604401600060405180830381600087803b15801561178857600080fd5b505af115801561179c573d6000803e3d6000fd5b50505050826001600160a01b0316856001600160a01b0316877fd2337c2a824f101db33d285f3d8ff29c73ade16f6750d8e399d1089554a74d8e60405160405180910390a4836001600160401b031681602001516001600160a01b031683600001516001600160a01b03167f74fcc3aa2edea86d35be26db50497256d120b3efc96e00afa3097b856016eb2f856020015160405161183c91815260200190565b60405180910390a4505050505050565b611854611a56565b600180546001600160a01b0383166001600160a01b031990911681179091556118856000546001600160a01b031690565b6001600160a01b03167f38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e2270060405160405180910390a350565b60028054036118df57604051633ee5aeb560e01b815260040160405180910390fd5b60028055565b6119206040518060a0016040528060608152602001606081526020016060815260200160006001600160a01b03168152602001606081525090565b6040805180820182526001600160a01b03878116825260208201879052825160a08101909352891660c0830152908060e081016040516020818303038152906040528152602001888360405160200161197a92919061263b565b60408051601f19818403018152919052815260200160006040519080825280602002602001820160405280156119d657816020015b60408051808201909152600080825260208201528152602001906001900390816119af5790505b508152602001856001600160a01b03168152602001848152509150509695505050505050565b604080516001600160a01b0385811660248301528416604482015260648082018490528251808303909101815260849091019091526020810180516001600160e01b03166323b872dd60e01b1790526111dd908590611aed565b6000546001600160a01b03163314610f8e5760405163118cdaa760e01b81523360048201526024016104b9565b6000611a8f8383611b55565b9392505050565b6000611aa3848484611b9c565b949350505050565b600180546001600160a01b0319169055610fd181611bb9565b6000610c3882611c09565b6000808080611ade8686611c14565b909450925050505b9250929050565b6000611b026001600160a01b03841683611c3f565b90508051600014158015611b27575080806020019051810190611b259190612461565b155b15611b5057604051635274afe760e01b81526001600160a01b03841660048201526024016104b9565b505050565b600081815260028301602052604081205480158015611b7b5750611b798484611c4d565b155b15611a8f5760405163015ab34360e11b8152600481018490526024016104b9565b60008281526002840160205260408120829055611aa38484611c59565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6000610c3882611c65565b60008080611c228585611c6f565b600081815260029690960160205260409095205494959350505050565b6060611a8f83836000611c7b565b6000611a8f8383611d18565b6000611a8f8383611d30565b6000610c38825490565b6000611a8f8383611d7f565b606081471015611ca05760405163cd78605960e01b81523060048201526024016104b9565b600080856001600160a01b03168486604051611cbc919061266b565b60006040518083038185875af1925050503d8060008114611cf9576040519150601f19603f3d011682016040523d82523d6000602084013e611cfe565b606091505b5091509150611d0e868383611da9565b9695505050505050565b60008181526001830160205260408120541515611a8f565b6000818152600183016020526040812054611d7757508154600181810184556000848152602080822090930184905584548482528286019093526040902091909155610c38565b506000610c38565b6000826000018281548110611d9657611d966125e4565b9060005260206000200154905092915050565b606082611dbe57611db982611e05565b611a8f565b8151158015611dd557506001600160a01b0384163b155b15611dfe57604051639996b31560e01b81526001600160a01b03851660048201526024016104b9565b5080611a8f565b805115611e155780518082602001fd5b604051630a12f52160e11b815260040160405180910390fd5b604051806040016040528060006001600160a01b03168152602001611e6f604051806040016040528060006001600160a01b03168152602001600081525090565b905290565b80356001600160401b0381168114611e8b57600080fd5b919050565b6001600160a01b0381168114610fd157600080fd5b600080600080600060a08688031215611ebd57600080fd5b611ec686611e74565b94506020860135611ed681611e90565b9350604086013592506060860135611eed81611e90565b91506080860135611efd81611e90565b809150509295509295909350565b600060208284031215611f1d57600080fd5b81356001600160e01b031981168114611a8f57600080fd5b600060208284031215611f4757600080fd5b5035919050565b81516001600160a01b031681526020808301516060830191611f859084018280516001600160a01b03168252602090810151910152565b5092915050565b60008060408385031215611f9f57600080fd5b823591506020830135611fb181611e90565b809150509250929050565b600060208284031215611fce57600080fd5b8135611a8f81611e90565b600060208284031215611feb57600080fd5b81356001600160401b0381111561200157600080fd5b820160a08185031215611a8f57600080fd5b6000806040838503121561202657600080fd5b50508035926020909101359150565b634e487b7160e01b600052602160045260246000fd5b60208082528251828201819052600091906040908185019086840185805b838110156120aa578251805186528701516002811061209657634e487b7160e01b83526021600452602483fd5b858801529385019391860191600101612069565b509298975050505050505050565b634e487b7160e01b600052604160045260246000fd5b604080519081016001600160401b03811182821017156120f0576120f06120b8565b60405290565b604051608081016001600160401b03811182821017156120f0576120f06120b8565b604051601f8201601f191681016001600160401b0381118282101715612140576121406120b8565b604052919050565b60006040828403121561215a57600080fd5b6121626120ce565b9050813561216f81611e90565b808252506020820135602082015292915050565b600080600080600060c0868803121561219b57600080fd5b8535945060208601356121ad81611e90565b93506121bb60408701611e74565b925060608601356121cb81611e90565b91506121da8760808801612148565b90509295509295909350565b6001600160a01b039290921682526001600160401b0316602082015260400190565b60005b8381101561222357818101518382015260200161220b565b50506000910152565b6000602080838503121561223f57600080fd5b82516001600160401b038082111561225657600080fd5b908401906080828703121561226a57600080fd5b6122726120f6565b825161227d81611e90565b81528284015161228c81611e90565b81850152604083015161229e81611e90565b60408201526060830151828111156122b557600080fd5b80840193505086601f8401126122ca57600080fd5b8251828111156122dc576122dc6120b8565b6122ee601f8201601f19168601612118565b9250808352878582860101111561230457600080fd5b61231381868501878701612208565b50606081019190915295945050505050565b6000815180845261233d816020860160208601612208565b601f01601f19169290920160200192915050565b600060406001600160401b03851683526020604081850152845160a0604086015261237f60e0860182612325565b905081860151603f198087840301606088015261239c8383612325565b6040890151888203830160808a01528051808352908601945060009350908501905b808410156123f057845180516001600160a01b03168352860151868301529385019360019390930192908601906123be565b5060608901516001600160a01b031660a08901526080890151888203830160c08a015295506115418187612325565b60006020828403121561243157600080fd5b5051919050565b634e487b7160e01b600052601160045260246000fd5b81810381811115610c3857610c38612438565b60006020828403121561247357600080fd5b81518015158114611a8f57600080fd5b60006020828403121561249557600080fd5b8151611a8f81611e90565b81516001600160a01b031681526020808301519082015260408101610c38565b6000808335601e198436030181126124d757600080fd5b8301803591506001600160401b038211156124f157600080fd5b602001915036819003821315611ae657600080fd5b6000806060838503121561251957600080fd5b823561252481611e90565b91506125338460208501612148565b90509250929050565b60006020828403121561254e57600080fd5b611a8f82611e74565b8581526001600160a01b0385811660208301526001600160401b03851660408301528316606082015260c08101611d0e608083018480516001600160a01b03168252602090810151910152565b82516001600160a01b0316815260208084015190820152606060408201526000611aa36060830184612325565b80820180821115610c3857610c38612438565b634e487b7160e01b600052603260045260246000fd5b60006040828403121561260c57600080fd5b6126146120ce565b825161261f81611e90565b8152602083015161262f81611e90565b60208201529392505050565b6001600160a01b038316815260608101611a8f602083018480516001600160a01b03168252602090810151910152565b6000825161267d818460208701612208565b919091019291505056fea264697066735822122003443ede11580a39a8c5370c928a61495a3cae06124f91fcc5a72c34f6a45a7164736f6c63430008180033",
+  "devdoc": {
+    "errors": {
+      "AddressEmptyCode(address)": [
+        {
+          "details": "There's no code at `target` (it is not a contract)."
+        }
+      ],
+      "AddressInsufficientBalance(address)": [
+        {
+          "details": "The ETH balance of the account is not enough to perform the operation."
+        }
+      ],
+      "EnumerableMapNonexistentKey(bytes32)": [
+        {
+          "details": "Query for a nonexistent map key."
+        }
+      ],
+      "FailedInnerCall()": [
+        {
+          "details": "A call to an address target failed. The target may have reverted."
+        }
+      ],
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ],
+      "SafeERC20FailedOperation(address)": [
+        {
+          "details": "An operation with an ERC20 token failed."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "acceptOwnership()": {
+        "details": "The new owner accepts the ownership transfer."
+      },
+      "ccipReceive((bytes32,uint64,bytes,bytes,(address,uint256)[]))": {
+        "details": "Note ensure you check the msg.sender is the OffRampRouter",
+        "params": {
+          "message": "CCIP Message"
+        }
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "pendingOwner()": {
+        "details": "Returns the address of the pending owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "supportsInterface(bytes4)": {
+        "details": "Should indicate whether the contract implements IAny2EVMMessageReceiver e.g. return interfaceId == type(IAny2EVMMessageReceiver).interfaceId || interfaceId == type(IERC165).interfaceId This allows CCIP to check if ccipReceive is available before calling it. If this returns false or reverts, only tokens are transferred to the receiver. If this returns true, tokens are transferred and ccipReceive is called atomically. Additionally, if the receiver address does not have code associated with it at the time of execution (EXTCODESIZE returns 0), only tokens will be transferred.",
+        "params": {
+          "interfaceId": "The interfaceId to check"
+        },
+        "returns": {
+          "_0": "true if the interfaceId is supported"
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one. Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "ccipReceive((bytes32,uint64,bytes,bytes,(address,uint256)[]))": {
+        "notice": "Called by the Router to deliver a message. If this reverts, any token transfers also revert. The message will move to a FAILED state and become available for manual execution."
+      },
+      "supportsInterface(bytes4)": {
+        "notice": "IERC165 supports an interfaceId"
+      }
+    },
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 129,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 277,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "_pendingOwner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 1970,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "_status",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 5669,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "s_configuration",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_contract(IConfiguration)7918"
+      },
+      {
+        "astId": 5671,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "s_ccipRouter",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_address"
+      },
+      {
+        "astId": 5674,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "s_failedMessages",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_struct(Bytes32ToUintMap)4020_storage"
+      },
+      {
+        "astId": 5679,
+        "contract": "contracts/bridge/Bridge.sol:Bridge",
+        "label": "s_messageContents",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_mapping(t_bytes32,t_struct(FailedMessageContent)7415_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_bytes32)dyn_storage": {
+        "base": "t_bytes32",
+        "encoding": "dynamic_array",
+        "label": "bytes32[]",
+        "numberOfBytes": "32"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IConfiguration)7918": {
+        "encoding": "inplace",
+        "label": "contract IConfiguration",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IERC20)1207": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_bytes32,t_bytes32)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => bytes32)",
+        "numberOfBytes": "32",
+        "value": "t_bytes32"
+      },
+      "t_mapping(t_bytes32,t_struct(FailedMessageContent)7415_storage)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => struct IBridge.FailedMessageContent)",
+        "numberOfBytes": "32",
+        "value": "t_struct(FailedMessageContent)7415_storage"
+      },
+      "t_mapping(t_bytes32,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_struct(Bytes32Set)4414_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableSet.Bytes32Set",
+        "members": [
+          {
+            "astId": 4413,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "_inner",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Set)4220_storage"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(Bytes32ToBytes32Map)3116_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableMap.Bytes32ToBytes32Map",
+        "members": [
+          {
+            "astId": 3111,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "_keys",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Bytes32Set)4414_storage"
+          },
+          {
+            "astId": 3115,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "_values",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_bytes32,t_bytes32)"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(Bytes32ToUintMap)4020_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableMap.Bytes32ToUintMap",
+        "members": [
+          {
+            "astId": 4019,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "_inner",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Bytes32ToBytes32Map)3116_storage"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(FailedMessageContent)7415_storage": {
+        "encoding": "inplace",
+        "label": "struct IBridge.FailedMessageContent",
+        "members": [
+          {
+            "astId": 7411,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "receiver",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 7414,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "tokenAmount",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_struct(TokenAmount)7409_storage"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(Set)4220_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableSet.Set",
+        "members": [
+          {
+            "astId": 4215,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "_values",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_array(t_bytes32)dyn_storage"
+          },
+          {
+            "astId": 4219,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "_positions",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_bytes32,t_uint256)"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(TokenAmount)7409_storage": {
+        "encoding": "inplace",
+        "label": "struct IBridge.TokenAmount",
+        "members": [
+          {
+            "astId": 7406,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "token",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IERC20)1207"
+          },
+          {
+            "astId": 7408,
+            "contract": "contracts/bridge/Bridge.sol:Bridge",
+            "label": "amount",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

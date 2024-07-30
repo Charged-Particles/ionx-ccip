@@ -15,10 +15,8 @@
     "coverage": "yarn clean-test && hardhat --show-stack-traces coverage --temp coverage_build && yarn clean-test",
     "gas": "REPORT_GAS=true hardhat test",
     "gen-docs": "solidity-docgen -i contracts -o docs",
-    "deploy-source": "hardhat deploy --tags SetupSource --network sepolia",
-    "deploy-dest": "hardhat deploy --tags SetupDestination --network modeSepolia",
-    "setup-source": "hardhat deploy --tags SetupConnection --network sepolia",
-    "setup-dest": "hardhat deploy --tags SetupConnection --network modeSepolia",
+    "deploy": "hardhat deploy --tags SetupSource --network",
+    "setup": "hardhat deploy --tags SetupConnection --network",
     "bridge": "hardhat deploy --tags TestConnection --network"
   },
   "devDependencies": {

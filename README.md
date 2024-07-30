@@ -8,10 +8,10 @@ Part of the Charged Particles Protocol
 
 - nvm use
 - yarn
-- yarn deploy-source
-- yarn deploy-dest
-- yarn setup-source
-- yarn setup-dest
+- yarn deploy sepolia
+- yarn deploy modeSepolia
+- yarn setup sepolia
+- yarn setup modeSepolia
 
 ## Test Bridge:
 ### Sepolia -> Mode-Sepolia
