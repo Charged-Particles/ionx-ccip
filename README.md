@@ -1,6 +1,8 @@
-# ionx-ccip
+# ionx-ccip v1.0
 IONX on ChainLink CCIP
 
+Part of the Charged Particles Protocol
+<https://charged.fi>
 
 ## Deploy Steps:
 
@@ -8,11 +10,12 @@ IONX on ChainLink CCIP
 - yarn
 - yarn deploy-source
 - yarn deploy-dest
-- yarn setup sepolia
-- yarn setup modeSepolia
+- yarn setup-source
+- yarn setup-dest
 
-## Test Bridge Sepolia -> Mode-Sepolia
-yarn bridge sepolia
+## Test Bridge:
+### Sepolia -> Mode-Sepolia
+- yarn bridge sepolia
 
-## Test Bridge Mode-Sepolia -> Sepolia
-yarn bridge modeSepolia
+### Mode-Sepolia -> Sepolia
+- yarn bridge modeSepolia

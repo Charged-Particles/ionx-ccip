@@ -1,6 +1,6 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
-import { Ionx, Bridge } from '../typechain-types';
+import { Bridge } from '../typechain-types';
 import { performTx } from '../utils/performTx';
 import { getDeployConfig } from '../utils/config';
 import { isSourceChain } from '../utils/isSourceChain';
@@ -66,7 +66,7 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
   );
   log(` -- Estimated Bridge Fees: ${formatEther(bridgeFees)} ETH`);
 
-  const extraBridgeFees = ((bridgeFees * 100n) / 10n) / 100n;  //  (Fees * 1.1%) to cover any fee-discrepencies
+  const extraBridgeFees = ((bridgeFees * 100n) / 10n) / 100n;  //  to cover any fee-discrepencies
   const finalBridgeFees = (bridgeFees + extraBridgeFees);
   log(` -- Final Bridge Fees: ${formatEther(finalBridgeFees)} ETH`);
 

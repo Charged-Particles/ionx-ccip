@@ -2,11 +2,13 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
 import { Ionx, Configuration, LockReleaseTokenPool } from '../typechain-types';
 import { performTx } from '../utils/performTx';
+import { isTestnet } from '../utils/isTestnet';
 import { log } from '../utils/log';
 
 const Setup_Source: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
 	const { ethers, getNamedAccounts } = hre;
-	const { deployer, user1 } = await getNamedAccounts();
+	const { deployer } = await getNamedAccounts();
+  const isMainnet = !isTestnet();
 
   // SOURCE CHAIN
   //   Setup on Source Chain (Ethereum)
@@ -28,21 +30,29 @@ const Setup_Source: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   log(` -- LockReleaseTokenPool Address: ${tokenPoolAddress}`);
 
   // Load Ionx Contract
-  const ionx: Ionx = await ethers.getContract('Ionx');
+  let ionx: Ionx;
+  if (isMainnet) {
+    ionx = await ethers.getContractAt('Ionx', '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217');
+  } else {
+    ionx = await ethers.getContract('Ionx');
+  }
   const ionxAddress = await ionx.getAddress();
   log(` -- IONX Address: ${ionxAddress}`);
 
   // Set Ionx Minter
-  await performTx(
-    await ionx.setMinter(deployer),
-    ' -- Minter Set for Ionx Contract!'
-  );
+  if (!isMainnet) {
+    await performTx(
+      await ionx.setMinter(deployer),
+      ' -- Minter Set for Ionx Contract!'
+    );
+  }
 
   // Set Token Pool for Configuration Contract
   await performTx(
     await config.setTokenPool(tokenPoolAddress),
     ' -- Token Pool Set for Configuration Contract!'
   );
+
   log(`--- Source-Chain Setup Complete! ---`);
 };
 export default Setup_Source;

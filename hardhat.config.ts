@@ -57,7 +57,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 1,
       forking: {
-        url: "https://eth-mainnet.g.alchemy.com/v2/" + process.env.ALCHEMY_ETH_APIKEY,
+        url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_ETH_APIKEY}`,
         blockNumber: 20000000
       },
       accounts: {
@@ -111,6 +111,7 @@ const config: HardhatUserConfig = {
       mainnet: process.env.ETHERSCAN_APIKEY ?? '',
       sepolia: process.env.ETHERSCAN_APIKEY ?? '',
       modeSepolia: 'MODE-NETWORK-TESTNET',
+      mode: process.env.ETHERSCAN_APIKEY ?? '',
     },
     customChains: [
       {
