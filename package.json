@@ -17,7 +17,8 @@
     "gen-docs": "solidity-docgen -i contracts -o docs",
     "deploy-source": "hardhat deploy --tags SetupSource --network sepolia",
     "deploy-dest": "hardhat deploy --tags SetupDestination --network modeSepolia",
-    "setup": "hardhat deploy --tags SetupConnection --network",
+    "setup-source": "hardhat deploy --tags SetupConnection --network sepolia",
+    "setup-dest": "hardhat deploy --tags SetupConnection --network modeSepolia",
     "bridge": "hardhat deploy --tags TestConnection --network"
   },
   "devDependencies": {
