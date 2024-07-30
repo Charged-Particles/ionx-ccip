@@ -64,7 +64,11 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
     user1,
     ethers.ZeroAddress // Fee Token (Native)
   );
-  log(` -- Bridge Fees: ${formatEther(bridgeFees)} ETH`);
+  log(` -- Estimated Bridge Fees: ${formatEther(bridgeFees)} ETH`);
+
+  const extraBridgeFees = ((bridgeFees * 100n) / 10n) / 100n;  //  (Fees * 1.1%) to cover any fee-discrepencies
+  const finalBridgeFees = (bridgeFees + extraBridgeFees);
+  log(` -- Final Bridge Fees: ${formatEther(finalBridgeFees)} ETH`);
 
   let user1Balance = await ethers.provider.getBalance(user1);
   if (user1Balance < parseEther('0.2')) {
@@ -78,7 +82,7 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
   // Approve Bridge Transfer
   const allowance = await ionx.allowance(user1, bridgeAddress);
   if (allowance < parseEther('100')) {
-    await performTx(await ionx.connect(signer1).approve(bridgeAddress, parseEther('100')), ` -- Tokens Approved for Bridge!`);
+    await performTx(await ionx.connect(signer1).approve(bridgeAddress, parseEther('1000')), ` -- Tokens Approved for Bridge!`);
   } else {
     log(` -- Tokens Pre-Approved for Bridge!`);
   }
@@ -91,7 +95,7 @@ const Test_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) =
       parseEther('100'),
       user1,
       ethers.ZeroAddress,
-      {value: bridgeFees}
+      {value: finalBridgeFees}
     ),
     ` -- Tokens Transferred to ${isSourceChain() ? 'Destination' : 'Source'} Chain!`
   );
