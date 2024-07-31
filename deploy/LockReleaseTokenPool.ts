@@ -1,9 +1,10 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
 import { verifyContract } from '../utils/verifyContract';
-import { Ionx, Bridge } from '../typechain-types';
+import { Bridge } from '../typechain-types';
 import { isHardhat } from '../utils/isHardhat';
 import { isTestnet } from '../utils/isTestnet';
+import { ionxMainnetAddress } from '../utils/config';
 import { log } from '../utils/log';
 
 const LockReleaseTokenPool_Deploy: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
@@ -14,7 +15,7 @@ const LockReleaseTokenPool_Deploy: DeployFunction = async (hre: HardhatRuntimeEn
 
   // Load Ionx Contract
   const ionx = await ethers.getContract('Ionx');
-  const ionxAddress = isMainnet ? '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217' : await ionx.getAddress();
+  const ionxAddress = isMainnet ? ionxMainnetAddress : await ionx.getAddress();
   log(` -- IONX Address: ${ionxAddress}`);
 
   // Load Bridge Contract

@@ -2,7 +2,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
 import { Configuration } from '../typechain-types';
 import { performTx } from '../utils/performTx';
-import { getDeployConfig } from '../utils/config';
+import { getDeployConfig, ionxMainnetAddress } from '../utils/config';
 import { isSourceChain } from '../utils/isSourceChain';
 import { isTestnet } from '../utils/isTestnet';
 import { log } from '../utils/log';
@@ -49,7 +49,7 @@ const Setup_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) 
   );
 
   // Set Destination Token for Configuration Contract
-  const realSourceToken = (isMainnet ? '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217' : sourceTokenAddress);
+  const realSourceToken = (isMainnet ? ionxMainnetAddress : sourceTokenAddress);
   const sourceToken = isSourceChain() ? realSourceToken : destTokenAddress;
   const destToken = isSourceChain() ? destTokenAddress : realSourceToken;
   await performTx(

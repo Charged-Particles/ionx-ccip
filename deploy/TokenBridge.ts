@@ -2,7 +2,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
 import { Bridge } from '../typechain-types';
 import { performTx } from '../utils/performTx';
-import { getDeployConfig } from '../utils/config';
+import { getDeployConfig, ionxMainnetAddress } from '../utils/config';
 import { isSourceChain } from '../utils/isSourceChain';
 import { isTestnet } from '../utils/isTestnet';
 import { log } from '../utils/log';
@@ -15,11 +15,12 @@ const TokenBridge: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const deployerS = await ethers.getSigner(deployer);
   const isMainnet = !isTestnet();
 
-  const AMOUNT_TO_SEND = parseEther('10'); // IONX Tokens
+  const AMOUNT_TO_SEND = parseEther('1000000'); // IONX Tokens
 
   log(`--- Executing Token Bridge from ${isSourceChain() ? 'Source' : 'Destination'} Chain ---`);
   log(` -- Deployer Address: ${deployer}`);
   log(` -- Receiver Address: ${deployer}`);
+  log(` -- Sending ${formatEther(AMOUNT_TO_SEND)} IONX Tokens..`);
 
   const deployConfigOpp = getDeployConfig({ oppositeChain: true });
 
@@ -27,7 +28,7 @@ const TokenBridge: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   let ionx: any;
   if (isSourceChain()) {
     if (isMainnet) {
-      ionx = await ethers.getContractAt('Ionx', '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217');
+      ionx = await ethers.getContractAt('Ionx', ionxMainnetAddress);
     } else {
       ionx = await ethers.getContract('Ionx');
     }
@@ -65,7 +66,7 @@ const TokenBridge: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
 
   // Approve Bridge Transfer
   const allowance = await ionx.allowance(deployer, bridgeAddress);
-  if (allowance < parseEther('100')) {
+  if (allowance < AMOUNT_TO_SEND) {
     await performTx(await ionx.connect(deployerS).approve(bridgeAddress, AMOUNT_TO_SEND), ` -- Tokens Approved for Bridge!`);
   } else {
     log(` -- Tokens Pre-Approved for Bridge!`);
@@ -84,9 +85,12 @@ const TokenBridge: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     ` -- Tokens Transferred to ${isSourceChain() ? 'Destination' : 'Source'} Chain!`
   );
 
-  // Check Balance of User1
-  const balanceAfter = await ionx.balanceOf(deployer);
-  log(` -- Balance After: ${formatEther(balanceAfter)} IONX`);
+
+  const ethFinalBalance = await ethers.provider.getBalance(deployer);
+  log(` -- ETH Final Balance: ${formatEther(ethFinalBalance)} ETH`);
+
+  const ionxFinalBalance = await ionx.balanceOf(deployer);
+  log(` -- IONX Final Balance: ${formatEther(ionxFinalBalance)} IONX`);
 
   log(`--- ${isSourceChain() ? 'Source' : 'Destination'} Chain Token Bridge Complete! ---`);
 

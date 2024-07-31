@@ -8,6 +8,8 @@ const _oppositeChains = {
   919: 11155111,
 };
 
+export const ionxMainnetAddress = '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217';
+
 export const deployConfig = {
   1: {
     router: '0x80226fc0Ee2b096224EeAc085Bb9a8cba1146f7D',
