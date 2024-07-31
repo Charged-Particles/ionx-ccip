@@ -10,6 +10,7 @@ import _ from 'lodash';
 
 const Setup_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
 	const { ethers } = hre;
+  const isMainnet = !isTestnet();
 
   const path = isTestnet() ? ['sepolia', 'modeSepolia'] : ['mainnet', 'mode'];
   const { address: sourceBridgeAddress } = require(`../deployments/${path[0]}/Bridge.json`);
@@ -48,8 +49,9 @@ const Setup_Connection: DeployFunction = async (hre: HardhatRuntimeEnvironment) 
   );
 
   // Set Destination Token for Configuration Contract
-  const sourceToken = isSourceChain() ? sourceTokenAddress : destTokenAddress;
-  const destToken = isSourceChain() ? destTokenAddress : sourceTokenAddress;
+  const realSourceToken = (isMainnet ? '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217' : sourceTokenAddress);
+  const sourceToken = isSourceChain() ? realSourceToken : destTokenAddress;
+  const destToken = isSourceChain() ? destTokenAddress : realSourceToken;
   await performTx(
     await config.setDestinationToken(sourceToken, deployConfigOpp.chainSelector, destToken),
     ' -- Destination Token Set for Configuration Contract!'

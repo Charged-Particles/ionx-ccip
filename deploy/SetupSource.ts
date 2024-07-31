@@ -29,18 +29,13 @@ const Setup_Source: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const tokenPoolAddress = await tokenPool.getAddress();
   log(` -- LockReleaseTokenPool Address: ${tokenPoolAddress}`);
 
-  // Load Ionx Contract
-  let ionx: Ionx;
-  if (isMainnet) {
-    ionx = await ethers.getContractAt('Ionx', '0x02D3A27Ac3f55d5D91Fb0f52759842696a864217');
-  } else {
-    ionx = await ethers.getContract('Ionx');
-  }
-  const ionxAddress = await ionx.getAddress();
-  log(` -- IONX Address: ${ionxAddress}`);
-
   // Set Ionx Minter
   if (!isMainnet) {
+    // Load Ionx Contract
+    const ionx: Ionx = await ethers.getContract('Ionx');
+    const ionxAddress = await ionx.getAddress();
+    log(` -- IONX Address: ${ionxAddress}`);
+
     await performTx(
       await ionx.setMinter(deployer),
       ' -- Minter Set for Ionx Contract!'

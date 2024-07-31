@@ -17,7 +17,8 @@
     "gen-docs": "solidity-docgen -i contracts -o docs",
     "deploy": "hardhat deploy --tags SetupSource --network",
     "setup": "hardhat deploy --tags SetupConnection --network",
-    "bridge": "hardhat deploy --tags TestConnection --network"
+    "test-bridge": "hardhat deploy --tags TestConnection --network",
+    "bridge": "hardhat deploy --tags TokenBridge --network"
   },
   "devDependencies": {
     "@chainlink/local": "^0.2.1",
